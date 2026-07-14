@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/staff-auth";
-import { getFileContents, commitFile } from "@/lib/github";
+import { getFileContents } from "@/lib/github";
 
 export async function POST(request: NextRequest) {
   const token =
@@ -21,26 +21,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const existing = await getFileContents("public/images/ig-posts/.gitkeep").catch(() => {
-      return null;
+    const dirUrl = `https://api.github.com/repos/sprincedeep10-ai/usrc-tigers-mini-rugby/contents/public/images/ig-posts`;
+    const dirRes = await fetch(dirUrl, {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
     });
 
-    let nextNum = 1;
-    try {
-      const { content: listContent } = await getFileContents("src/data/ig-posts.ts");
-      const matches = listContent.match(/image: "\/images\/ig-posts\/post-(\d+)\.jpg"/g);
-      if (matches) {
-        const nums = matches.map((m: string) => {
-          const n = m.match(/post-(\d+)/);
-          return n ? parseInt(n[1], 10) : 0;
-        });
-        nextNum = Math.max(...nums) + 1;
+    const existingNums: number[] = [];
+    if (dirRes.ok) {
+      const files = await dirRes.json();
+      if (Array.isArray(files)) {
+        for (const f of files) {
+          const m = f.name?.match(/^post-(\d+)\.\w+$/);
+          if (m) existingNums.push(parseInt(m[1], 10));
+        }
       }
-    } catch {
-      nextNum = 1;
     }
 
-    const filename = `post-${nextNum}.jpg`;
+    const nextNum = existingNums.length > 0 ? Math.max(...existingNums) + 1 : 1;
+    const ext = file.name.split(".").pop() || "jpg";
+    const filename = `post-${nextNum}.${ext}`;
     const filePath = `public/images/ig-posts/${filename}`;
 
     const bytes = await file.arrayBuffer();
