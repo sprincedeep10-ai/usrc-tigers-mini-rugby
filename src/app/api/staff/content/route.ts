@@ -24,41 +24,40 @@ function parseTranslations(source: string): Record<string, unknown> {
   return fn();
 }
 
-function serializeValue(value: unknown, indent: number): string {
+function js(value: unknown, indent: number): string {
   const pad = "  ".repeat(indent);
 
-  if (typeof value === "string") {
-    return JSON.stringify(value);
-  }
-
-  if (typeof value === "number" || typeof value === "boolean") {
-    return String(value);
-  }
+  if (value === null) return "null";
+  if (value === undefined) return "undefined";
+  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
 
   if (Array.isArray(value)) {
+    if (value.length === 0) return "[]";
     const items = value.map((item) => {
-      if (typeof item === "object" && item !== null) {
-        const objEntries = Object.entries(item)
-          .map(
-            ([k, v]) =>
-              `${pad}  ${k}: ${serializeValue(v, indent + 2)}`
-          )
-          .join(",\n");
-        return `${pad}  {\n${objEntries},\n${pad}  }`;
+      if (typeof item === "object" && item !== null && !Array.isArray(item)) {
+        return jsObj(item, indent + 1);
       }
-      return `${pad}  ${serializeValue(item, indent + 1)}`;
+      return pad + "  " + js(item, indent + 1);
     });
-    return `[\n${items.join(",\n")},\n${pad}]`;
+    return "[\n" + items.join(",\n") + ",\n" + pad + "]";
   }
 
-  if (typeof value === "object" && value !== null) {
-    const entries = Object.entries(value)
-      .map(([k, v]) => `${pad}${k}: ${serializeValue(v, indent + 1)}`)
-      .join(",\n");
-    return `{\n${entries},\n${"  ".repeat(indent - 1)}}`;
+  if (typeof value === "object") {
+    return jsObj(value, indent);
   }
 
   return String(value);
+}
+
+function jsObj(obj: unknown, indent: number): string {
+  const pad = "  ".repeat(indent);
+  const entries = Object.entries(obj as Record<string, unknown>);
+  if (entries.length === 0) return "{}";
+  const lines = entries.map(
+    ([k, v]) => `${pad}${k}: ${js(v, indent + 1)}`
+  );
+  return "{\n" + lines.join(",\n") + ",\n" + "  ".repeat(indent - 1) + "}";
 }
 
 function serializeTranslations(data: Record<string, unknown>): string {
@@ -73,7 +72,7 @@ function serializeTranslations(data: Record<string, unknown>): string {
     for (const [section, value] of Object.entries(
       sections as Record<string, unknown>
     )) {
-      lines.push(`    ${section}: ${serializeValue(value, 3)},`);
+      lines.push(`    ${section}: ${js(value, 3)},`);
     }
     lines.push("  },");
   }
@@ -119,8 +118,36 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const { sha } = await getFileContents(TRANSLATIONS_PATH);
+    const { sha, content: originalContent } =
+      await getFileContents(TRANSLATIONS_PATH);
+
     const fileContent = serializeTranslations(translations);
+
+    let parsed: Record<string, unknown>;
+    try {
+      parsed = parseTranslations(fileContent);
+    } catch (e) {
+      return NextResponse.json(
+        { error: `Serialized output is invalid: ${e}` },
+        { status: 500 }
+      );
+    }
+
+    const origParsed = parseTranslations(originalContent);
+    const origJson = JSON.stringify(origParsed);
+    const newJson = JSON.stringify(parsed);
+
+    if (origJson !== newJson) {
+      return NextResponse.json(
+        {
+          error: "Data mismatch after serialize/parse round-trip",
+          origKeys: Object.keys((origParsed.en as Record<string, unknown>) || {}),
+          newKeys: Object.keys((parsed.en as Record<string, unknown>) || {}),
+        },
+        { status: 500 }
+      );
+    }
+
     await commitFile(
       TRANSLATIONS_PATH,
       fileContent,
