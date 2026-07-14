@@ -7,13 +7,11 @@ import {
   useStaffAuth,
 } from "@/components/staff/staff-auth-provider";
 import { IGPostEditor } from "@/components/staff/ig-post-editor";
-import { ContentEditor } from "@/components/staff/content-editor";
-import { LogOut, Image, FileText, Shield, ExternalLink } from "lucide-react";
+import { LogOut, Image, Shield, ExternalLink } from "lucide-react";
 
 function StaffDashboardInner() {
   const { isAuthenticated, isLoading, logout, authFetch } = useStaffAuth();
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<"ig" | "content">("ig");
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -72,33 +70,14 @@ function StaffDashboardInner() {
       </header>
 
       <main className="mx-auto max-w-5xl px-5 py-8">
-        <div className="mb-8 flex gap-2">
-          <button
-            onClick={() => setActiveTab("ig")}
-            className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-all ${
-              activeTab === "ig"
-                ? "bg-tiger text-black shadow-lg shadow-tiger/20"
-                : "border border-card-border text-muted hover:text-foreground hover:border-tiger/30"
-            }`}
-          >
-            <Image className="h-4 w-4" />
-            Instagram Posts
-          </button>
-          <button
-            onClick={() => setActiveTab("content")}
-            className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-all ${
-              activeTab === "content"
-                ? "bg-tiger text-black shadow-lg shadow-tiger/20"
-                : "border border-card-border text-muted hover:text-foreground hover:border-tiger/30"
-            }`}
-          >
-            <FileText className="h-4 w-4" />
-            Site Content
-          </button>
+        <div className="mb-8">
+          <div className="flex items-center gap-2 rounded-xl bg-tiger/10 px-5 py-3 w-fit">
+            <Image className="h-4 w-4 text-tiger" />
+            <span className="text-sm font-semibold text-foreground">Instagram Posts</span>
+          </div>
         </div>
 
-        {activeTab === "ig" && <IGPostEditor authFetch={authFetch} />}
-        {activeTab === "content" && <ContentEditor authFetch={authFetch} />}
+        <IGPostEditor authFetch={authFetch} />
       </main>
     </div>
   );
