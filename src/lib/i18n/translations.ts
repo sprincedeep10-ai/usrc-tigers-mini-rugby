@@ -214,7 +214,7 @@ export const translations = {
     mission: {
       eyebrow: "Our Purpose",
       title: "Why We Exist",
-      description: "USRC Tigers Mini Rugby exists to give every child the chance to discover rugby â and themselves â in a safe, joyful, and ambitious environment. Prince",
+      description: "",
       imageCaption: "Building Tigers for Life",
       pillars: [
           {
