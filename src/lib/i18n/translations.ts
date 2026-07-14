@@ -33,9 +33,6 @@ export const translations = {
       subtitle: "Fun-first mini rugby at King's Park — safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
       watchVideo: "Watch Our Minis in Action",
       imageAlt: "USRC Tigers mini rugby players in action at King's Park",
-      trustSignals: [
-,
-        ],
       stats: {
         miniPlayers: "Mini Players",
         ageGroups: "Age Groups",
@@ -48,32 +45,17 @@ export const translations = {
       title: "More Than a Game",
       description: "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby — through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
       body: "We believe every child deserves a brilliant start in sport — regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
-      bullets: [
-,
-        ],
       tryFree: "Try a Free Session",
       ageGroupsTitle: "Age Groups",
       ageGroupsNote: "PLACEHOLDER — confirm exact groupings for 2026/27 season",
       agesRange: "Ages 4–12",
       imageAlt: "USRC Tigers mini rugby players running with the ball",
-      benefits: [
-,
-        ],
-      ageGroups: [
-,
-        ],
     },
     parents: {
       eyebrow: "Parents & Coaches",
       title: "You're Part of the Team",
       description: "No experience needed — for kids or parents. USRC Tigers Mini Rugby is built on a supportive parent-coach model where families grow together.",
-      highlights: [
-,
-        ],
       testimonialsNote: "Real stories from families in our community — PLACEHOLDER testimonials to be replaced with actual parent quotes.",
-      testimonials: [
-,
-        ],
       ctaTitle: "No Experience? No Problem.",
       ctaBody: "Whether your child is picking up a rugby ball for the first time or you're considering coaching alongside them — we provide everything you need. Templates, mentoring, and a welcoming community that celebrates every small win.",
       ctaButton: "Join Our Community",
@@ -89,9 +71,6 @@ export const translations = {
         time: "Time",
         location: "Location",
       },
-      rows: [
-,
-        ],
       locationTitle: "King's Park Sports Ground",
       locationBody: "Ho Man Tin, Hong Kong. Spacious pitches perfect for safe mini rugby. Easy access via MTR and bus routes.",
       mapLive: "Live",
@@ -105,9 +84,6 @@ export const translations = {
       eyebrow: "Getting Started",
       title: "Join in 4 Easy Steps",
       description: "Super simple — register via our official GameDay link and we handle everything else. No payment processing on this website.",
-      steps: [
-,
-        ],
       badge: "Official registration via GameDay — secure & simple",
       ctaTitle: "Ready to Register?",
       ctaBody: "Just click, complete the GameDay form, and we'll take care of the rest. First trial session is completely free.",
@@ -119,9 +95,6 @@ export const translations = {
       title: "Why We Exist",
       description: "USRC Tigers Mini Rugby exists to give every child the chance to discover rugby — and themselves — in a safe, joyful, and ambitious environment.",
       imageCaption: "Building Tigers for Life",
-      pillars: [
-,
-        ],
       quote: "We're not just building rugby players — we're building confident, kind, resilient young people who carry the Tiger spirit wherever they go.",
       quoteAuthor: "— USRC Tigers Mini Rugby Committee",
       cta: "Start Their Journey",
@@ -138,9 +111,6 @@ export const translations = {
       eyebrow: "FAQ",
       title: "Parent Questions",
       description: "Everything you need to know before the first session. Still unsure? Register for a free trial and see for yourself.",
-      items: [
-,
-        ],
     },
     finalCta: {
       eyebrow: "Your Child's Adventure Starts Here",
@@ -151,7 +121,7 @@ export const translations = {
       footer: "Part of USRC Tigers RFC · King's Park, Hong Kong · HK Rugby Pathway",
     },
     footer: {
-      tagline: "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12.0000000",
+      tagline: "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12.",
       quickLinks: "Quick Links",
       registerConnect: "Register & Connect",
       gamedayLink: "GameDay Registration →",
