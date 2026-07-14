@@ -4,6 +4,20 @@ import { useCallback, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
 import { getCroppedImg } from "@/lib/crop-image";
 import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  rectSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import {
   ImagePlus,
   Pencil,
   Trash2,
@@ -16,6 +30,7 @@ import {
   Crop,
   Check,
   Calendar,
+  GripVertical,
 } from "lucide-react";
 
 interface IGPost {
@@ -165,6 +180,201 @@ function formatDateDisplay(dateStr: string): string {
   }
 }
 
+function SortablePostCard({
+  post,
+  editingId,
+  onStartEdit,
+  onDelete,
+  onSaveEdit,
+  onCancelEdit,
+  saving,
+  editCaption,
+  setEditCaption,
+  editDate,
+  setEditDate,
+  editLikes,
+  setEditLikes,
+  editComments,
+  setEditComments,
+  editPostUrl,
+  setEditPostUrl,
+}: {
+  post: IGPost;
+  editingId: string | null;
+  onStartEdit: (post: IGPost) => void;
+  onDelete: (id: string) => void;
+  onSaveEdit: () => void;
+  onCancelEdit: () => void;
+  saving: boolean;
+  editCaption: string;
+  setEditCaption: (v: string) => void;
+  editDate: string;
+  setEditDate: (v: string) => void;
+  editLikes: number;
+  setEditLikes: (v: number) => void;
+  editComments: number;
+  setEditComments: (v: number) => void;
+  editPostUrl: string;
+  setEditPostUrl: (v: string) => void;
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: post.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.8 : undefined,
+  };
+
+  const isEditing = editingId === post.id;
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`group overflow-hidden rounded-2xl border bg-card transition-colors hover:border-tiger/20 ${
+        isDragging ? "border-tiger shadow-xl shadow-tiger/20" : "border-card-border"
+      }`}
+    >
+      <div className="relative aspect-square overflow-hidden">
+        <img
+          src={post.image}
+          alt={post.caption}
+          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+        />
+
+        <button
+          {...attributes}
+          {...listeners}
+          className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-sm cursor-grab active:cursor-grabbing transition-colors hover:bg-tiger opacity-0 group-hover:opacity-100"
+          title="Drag to reorder"
+        >
+          <GripVertical className="h-4 w-4" />
+        </button>
+
+        {!isEditing && (
+          <div className="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+            <button
+              onClick={() => onStartEdit(post)}
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-tiger"
+            >
+              <Pencil className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={() => onDelete(post.id)}
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-red-500"
+            >
+              <Trash2 className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4">
+        {isEditing ? (
+          <div className="space-y-3">
+            <textarea
+              value={editCaption}
+              onChange={(e) => setEditCaption(e.target.value)}
+              rows={3}
+              className="w-full rounded-xl border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+            />
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                  <Calendar className="inline h-2.5 w-2.5 mr-0.5" />
+                  Date
+                </label>
+                <input
+                  type="date"
+                  value={formatDateForInput(editDate)}
+                  onChange={(e) => setEditDate(e.target.value)}
+                  className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50 [color-scheme:dark]"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                  Instagram URL
+                </label>
+                <input
+                  value={editPostUrl}
+                  onChange={(e) => setEditPostUrl(e.target.value)}
+                  className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                  placeholder="Post URL"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                  Likes
+                </label>
+                <input
+                  type="number"
+                  value={editLikes}
+                  onChange={(e) => setEditLikes(Number(e.target.value))}
+                  className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                  Comments
+                </label>
+                <input
+                  type="number"
+                  value={editComments}
+                  onChange={(e) => setEditComments(Number(e.target.value))}
+                  className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                />
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={onSaveEdit}
+                disabled={saving}
+                className="flex items-center gap-1.5 rounded-lg bg-tiger px-3 py-1.5 text-xs font-semibold text-black transition-all hover:brightness-110"
+              >
+                {saving ? (
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                ) : (
+                  <Save className="h-3 w-3" />
+                )}
+                Save
+              </button>
+              <button
+                onClick={onCancelEdit}
+                className="rounded-lg border border-card-border px-3 py-1.5 text-xs text-muted hover:text-foreground"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="line-clamp-2 text-sm text-foreground">
+              {post.caption}
+            </p>
+            <div className="mt-2 flex items-center gap-4 text-xs text-muted">
+              <span>{post.date}</span>
+              <span className="flex items-center gap-1">
+                <Heart className="h-3 w-3" /> {post.likes}
+              </span>
+              <span className="flex items-center gap-1">
+                <MessageCircle className="h-3 w-3" /> {post.comments}
+              </span>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function IGPostEditor({
   authFetch,
 }: {
@@ -200,7 +410,12 @@ export function IGPostEditor({
   } | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const editFileInputRef = useRef<HTMLInputElement>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 8 },
+    })
+  );
 
   const showToast = (type: "success" | "error", msg: string) => {
     setToast({ type, msg });
@@ -248,6 +463,20 @@ export function IGPostEditor({
     setSaving(false);
   }
 
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = posts.findIndex((p) => p.id === active.id);
+    const newIndex = posts.findIndex((p) => p.id === over.id);
+    if (oldIndex === -1 || newIndex === -1) return;
+
+    const reordered = [...posts];
+    const [moved] = reordered.splice(oldIndex, 1);
+    reordered.splice(newIndex, 0, moved);
+    savePosts(reordered);
+  }
+
   function startEdit(post: IGPost) {
     setEditingId(post.id);
     setEditCaption(post.caption);
@@ -279,53 +508,26 @@ export function IGPostEditor({
     setEditingId(null);
   }
 
-  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>, mode: "new" | "edit") {
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
-    setCropModal({ src: url, mode });
+    setCropModal({ src: url, mode: "new" });
   }
 
   function handleCropComplete(croppedBlob: Blob, croppedUrl: string) {
     if (!cropModal) return;
-    const mode = cropModal.mode;
 
-    if (mode === "new") {
-      setNewImagePath(croppedUrl);
-      const dataTransfer = new DataTransfer();
-      const file = new File([croppedBlob], "cropped.jpg", { type: "image/jpeg" });
-      dataTransfer.items.add(file);
-      if (fileInputRef.current) {
-        fileInputRef.current.files = dataTransfer.files;
-      }
-    } else {
-      const dataTransfer = new DataTransfer();
-      const file = new File([croppedBlob], "cropped.jpg", { type: "image/jpeg" });
-      dataTransfer.items.add(file);
-      if (editFileInputRef.current) {
-        editFileInputRef.current.files = dataTransfer.files;
-      }
+    setNewImagePath(croppedUrl);
+    const dataTransfer = new DataTransfer();
+    const file = new File([croppedBlob], "cropped.jpg", { type: "image/jpeg" });
+    dataTransfer.items.add(file);
+    if (fileInputRef.current) {
+      fileInputRef.current.files = dataTransfer.files;
     }
 
     if (cropModal.src) URL.revokeObjectURL(cropModal.src);
     setCropModal(null);
-  }
-
-  async function uploadCroppedBlob(blob: Blob): Promise<string | null> {
-    const formData = new FormData();
-    formData.append("file", blob, "cropped.jpg");
-
-    try {
-      const uploadRes = await authFetch("/api/staff/ig-posts/upload", {
-        method: "POST",
-        body: formData,
-      });
-      if (!uploadRes.ok) return null;
-      const { path } = await uploadRes.json();
-      return path;
-    } catch {
-      return null;
-    }
   }
 
   async function handleUploadNew() {
@@ -359,7 +561,7 @@ export function IGPostEditor({
 
       const { path } = await uploadRes.json();
 
-      const nextId = `post-${posts.length + 1}`;
+      const nextId = `post-${Date.now()}`;
       const newPost: IGPost = {
         id: nextId,
         image: path,
@@ -428,7 +630,7 @@ export function IGPostEditor({
         <div>
           <h2 className="text-lg font-bold text-foreground">Instagram Posts</h2>
           <p className="text-sm text-muted">
-            {posts.length} posts — edit captions, images, and engagement data
+            {posts.length} posts — drag to reorder, edit captions &amp; images
           </p>
         </div>
         <button
@@ -453,7 +655,7 @@ export function IGPostEditor({
             <input
               type="file"
               ref={fileInputRef}
-              onChange={(e) => handleFileSelect(e, "new")}
+              onChange={handleFileSelect}
               accept="image/*"
               className="hidden"
             />
@@ -589,133 +791,34 @@ export function IGPostEditor({
         </div>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="group overflow-hidden rounded-2xl border border-card-border bg-card transition-colors hover:border-tiger/20"
-          >
-            <div className="relative aspect-square overflow-hidden">
-              <img
-                src={post.image}
-                alt={post.caption}
-                className="h-full w-full object-cover transition-transform group-hover:scale-105"
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={posts.map((p) => p.id)} strategy={rectSortingStrategy}>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {posts.map((post) => (
+              <SortablePostCard
+                key={post.id}
+                post={post}
+                editingId={editingId}
+                onStartEdit={startEdit}
+                onDelete={deletePost}
+                onSaveEdit={saveEdit}
+                onCancelEdit={cancelEdit}
+                saving={saving}
+                editCaption={editCaption}
+                setEditCaption={setEditCaption}
+                editDate={editDate}
+                setEditDate={setEditDate}
+                editLikes={editLikes}
+                setEditLikes={setEditLikes}
+                editComments={editComments}
+                setEditComments={setEditComments}
+                editPostUrl={editPostUrl}
+                setEditPostUrl={setEditPostUrl}
               />
-              {editingId !== post.id && (
-                <div className="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-                  <button
-                    onClick={() => startEdit(post)}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-tiger"
-                  >
-                    <Pencil className="h-3.5 w-3.5" />
-                  </button>
-                  <button
-                    onClick={() => deletePost(post.id)}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-red-500"
-                  >
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="p-4">
-              {editingId === post.id ? (
-                <div className="space-y-3">
-                  <textarea
-                    value={editCaption}
-                    onChange={(e) => setEditCaption(e.target.value)}
-                    rows={3}
-                    className="w-full rounded-xl border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                  />
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
-                        <Calendar className="inline h-2.5 w-2.5 mr-0.5" />
-                        Date
-                      </label>
-                      <input
-                        type="date"
-                        value={formatDateForInput(editDate)}
-                        onChange={(e) => setEditDate(e.target.value)}
-                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50 [color-scheme:dark]"
-                      />
-                    </div>
-                    <div>
-                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
-                        Instagram URL
-                      </label>
-                      <input
-                        value={editPostUrl}
-                        onChange={(e) => setEditPostUrl(e.target.value)}
-                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                        placeholder="Post URL"
-                      />
-                    </div>
-                    <div>
-                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
-                        Likes
-                      </label>
-                      <input
-                        type="number"
-                        value={editLikes}
-                        onChange={(e) => setEditLikes(Number(e.target.value))}
-                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                      />
-                    </div>
-                    <div>
-                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
-                        Comments
-                      </label>
-                      <input
-                        type="number"
-                        value={editComments}
-                        onChange={(e) => setEditComments(Number(e.target.value))}
-                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={saveEdit}
-                      disabled={saving}
-                      className="flex items-center gap-1.5 rounded-lg bg-tiger px-3 py-1.5 text-xs font-semibold text-black transition-all hover:brightness-110"
-                    >
-                      {saving ? (
-                        <Loader2 className="h-3 w-3 animate-spin" />
-                      ) : (
-                        <Save className="h-3 w-3" />
-                      )}
-                      Save
-                    </button>
-                    <button
-                      onClick={cancelEdit}
-                      className="rounded-lg border border-card-border px-3 py-1.5 text-xs text-muted hover:text-foreground"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <p className="line-clamp-2 text-sm text-foreground">
-                    {post.caption}
-                  </p>
-                  <div className="mt-2 flex items-center gap-4 text-xs text-muted">
-                    <span>{post.date}</span>
-                    <span className="flex items-center gap-1">
-                      <Heart className="h-3 w-3" /> {post.likes}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MessageCircle className="h-3 w-3" /> {post.comments}
-                    </span>
-                  </div>
-                </>
-              )}
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </SortableContext>
+      </DndContext>
     </div>
   );
 }

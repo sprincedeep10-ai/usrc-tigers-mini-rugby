@@ -77,7 +77,7 @@ export function InstagramSection() {
           </div>
 
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-            {posts.slice(0, 8).map((post) => (
+            {posts.map((post) => (
               <StaggerItem key={post.id}>
                 <InstagramPostCard post={post} onOpen={setActivePost} />
               </StaggerItem>
