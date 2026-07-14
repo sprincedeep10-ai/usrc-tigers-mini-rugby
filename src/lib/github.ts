@@ -37,7 +37,7 @@ export async function getFileContents(path: string): Promise<{
   sha: string;
 }> {
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${BRANCH}`;
-  const res = await fetch(url, { headers: headers() });
+  const res = await fetch(url, { headers: headers(), signal: AbortSignal.timeout(10000) });
 
   if (!res.ok) {
     throw new Error(`GitHub API error ${res.status}: ${await res.text()}`);
