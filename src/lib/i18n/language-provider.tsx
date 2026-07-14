@@ -17,6 +17,24 @@ import {
 const STORAGE_KEY = "usrc-tigers-locale";
 const CONTENT_CACHE_KEY = "usrc-tigers-content-cache";
 const CONTENT_CACHE_TS_KEY = "usrc-tigers-content-ts";
+const CONTENT_CACHE_VERSION = "usrc-tigers-content-ver";
+const CACHE_VERSION = 2;
+
+function isValidTranslations(data: Record<string, unknown>): boolean {
+  if (!data || typeof data !== "object") return false;
+  for (const lang of ["en", "zh"]) {
+    const langData = data[lang];
+    if (!langData || typeof langData !== "object") return false;
+    const sections = langData as Record<string, unknown>;
+    if (typeof sections.about !== "object" || sections.about === null) return false;
+    const about = sections.about as Record<string, unknown>;
+    if (!Array.isArray(about.bullets) || !Array.isArray(about.benefits) || !Array.isArray(about.ageGroups)) return false;
+    if (typeof sections.faq !== "object" || sections.faq === null) return false;
+    const faq = sections.faq as Record<string, unknown>;
+    if (!Array.isArray(faq.items)) return false;
+  }
+  return true;
+}
 
 interface LanguageContextValue {
   locale: Locale;
@@ -29,15 +47,30 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 function cacheContent(data: { translations: Record<string, unknown> }) {
   try {
+    if (!isValidTranslations(data.translations)) return;
     localStorage.setItem(CONTENT_CACHE_KEY, JSON.stringify(data.translations));
     localStorage.setItem(CONTENT_CACHE_TS_KEY, String(Date.now()));
+    localStorage.setItem(CONTENT_CACHE_VERSION, String(CACHE_VERSION));
   } catch {}
 }
 
 function getCachedContent(): Record<string, unknown> | null {
   try {
+    const ver = localStorage.getItem(CONTENT_CACHE_VERSION);
+    if (ver !== String(CACHE_VERSION)) {
+      localStorage.removeItem(CONTENT_CACHE_KEY);
+      localStorage.removeItem(CONTENT_CACHE_TS_KEY);
+      localStorage.removeItem(CONTENT_CACHE_VERSION);
+      return null;
+    }
     const raw = localStorage.getItem(CONTENT_CACHE_KEY);
-    return raw ? JSON.parse(raw) : null;
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!isValidTranslations(parsed)) {
+      localStorage.removeItem(CONTENT_CACHE_KEY);
+      return null;
+    }
+    return parsed;
   } catch {
     return null;
   }

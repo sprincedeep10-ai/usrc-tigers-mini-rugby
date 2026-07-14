@@ -225,6 +225,7 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
             "usrc-tigers-content-ts",
             String(Date.now())
           );
+          localStorage.setItem("usrc-tigers-content-ver", "2");
         } catch {}
 
         showToast("success", "Content saved & applied instantly");
