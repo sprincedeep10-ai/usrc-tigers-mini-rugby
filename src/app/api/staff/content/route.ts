@@ -118,8 +118,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const { sha, content: originalContent } =
-      await getFileContents(TRANSLATIONS_PATH);
+    const { sha } = await getFileContents(TRANSLATIONS_PATH);
 
     const fileContent = serializeTranslations(translations);
 
@@ -133,16 +132,13 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const origParsed = parseTranslations(originalContent);
-    const origJson = JSON.stringify(origParsed);
-    const newJson = JSON.stringify(parsed);
+    const incomingJson = JSON.stringify(translations);
+    const parsedJson = JSON.stringify(parsed);
 
-    if (origJson !== newJson) {
+    if (incomingJson !== parsedJson) {
       return NextResponse.json(
         {
-          error: "Data mismatch after serialize/parse round-trip",
-          origKeys: Object.keys((origParsed.en as Record<string, unknown>) || {}),
-          newKeys: Object.keys((parsed.en as Record<string, unknown>) || {}),
+          error: "Data loss detected in serialization — save rejected",
         },
         { status: 500 }
       );
