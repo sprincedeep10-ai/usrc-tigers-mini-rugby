@@ -27,18 +27,17 @@ export const translations = {
       switchToEnglish: "Switch to English",
     },
     hero: {
-      badge: "Ages 4–12 · All Welcome",
+      badge: "Ages 4â12 Â· All Welcome",
       title: "Unleash Their",
       titleHighlight: "Inner Tiger",
-      subtitle:
-        "Fun-first mini rugby at King's Park — safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
+      subtitle: "Fun-first mini rugby at King's Park â safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
       watchVideo: "Watch Our Minis in Action",
       imageAlt: "USRC Tigers mini rugby players in action at King's Park",
       trustSignals: [
-        "Part of USRC Tigers RFC",
-        "King's Park, Hong Kong",
-        "Youth & Senior Pathway",
-      ],
+          "Part of USRC Tigers RFC",
+          "King's Park, Hong Kong",
+          "Youth & Senior Pathway",
+        ],
       stats: {
         miniPlayers: "Mini Players",
         ageGroups: "Age Groups",
@@ -49,295 +48,254 @@ export const translations = {
     about: {
       eyebrow: "The Mini Experience",
       title: "More Than a Game",
-      description:
-        "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby — through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
-      body: "We believe every child deserves a brilliant start in sport — regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
+      description: "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby â through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
+      body: "We believe every child deserves a brilliant start in sport â regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
       bullets: [
-        "Inclusive for all abilities and genders",
-        "Character building through teamwork & respect",
-        "Friendships that extend beyond the pitch",
-        "Clear touch → contact progression by age",
-      ],
+          "Inclusive for all abilities and genders",
+          "Character building through teamwork & respect",
+          "Friendships that extend beyond the pitch",
+          "Clear touch â contact progression by age",
+        ],
       tryFree: "Try a Free Session",
       ageGroupsTitle: "Age Groups",
-      ageGroupsNote: "PLACEHOLDER — confirm exact groupings for 2026/27 season",
-      agesRange: "Ages 4–12",
+      ageGroupsNote: "PLACEHOLDER â confirm exact groupings for 2026/27 season",
+      agesRange: "Ages 4â12",
       imageAlt: "USRC Tigers mini rugby players running with the ball",
       benefits: [
-        {
+          {
           title: "Fun First, Always",
-          description:
-            "Every session is designed so kids fall in love with rugby — smiles before scrums.",
-        },
-        {
+          description: "Every session is designed so kids fall in love with rugby â smiles before scrums.",
+          },
+          {
           title: "Safe & Inclusive",
-          description:
-            "All abilities and genders welcome. Qualified coaches, age-appropriate training, and a supportive culture.",
-        },
-        {
+          description: "All abilities and genders welcome. Qualified coaches, age-appropriate training, and a supportive culture.",
+          },
+          {
           title: "Skills That Last",
-          description:
-            "Coordination, teamwork, resilience, and respect — on and off the pitch.",
-        },
-        {
+          description: "Coordination, teamwork, resilience, and respect â on and off the pitch.",
+          },
+          {
           title: "Clear Pathway",
-          description:
-            "From minis through USRC Tigers youth teams to senior rugby in Hong Kong.",
-        },
-      ],
+          description: "From minis through USRC Tigers youth teams to senior rugby in Hong Kong.",
+          },
+        ],
       ageGroups: [
-        {
-          name: "U5 – U6",
+          {
+          name: "U5 â U6",
           tag: "Touch Rugby",
-          description:
-            "Non-contact fun with tag games, running, and basic ball skills. Perfect first taste of rugby.",
-        },
-        {
-          name: "U7 – U8",
+          description: "Non-contact fun with tag games, running, and basic ball skills. Perfect first taste of rugby.",
+          },
+          {
+          name: "U7 â U8",
           tag: "Mini Touch",
-          description:
-            "Introduction to teamwork, passing, and spatial awareness through structured games and drills.",
-        },
-        {
-          name: "U9 – U10",
+          description: "Introduction to teamwork, passing, and spatial awareness through structured games and drills.",
+          },
+          {
+          name: "U9 â U10",
           tag: "Development",
-          description:
-            "Building core skills, confidence, and game understanding with gradual contact introduction.",
-        },
-        {
-          name: "U11 – U12",
+          description: "Building core skills, confidence, and game understanding with gradual contact introduction.",
+          },
+          {
+          name: "U11 â U12",
           tag: "Contact Ready",
-          description:
-            "Safe, coached contact rugby preparing players for youth rugby and HK competitions.",
-        },
-      ],
+          description: "Safe, coached contact rugby preparing players for youth rugby and HK competitions.",
+          },
+        ],
     },
     parents: {
       eyebrow: "Parents & Coaches",
       title: "You're Part of the Team",
-      description:
-        "No experience needed — for kids or parents. USRC Tigers Mini Rugby is built on a supportive parent-coach model where families grow together.",
+      description: "No experience needed â for kids or parents. USRC Tigers Mini Rugby is built on a supportive parent-coach model where families grow together.",
       highlights: [
-        {
+          {
           title: "Parent-Coach Model",
-          description:
-            "Many sessions are led by trained parent-coaches who know your child by name. It's a community, not just a club.",
-        },
-        {
+          description: "Many sessions are led by trained parent-coaches who know your child by name. It's a community, not just a club.",
+          },
+          {
           title: "Clear Communication",
-          description:
-            "WhatsApp groups, session updates, and friendly faces at every training. You'll always know what's happening.",
-        },
-        {
+          description: "WhatsApp groups, session updates, and friendly faces at every training. You'll always know what's happening.",
+          },
+          {
           title: "Professional Standards",
-          description:
-            "HKRU-aligned coaching, safeguarding policies, and ongoing training for all volunteers.",
-        },
-      ],
-      testimonialsNote:
-        "Real stories from families in our community — PLACEHOLDER testimonials to be replaced with actual parent quotes.",
+          description: "HKRU-aligned coaching, safeguarding policies, and ongoing training for all volunteers.",
+          },
+        ],
+      testimonialsNote: "Real stories from families in our community â PLACEHOLDER testimonials to be replaced with actual parent quotes.",
       testimonials: [
-        {
+          {
           name: "Sarah L.",
           role: "Parent of U7 player",
-          quote:
-            "My son was nervous on day one — by week three he couldn't wait for Sunday. The coaches make every child feel seen and celebrated.",
-        },
-        {
+          quote: "My son was nervous on day one â by week three he couldn't wait for Sunday. The coaches make every child feel seen and celebrated.",
+          },
+          {
           name: "James & Mei C.",
           role: "Parents of U9 twins",
-          quote:
-            "We love the parent-coach community. Clear WhatsApp updates, friendly faces, and zero pressure. It's the highlight of our week.",
-        },
-        {
+          quote: "We love the parent-coach community. Clear WhatsApp updates, friendly faces, and zero pressure. It's the highlight of our week.",
+          },
+          {
           name: "Priya K.",
           role: "Parent of U6 player",
-          quote:
-            "No rugby experience needed — they walked us through everything. Our daughter has made friends across schools and gained so much confidence.",
-        },
-        {
+          quote: "No rugby experience needed â they walked us through everything. Our daughter has made friends across schools and gained so much confidence.",
+          },
+          {
           name: "David W.",
           role: "Parent-coach, U10",
-          quote:
-            "Coaching alongside my daughter has been incredible. The club supports parents every step — templates, guidance, and a real team spirit.",
-        },
-      ],
+          quote: "Coaching alongside my daughter has been incredible. The club supports parents every step â templates, guidance, and a real team spirit.",
+          },
+        ],
       ctaTitle: "No Experience? No Problem.",
-      ctaBody:
-        "Whether your child is picking up a rugby ball for the first time or you're considering coaching alongside them — we provide everything you need. Templates, mentoring, and a welcoming community that celebrates every small win.",
+      ctaBody: "Whether your child is picking up a rugby ball for the first time or you're considering coaching alongside them â we provide everything you need. Templates, mentoring, and a welcoming community that celebrates every small win.",
       ctaButton: "Join Our Community",
       imageAlt: "USRC Tigers parent-coach leading a safe tackle drill",
     },
     schedule: {
       eyebrow: "Training & Competitions",
       title: "When We Play",
-      description:
-        "Regular Sunday sessions at King's Park, plus fun HK Mini Rugby festivals throughout the season. Exact 2026/27 timings confirmed after registration.",
-      table: { group: "Group", day: "Day", time: "Time", location: "Location" },
+      description: "Regular Sunday sessions at King's Park, plus fun HK Mini Rugby festivals throughout the season. Exact 2026/27 timings confirmed after registration.",
+      table: {
+        group: "Group",
+        day: "Day",
+        time: "Time",
+        location: "Location",
+      },
       rows: [
-        {
+          {
           group: "All Age Groups",
           day: "Sunday",
-          time: "9:00 AM – 11:00 AM",
+          time: "9:00 AM â 11:00 AM",
           location: "King's Park Sports Ground, Ho Man Tin",
           note: "Exact session times by age group TBC for 2026/27 season",
-        },
-        {
+          },
+          {
           group: "Competition Days",
           day: "Selected Sundays",
           time: "Varies",
           location: "HK Mini Rugby venues",
           note: "Fun, development-focused HK Mini Rugby festivals & tournaments",
-        },
-      ],
+          },
+        ],
       locationTitle: "King's Park Sports Ground",
-      locationBody:
-        "Ho Man Tin, Hong Kong. Spacious pitches perfect for safe mini rugby. Easy access via MTR and bus routes.",
+      locationBody: "Ho Man Tin, Hong Kong. Spacious pitches perfect for safe mini rugby. Easy access via MTR and bus routes.",
       mapLive: "Live",
       mapExpandHint: "Click to expand",
       mapDirections: "Get directions",
       competitionTitle: "HK Mini Rugby Competitions",
-      competitionBody:
-        "Selected Sundays feature Hong Kong Mini Rugby festivals and tournaments — development-focused, fun, and a brilliant experience for the whole family.",
+      competitionBody: "Selected Sundays feature Hong Kong Mini Rugby festivals and tournaments â development-focused, fun, and a brilliant experience for the whole family.",
       cta: "Register & Get Schedule Updates",
     },
     joining: {
       eyebrow: "Getting Started",
       title: "Join in 4 Easy Steps",
-      description:
-        "Super simple — register via our official GameDay link and we handle everything else. No payment processing on this website.",
+      description: "Super simple â register via our official GameDay link and we handle everything else. No payment processing on this website.",
       steps: [
-        {
+          {
           title: "Click Register",
-          description:
-            "Hit any yellow Register button — you'll go straight to our official GameDay form.",
-        },
-        {
+          description: "Hit any yellow Register button â you'll go straight to our official GameDay form.",
+          },
+          {
           title: "Complete GameDay",
-          description:
-            "Fill in player details, emergency contacts, and consent. No payment on this website.",
-        },
-        {
+          description: "Fill in player details, emergency contacts, and consent. No payment on this website.",
+          },
+          {
           title: "We Welcome You",
-          description:
-            "Our team confirms your registration and sends everything you need for the first session.",
-        },
-        {
+          description: "Our team confirms your registration and sends everything you need for the first session.",
+          },
+          {
           title: "Show Up & Play",
-          description:
-            "Bring boots, water, and a smile. First trial session is free — come see if Tigers is the right fit.",
-        },
-      ],
-      badge: "Official registration via GameDay — secure & simple",
+          description: "Bring boots, water, and a smile. First trial session is free â come see if Tigers is the right fit.",
+          },
+        ],
+      badge: "Official registration via GameDay â secure & simple",
       ctaTitle: "Ready to Register?",
-      ctaBody:
-        "Just click, complete the GameDay form, and we'll take care of the rest. First trial session is completely free.",
+      ctaBody: "Just click, complete the GameDay form, and we'll take care of the rest. First trial session is completely free.",
       ctaButton: "Register on GameDay",
-      ctaNote: "No payment processing on this site — everything goes through official GameDay",
+      ctaNote: "No payment processing on this site â everything goes through official GameDay",
     },
     mission: {
       eyebrow: "Our Purpose",
       title: "Why We Exist",
-      description:
-        "USRC Tigers Mini Rugby exists to give every child the chance to discover rugby — and themselves — in a safe, joyful, and ambitious environment.",
+      description: "USRC Tigers Mini Rugby exists to give every child the chance to discover rugby â and themselves â in a safe, joyful, and ambitious environment. Prince",
       imageCaption: "Building Tigers for Life",
       pillars: [
-        {
+          {
           title: "Joy Beyond Academics",
-          description:
-            "Hong Kong children deserve space to run, laugh, and compete — rugby gives them that freedom and belonging.",
-        },
-        {
+          description: "Hong Kong children deserve space to run, laugh, and compete â rugby gives them that freedom and belonging.",
+          },
+          {
           title: "Confidence & Life Skills",
-          description:
-            "Resilience, teamwork, discipline, and respect — lessons that shape character far beyond the try line.",
-        },
-        {
-          title: "Mini → Youth → Senior",
-          description:
-            "A clear, supported pathway from first touch rugby through USRC Tigers youth teams to senior Hong Kong rugby.",
-        },
-      ],
-      quote:
-        "We're not just building rugby players — we're building confident, kind, resilient young people who carry the Tiger spirit wherever they go.",
-      quoteAuthor: "— USRC Tigers Mini Rugby Committee",
+          description: "Resilience, teamwork, discipline, and respect â lessons that shape character far beyond the try line.",
+          },
+          {
+          title: "Mini â Youth â Senior",
+          description: "A clear, supported pathway from first touch rugby through USRC Tigers youth teams to senior Hong Kong rugby.",
+          },
+        ],
+      quote: "We're not just building rugby players â we're building confident, kind, resilient young people who carry the Tiger spirit wherever they go.",
+      quoteAuthor: "â USRC Tigers Mini Rugby Committee",
       cta: "Start Their Journey",
       imageAlt: "USRC Tigers mini rugby players in tiger-stripe kit",
     },
     instagram: {
       eyebrow: "Social Proof",
       title: "Real Moments from Our Minis",
-      description:
-        "Training days, festival wins, kit handouts, and Sunday smiles — see why families love being part of the Tiger community.",
-      followNote:
-        "Follow along for weekly updates from King's Park — new sessions, festival days, and registration reminders.",
+      description: "Training days, festival wins, kit handouts, and Sunday smiles â see why families love being part of the Tiger community.",
+      followNote: "Follow along for weekly updates from King's Park â new sessions, festival days, and registration reminders.",
       followButton: "Follow @usrctigers_minis on Instagram",
     },
     faq: {
       eyebrow: "FAQ",
       title: "Parent Questions",
-      description:
-        "Everything you need to know before the first session. Still unsure? Register for a free trial and see for yourself.",
+      description: "Everything you need to know before the first session. Still unsure? Register for a free trial and see for yourself.",
       items: [
-        {
+          {
           question: "Does my child need rugby experience?",
-          answer:
-            "Not at all. We welcome complete beginners and children who've played other sports. Coaches adapt sessions so every child progresses at their own pace.",
-        },
-        {
+          answer: "Not at all. We welcome complete beginners and children who've played other sports. Coaches adapt sessions so every child progresses at their own pace.",
+          },
+          {
           question: "What should we bring to the first session?",
-          answer:
-            "Rugby boots or trainers with studs (if you have them), comfortable sports clothes, a water bottle, and sun protection. We'll send a full kit list after registration.",
-        },
-        {
+          answer: "Rugby boots or trainers with studs (if you have them), comfortable sports clothes, a water bottle, and sun protection. We'll send a full kit list after registration.",
+          },
+          {
           question: "How safe is mini rugby?",
-          answer:
-            "Safety is our top priority. Sessions are age-appropriate, coached by qualified volunteers, and follow HK Rugby Union mini rugby guidelines. Contact is introduced gradually with proper technique.",
-        },
-        {
+          answer: "Safety is our top priority. Sessions are age-appropriate, coached by qualified volunteers, and follow HK Rugby Union mini rugby guidelines. Contact is introduced gradually with proper technique.",
+          },
+          {
           question: "What are the fees?",
-          answer:
-            "Season fees are confirmed each year and processed through GameDay. PLACEHOLDER: expect approximately HK$2,500–3,500 per season depending on age group. Trial sessions are free.",
-        },
-        {
+          answer: "Season fees are confirmed each year and processed through GameDay. PLACEHOLDER: expect approximately HK$2,500â3,500 per season depending on age group. Trial sessions are free.",
+          },
+          {
           question: "Can parents get involved?",
-          answer:
-            "Absolutely! Many of our coaches are parents. No experience required — we provide training, resources, and support. You're part of a welcoming community.",
-        },
-        {
+          answer: "Absolutely! Many of our coaches are parents. No experience required â we provide training, resources, and support. You're part of a welcoming community.",
+          },
+          {
           question: "Where do you train?",
-          answer:
-            "King's Park Sports Ground, Ho Man Tin, Hong Kong. Easy MTR access and plenty of space for safe, energetic sessions.",
-        },
-      ],
+          answer: "King's Park Sports Ground, Ho Man Tin, Hong Kong. Easy MTR access and plenty of space for safe, energetic sessions.",
+          },
+        ],
     },
     finalCta: {
       eyebrow: "Your Child's Adventure Starts Here",
       title: "Give Them the Gift of",
       titleHighlight: "Rugby",
-      description:
-        "One free trial session. No commitment. Just click, register on GameDay, and watch them fall in love with the game — and a community that feels like family.",
+      description: "One free trial session. No commitment. Just click, register on GameDay, and watch them fall in love with the game â and a community that feels like family.",
       followInstagram: "Follow on Instagram",
-      footer: "Part of USRC Tigers RFC · King's Park, Hong Kong · HK Rugby Pathway",
+      footer: "Part of USRC Tigers RFC Â· King's Park, Hong Kong Â· HK Rugby Pathway",
     },
     footer: {
-      tagline:
-        "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12.",
+      tagline: "Hong Kong's premier mini rugby programme â fun, safe, and built for every child aged 4â12.",
       quickLinks: "Quick Links",
       registerConnect: "Register & Connect",
-      gamedayLink: "GameDay Registration →",
+      gamedayLink: "GameDay Registration â",
       location: "King's Park Sports Ground, Ho Man Tin, HK",
       readyTitle: "Ready to Join?",
       readyBody: "First trial session is free. Register in minutes via GameDay.",
       copyright: "USRC Tigers Mini Rugby. Part of USRC Tigers RFC.",
-      legal:
-        "Child protection and safeguarding policies apply. All coaches are vetted volunteers. No payment processing on this website — all registrations and fees via official GameDay.",
+      legal: "Child protection and safeguarding policies apply. All coaches are vetted volunteers. No payment processing on this website â all registrations and fees via official GameDay.",
     },
     videoModal: {
       title: "Minis in Action",
       subtitle: "Watch our community on Instagram",
-      placeholder:
-        "PLACEHOLDER — embed a YouTube highlight reel or link directly to recent Instagram Reels from",
+      placeholder: "PLACEHOLDER â embed a YouTube highlight reel or link directly to recent Instagram Reels from",
       viewOnInstagram: "View on Instagram",
       close: "Close",
     },
@@ -345,325 +303,300 @@ export const translations = {
   zh: {
     nav: {
       instagram: "Instagram",
-      about: "關於欖球",
-      parents: "家長與教練",
-      schedule: "訓練時間",
-      joining: "報名流程",
-      mission: "我們的使命",
-      registerFreeTrial: "免費試玩報名",
-      openMenu: "開啟選單",
-      closeMenu: "關閉選單",
-      faq: "常見問題",
+      about: "éæ¼æ¬ç",
+      parents: "å®¶é·èæç·´",
+      schedule: "è¨ç·´æé",
+      joining: "å ±åæµç¨",
+      mission: "æåçä½¿å½",
+      registerFreeTrial: "åè²»è©¦ç©å ±å",
+      openMenu: "éåé¸å®",
+      closeMenu: "ééé¸å®",
+      faq: "å¸¸è¦åé¡",
     },
     common: {
-      registerFreeTrial: "免費試玩報名",
-      registerForFreeTrial: "免費試玩報名",
-      miniRugby: "幼兒欖球",
-      readMore: "查看更多",
-      viewOnInstagram: "在 Instagram 查看",
-      openInInstagram: "在 Instagram 開啟",
-      likes: "讚好",
-      comments: "留言",
-      switchToChinese: "切換至繁體中文",
-      switchToEnglish: "切換至英文",
+      registerFreeTrial: "åè²»è©¦ç©å ±å",
+      registerForFreeTrial: "åè²»è©¦ç©å ±å",
+      miniRugby: "å¹¼åæ¬ç",
+      readMore: "æ¥çæ´å¤",
+      viewOnInstagram: "å¨ Instagram æ¥ç",
+      openInInstagram: "å¨ Instagram éå",
+      likes: "è®å¥½",
+      comments: "çè¨",
+      switchToChinese: "åæè³ç¹é«ä¸­æ",
+      switchToEnglish: "åæè³è±æ",
     },
     hero: {
-      badge: "4–12 歲 · 歡迎所有小朋友",
-      title: "釋放他們的",
-      titleHighlight: "猛虎精神",
-      subtitle:
-        "在京士柏享受以快樂為先的幼兒欖球——安全、共融、循序漸進地培養技能。踏上 USRC Tigers 青年及成人隊的清晰發展之路。",
-      watchVideo: "觀看我們的幼兒訓練",
-      imageAlt: "三軍會猛虎欖球會幼兒欖球訓練",
+      badge: "4â12 æ­² Â· æ­¡è¿ææå°æå",
+      title: "éæ¾ä»åç",
+      titleHighlight: "çèç²¾ç¥",
+      subtitle: "å¨äº¬å£«æäº«åä»¥å¿«æ¨çºåçå¹¼åæ¬çââå®å¨ãå±èãå¾ªåºæ¼¸é²å°å¹é¤æè½ãè¸ä¸ USRC Tigers éå¹´åæäººéçæ¸æ°ç¼å±ä¹è·¯ã",
+      watchVideo: "è§çæåçå¹¼åè¨ç·´",
+      imageAlt: "ä¸è»æçèæ¬çæå¹¼åæ¬çè¨ç·´",
       trustSignals: [
-        "USRC Tigers RFC 旗下",
-        "香港京士柏",
-        "青年及成人發展通道",
-      ],
+          "USRC Tigers RFC æä¸",
+          "é¦æ¸¯äº¬å£«æ",
+          "éå¹´åæäººç¼å±éé",
+        ],
       stats: {
-        miniPlayers: "幼兒球員",
-        ageGroups: "年齡組別",
-        parentCoaches: "家長教練",
-        yearsHeritage: "年傳統",
+        miniPlayers: "å¹¼åçå¡",
+        ageGroups: "å¹´é½¡çµå¥",
+        parentCoaches: "å®¶é·æç·´",
+        yearsHeritage: "å¹´å³çµ±",
       },
     },
     about: {
-      eyebrow: "幼兒欖球體驗",
-      title: "不只是運動",
-      description:
-        "USRC Tigers 幼兒欖球讓香港小朋友在歡笑、友誼和循序漸進的技術培養中，發現欖球的樂趣——安全而溫馨的環境。",
-      body: "我們相信每個孩子都值得擁有精彩的運動起步——不論能力、性別或背景。訓練結合有系統的指導與自由玩耍，讓孩子自然建立自信。",
+      eyebrow: "å¹¼åæ¬çé«é©",
+      title: "ä¸åªæ¯éå",
+      description: "USRC Tigers å¹¼åæ¬çè®é¦æ¸¯å°æåå¨æ­¡ç¬ãåèª¼åå¾ªåºæ¼¸é²çæè¡å¹é¤ä¸­ï¼ç¼ç¾æ¬ççæ¨è¶£ââå®å¨èæº«é¦¨çç°å¢ã",
+      body: "æåç¸ä¿¡æ¯åå­©å­é½å¼å¾ææç²¾å½©çéåèµ·æ­¥ââä¸è«è½åãæ§å¥æèæ¯ãè¨ç·´çµåæç³»çµ±çæå°èèªç±ç©èï¼è®å­©å­èªç¶å»ºç«èªä¿¡ã",
       bullets: [
-        "歡迎所有能力與性別",
-        "透過團隊合作與尊重培養品格",
-        "建立超越球場的友誼",
-        "按年齡循序漸進：非對抗 → 對抗",
-      ],
-      tryFree: "免費試玩一課",
-      ageGroupsTitle: "年齡組別",
-      ageGroupsNote: "佔位符 — 2026/27 賽季確切分組待確認",
-      agesRange: "4–12 歲",
-      imageAlt: "三軍會猛虎欖球會幼兒欖球員帶球奔跑",
+          "æ­¡è¿ææè½åèæ§å¥",
+          "ééåéåä½èå°éå¹é¤åæ ¼",
+          "å»ºç«è¶è¶çå ´çåèª¼",
+          "æå¹´é½¡å¾ªåºæ¼¸é²ï¼éå°æ â å°æ",
+        ],
+      tryFree: "åè²»è©¦ç©ä¸èª²",
+      ageGroupsTitle: "å¹´é½¡çµå¥",
+      ageGroupsNote: "ä½ä½ç¬¦ â 2026/27 è³½å­£ç¢ºååçµå¾ç¢ºèª",
+      agesRange: "4â12 æ­²",
+      imageAlt: "ä¸è»æçèæ¬çæå¹¼åæ¬çå¡å¸¶çå¥è·",
       benefits: [
-        {
-          title: "快樂至上",
-          description: "每堂訓練都讓孩子愛上欖球——笑容比 scrum 更重要。",
-        },
-        {
-          title: "安全共融",
-          description:
-            "歡迎所有能力與性別。合資格教練、適齡訓練、支援性文化。",
-        },
-        {
-          title: "終身受用的技能",
-          description: "協調、團隊、韌性與尊重——場內場外皆受益。",
-        },
-        {
-          title: "清晰發展通道",
-          description: "從幼兒到 USRC Tigers 青年隊，以至香港成人欖球。",
-        },
-      ],
+          {
+          title: "å¿«æ¨è³ä¸",
+          description: "æ¯å è¨ç·´é½è®å­©å­æä¸æ¬çââç¬å®¹æ¯ scrum æ´éè¦ã",
+          },
+          {
+          title: "å®å¨å±è",
+          description: "æ­¡è¿ææè½åèæ§å¥ãåè³æ ¼æç·´ãé©é½¡è¨ç·´ãæ¯æ´æ§æåã",
+          },
+          {
+          title: "çµèº«åç¨çæè½",
+          description: "åèª¿ãåéãéæ§èå°éââå ´å§å ´å¤çåçã",
+          },
+          {
+          title: "æ¸æ°ç¼å±éé",
+          description: "å¾å¹¼åå° USRC Tigers éå¹´éï¼ä»¥è³é¦æ¸¯æäººæ¬çã",
+          },
+        ],
       ageGroups: [
-        {
-          name: "U5 – U6",
-          tag: "非對抗欖球",
-          description: "非對抗的追逐遊戲、跑步和基本控球——完美的欖球初體驗。",
-        },
-        {
-          name: "U7 – U8",
-          tag: "迷你非對抗",
-          description: "透過有系統的遊戲和練習，認識團隊合作、傳球和空間意識。",
-        },
-        {
-          name: "U9 – U10",
-          tag: "發展階段",
-          description: "建立核心技能、信心和比賽理解，逐步引入對抗元素。",
-        },
-        {
-          name: "U11 – U12",
-          tag: "對抗準備",
-          description: "安全、有指導的對抗欖球，為青年欖球及香港比賽做好準備。",
-        },
-      ],
+          {
+          name: "U5 â U6",
+          tag: "éå°ææ¬ç",
+          description: "éå°æçè¿½ééæ²ãè·æ­¥ååºæ¬æ§çââå®ç¾çæ¬çåé«é©ã",
+          },
+          {
+          name: "U7 â U8",
+          tag: "è¿·ä½ éå°æ",
+          description: "ééæç³»çµ±çéæ²åç·´ç¿ï¼èªè­åéåä½ãå³çåç©ºéæè­ã",
+          },
+          {
+          name: "U9 â U10",
+          tag: "ç¼å±éæ®µ",
+          description: "å»ºç«æ ¸å¿æè½ãä¿¡å¿åæ¯è³½çè§£ï¼éæ­¥å¼å¥å°æåç´ ã",
+          },
+          {
+          name: "U11 â U12",
+          tag: "å°ææºå",
+          description: "å®å¨ãææå°çå°ææ¬çï¼çºéå¹´æ¬çåé¦æ¸¯æ¯è³½åå¥½æºåã",
+          },
+        ],
     },
     parents: {
-      eyebrow: "家長與教練",
-      title: "您也是團隊一員",
-      description:
-        "小朋友和家長都無需經驗。USRC Tigers 幼兒欖球以家長教練模式為本，讓家庭一起成長。",
+      eyebrow: "å®¶é·èæç·´",
+      title: "æ¨ä¹æ¯åéä¸å¡",
+      description: "å°æååå®¶é·é½ç¡éç¶é©ãUSRC Tigers å¹¼åæ¬çä»¥å®¶é·æç·´æ¨¡å¼çºæ¬ï¼è®å®¶åº­ä¸èµ·æé·ã",
       highlights: [
-        {
-          title: "家長教練模式",
-          description:
-            "許多訓練由受訓的家長教練帶領，認識每個孩子的名字——這是社區，不只是球會。",
-        },
-        {
-          title: "清晰溝通",
-          description:
-            "WhatsApp 群組、訓練更新、每次訓練的熟悉面孔——您永遠知道發生什麼事。",
-        },
-        {
-          title: "專業標準",
-          description: "符合 HKRU 的指導、兒童保護政策，以及持續的義工培訓。",
-        },
-      ],
-      testimonialsNote:
-        "來自我們社區家庭的真實故事——佔位符評價，日後替換為真實家長分享。",
+          {
+          title: "å®¶é·æç·´æ¨¡å¼",
+          description: "è¨±å¤è¨ç·´ç±åè¨çå®¶é·æç·´å¸¶é ï¼èªè­æ¯åå­©å­çåå­ââéæ¯ç¤¾åï¼ä¸åªæ¯çæã",
+          },
+          {
+          title: "æ¸æ°æºé",
+          description: "WhatsApp ç¾¤çµãè¨ç·´æ´æ°ãæ¯æ¬¡è¨ç·´ççæé¢å­ââæ¨æ°¸é ç¥éç¼çä»éº¼äºã",
+          },
+          {
+          title: "å°æ¥­æ¨æº",
+          description: "ç¬¦å HKRU çæå°ãåç«¥ä¿è­·æ¿ç­ï¼ä»¥åæçºçç¾©å·¥å¹è¨ã",
+          },
+        ],
+      testimonialsNote: "ä¾èªæåç¤¾åå®¶åº­ççå¯¦æäºââä½ä½ç¬¦è©å¹ï¼æ¥å¾æ¿æçºçå¯¦å®¶é·åäº«ã",
       testimonials: [
-        {
+          {
           name: "Sarah L.",
-          role: "U7 球員家長",
-          quote:
-            "兒子第一日很緊張——到第三個星期已等不及星期日。教練讓每個孩子都感到被看見和讚賞。",
-        },
-        {
+          role: "U7 çå¡å®¶é·",
+          quote: "åå­ç¬¬ä¸æ¥å¾ç·å¼µââå°ç¬¬ä¸åææå·²ç­ä¸åæææ¥ãæç·´è®æ¯åå­©å­é½æå°è¢«çè¦åè®è³ã",
+          },
+          {
           name: "James & Mei C.",
-          role: "U9 雙胞胎家長",
-          quote:
-            "我們很喜歡家長教練社區。清晰的 WhatsApp 更新、友善的面孔、零壓力——是一週的亮點。",
-        },
-        {
+          role: "U9 éèèå®¶é·",
+          quote: "æåå¾åæ­¡å®¶é·æç·´ç¤¾åãæ¸æ°ç WhatsApp æ´æ°ãååçé¢å­ãé¶å£åââæ¯ä¸é±çäº®é»ã",
+          },
+          {
           name: "Priya K.",
-          role: "U6 球員家長",
-          quote:
-            "完全不需要欖球經驗——他們一步步帶領我們。女兒結識了跨校朋友，信心大增。",
-        },
-        {
+          role: "U6 çå¡å®¶é·",
+          quote: "å®å¨ä¸éè¦æ¬çç¶é©ââä»åä¸æ­¥æ­¥å¸¶é æåãå¥³åçµè­äºè·¨æ ¡æåï¼ä¿¡å¿å¤§å¢ã",
+          },
+          {
           name: "David W.",
-          role: "U10 家長教練",
-          quote:
-            "與女兒一起執教非常難忘。球會在每一步都支持家長——範本、指導和真正的團隊精神。",
-        },
-      ],
-      ctaTitle: "沒有經驗？沒問題。",
-      ctaBody:
-        "無論是孩子第一次拿起欖球，還是您考慮與他們一起執教——我們提供所需的一切：範本、指導和慶祝每個小成就的溫馨社區。",
-      ctaButton: "加入我們的社區",
-      imageAlt: "三軍會猛虎欖球會家長教練帶領安全擒抱訓練",
+          role: "U10 å®¶é·æç·´",
+          quote: "èå¥³åä¸èµ·å·æéå¸¸é£å¿ãçæå¨æ¯ä¸æ­¥é½æ¯æå®¶é·ââç¯æ¬ãæå°åçæ­£çåéç²¾ç¥ã",
+          },
+        ],
+      ctaTitle: "æ²æç¶é©ï¼æ²åé¡ã",
+      ctaBody: "ç¡è«æ¯å­©å­ç¬¬ä¸æ¬¡æ¿èµ·æ¬çï¼éæ¯æ¨èæ®èä»åä¸èµ·å·æââæåæä¾æéçä¸åï¼ç¯æ¬ãæå°åæ¶ç¥æ¯åå°æå°±çæº«é¦¨ç¤¾åã",
+      ctaButton: "å å¥æåçç¤¾å",
+      imageAlt: "ä¸è»æçèæ¬çæå®¶é·æç·´å¸¶é å®å¨ææ±è¨ç·´",
     },
     schedule: {
-      eyebrow: "訓練與比賽",
-      title: "訓練時間",
-      description:
-        "每週日於京士柏訓練，賽季期間還有香港幼兒欖球嘉年華。2026/27 確切時間於報名後確認。",
-      table: { group: "組別", day: "日子", time: "時間", location: "地點" },
+      eyebrow: "è¨ç·´èæ¯è³½",
+      title: "è¨ç·´æé",
+      description: "æ¯é±æ¥æ¼äº¬å£«æè¨ç·´ï¼è³½å­£æééæé¦æ¸¯å¹¼åæ¬çåå¹´è¯ã2026/27 ç¢ºåæéæ¼å ±åå¾ç¢ºèªã",
+      table: {
+        group: "çµå¥",
+        day: "æ¥å­",
+        time: "æé",
+        location: "å°é»",
+      },
       rows: [
-        {
-          group: "所有年齡組",
-          day: "星期日",
-          time: "上午 9:00 – 11:00",
-          location: "京士柏運動場，何文田",
-          note: "2026/27 賽季各年齡組確切時間待定",
-        },
-        {
-          group: "比賽日",
-          day: "指定星期日",
-          time: "視乎安排",
-          location: "香港幼兒欖球場地",
-          note: "以發展為本的香港幼兒欖球嘉年華及錦標賽",
-        },
-      ],
-      locationTitle: "京士柏運動場",
-      locationBody:
-        "何文田，香港。寬敞球場適合安全的幼兒欖球，港鐵及巴士方便到達。",
-      mapLive: "即時",
-      mapExpandHint: "點擊展開",
-      mapDirections: "開啟地圖導航",
-      competitionTitle: "香港幼兒欖球比賽",
-      competitionBody:
-        "指定星期日舉辦香港幼兒欖球嘉年華及錦標賽——以發展為本、充滿樂趣，是全家人的精彩體驗。",
-      cta: "報名並獲取時間表更新",
+          {
+          group: "ææå¹´é½¡çµ",
+          day: "æææ¥",
+          time: "ä¸å 9:00 â 11:00",
+          location: "äº¬å£«æéåå ´ï¼ä½æç°",
+          note: "2026/27 è³½å­£åå¹´é½¡çµç¢ºåæéå¾å®",
+          },
+          {
+          group: "æ¯è³½æ¥",
+          day: "æå®æææ¥",
+          time: "è¦ä¹å®æ",
+          location: "é¦æ¸¯å¹¼åæ¬çå ´å°",
+          note: "ä»¥ç¼å±çºæ¬çé¦æ¸¯å¹¼åæ¬çåå¹´è¯åé¦æ¨è³½",
+          },
+        ],
+      locationTitle: "äº¬å£«æéåå ´",
+      locationBody: "ä½æç°ï¼é¦æ¸¯ãå¯¬æçå ´é©åå®å¨çå¹¼åæ¬çï¼æ¸¯éµåå·´å£«æ¹ä¾¿å°éã",
+      mapLive: "å³æ",
+      mapExpandHint: "é»æå±é",
+      mapDirections: "éåå°åå°èª",
+      competitionTitle: "é¦æ¸¯å¹¼åæ¬çæ¯è³½",
+      competitionBody: "æå®æææ¥èè¾¦é¦æ¸¯å¹¼åæ¬çåå¹´è¯åé¦æ¨è³½ââä»¥ç¼å±çºæ¬ãåæ»¿æ¨è¶£ï¼æ¯å¨å®¶äººçç²¾å½©é«é©ã",
+      cta: "å ±åä¸¦ç²åæéè¡¨æ´æ°",
     },
     joining: {
-      eyebrow: "開始報名",
-      title: "四步輕鬆加入",
-      description:
-        "非常簡單——透過官方 GameDay 連結報名，其餘交給我們。本網站不處理付款。",
+      eyebrow: "éå§å ±å",
+      title: "åæ­¥è¼é¬å å¥",
+      description: "éå¸¸ç°¡å®ââééå®æ¹ GameDay é£çµå ±åï¼å¶é¤äº¤çµ¦æåãæ¬ç¶²ç«ä¸èçä»æ¬¾ã",
       steps: [
-        {
-          title: "按報名",
-          description: "按任何黃色報名按鈕——直接前往官方 GameDay 表格。",
-        },
-        {
-          title: "填寫 GameDay",
-          description: "填寫球員資料、緊急聯絡人及同意書。本網站不收費。",
-        },
-        {
-          title: "我們歡迎您",
-          description: "團隊確認報名並發送第一堂訓練所需的一切。",
-        },
-        {
-          title: "出席並開波",
-          description: "帶球鞋、水和笑容。首次試玩免費——看看 Tigers 是否適合您的孩子。",
-        },
-      ],
-      badge: "透過 GameDay 官方報名——安全簡便",
-      ctaTitle: "準備好報名？",
-      ctaBody: "只需點擊、填寫 GameDay 表格，其餘交給我們。首次試玩完全免費。",
-      ctaButton: "在 GameDay 報名",
-      ctaNote: "本網站不處理付款——一切經官方 GameDay",
+          {
+          title: "æå ±å",
+          description: "æä»»ä½é»è²å ±åæéââç´æ¥åå¾å®æ¹ GameDay è¡¨æ ¼ã",
+          },
+          {
+          title: "å¡«å¯« GameDay",
+          description: "å¡«å¯«çå¡è³æãç·æ¥è¯çµ¡äººååææ¸ãæ¬ç¶²ç«ä¸æ¶è²»ã",
+          },
+          {
+          title: "æåæ­¡è¿æ¨",
+          description: "åéç¢ºèªå ±åä¸¦ç¼éç¬¬ä¸å è¨ç·´æéçä¸åã",
+          },
+          {
+          title: "åºå¸­ä¸¦éæ³¢",
+          description: "å¸¶çéãæ°´åç¬å®¹ãé¦æ¬¡è©¦ç©åè²»ââçç Tigers æ¯å¦é©åæ¨çå­©å­ã",
+          },
+        ],
+      badge: "éé GameDay å®æ¹å ±åââå®å¨ç°¡ä¾¿",
+      ctaTitle: "æºåå¥½å ±åï¼",
+      ctaBody: "åªéé»æãå¡«å¯« GameDay è¡¨æ ¼ï¼å¶é¤äº¤çµ¦æåãé¦æ¬¡è©¦ç©å®å¨åè²»ã",
+      ctaButton: "å¨ GameDay å ±å",
+      ctaNote: "æ¬ç¶²ç«ä¸èçä»æ¬¾ââä¸åç¶å®æ¹ GameDay",
     },
     mission: {
-      eyebrow: "我們的宗旨",
-      title: "為何而存在",
-      description:
-        "USRC Tigers 幼兒欖球讓每個孩子在安全、快樂、有抱負的環境中，發現欖球——也發現自己。",
-      imageCaption: "終身猛虎",
+      eyebrow: "æåçå®æ¨",
+      title: "çºä½èå­å¨",
+      description: "USRC Tigers å¹¼åæ¬çè®æ¯åå­©å­å¨å®å¨ãå¿«æ¨ãææ±è² çç°å¢ä¸­ï¼ç¼ç¾æ¬çââä¹ç¼ç¾èªå·±ã",
+      imageCaption: "çµèº«çè",
       pillars: [
-        {
-          title: "學業以外的快樂",
-          description:
-            "香港孩子值得有空間奔跑、歡笑和競爭——欖球給他們自由與歸屬感。",
-        },
-        {
-          title: "自信與人生技能",
-          description: "韌性、團隊、紀律與尊重——塑造超越達陣線的品格。",
-        },
-        {
-          title: "幼兒 → 青年 → 成人",
-          description:
-            "從首次非對抗欖球，到 USRC Tigers 青年隊，以至香港成人欖球——清晰支援的通道。",
-        },
-      ],
-      quote:
-        "我們不只培養欖球員——更培養自信、善良、有韌性的年輕人，無論走到哪裡都帶著猛虎精神。",
-      quoteAuthor: "— USRC Tigers 幼兒欖球委員會",
-      cta: "開始他們的旅程",
-      imageAlt: "三軍會猛虎欖球會幼兒欖球員虎紋球衣訓練",
+          {
+          title: "å­¸æ¥­ä»¥å¤çå¿«æ¨",
+          description: "é¦æ¸¯å­©å­å¼å¾æç©ºéå¥è·ãæ­¡ç¬åç«¶ç­ââæ¬ççµ¦ä»åèªç±èæ­¸å±¬æã",
+          },
+          {
+          title: "èªä¿¡èäººçæè½",
+          description: "éæ§ãåéãç´å¾èå°éââå¡é è¶è¶éé£ç·çåæ ¼ã",
+          },
+          {
+          title: "å¹¼å â éå¹´ â æäºº",
+          description: "å¾é¦æ¬¡éå°ææ¬çï¼å° USRC Tigers éå¹´éï¼ä»¥è³é¦æ¸¯æäººæ¬çââæ¸æ°æ¯æ´çééã",
+          },
+        ],
+      quote: "æåä¸åªå¹é¤æ¬çå¡ââæ´å¹é¤èªä¿¡ãåè¯ãæéæ§çå¹´è¼äººï¼ç¡è«èµ°å°åªè£¡é½å¸¶èçèç²¾ç¥ã",
+      quoteAuthor: "â USRC Tigers å¹¼åæ¬çå§å¡æ",
+      cta: "éå§ä»åçæç¨",
+      imageAlt: "ä¸è»æçèæ¬çæå¹¼åæ¬çå¡èç´çè¡£è¨ç·´",
     },
     instagram: {
-      eyebrow: "社區分享",
-      title: "幼兒的真實時刻",
-      description:
-        "訓練日、嘉年華、球衣派發、星期日笑容——看看為何家庭喜愛加入 Tiger 社區。",
-      followNote:
-        "追蹤京士柏每週更新——新訓練、嘉年華日及報名提醒。",
-      followButton: "在 Instagram 追蹤 @usrctigers_minis",
+      eyebrow: "ç¤¾ååäº«",
+      title: "å¹¼åççå¯¦æå»",
+      description: "è¨ç·´æ¥ãåå¹´è¯ãçè¡£æ´¾ç¼ãæææ¥ç¬å®¹ââçççºä½å®¶åº­åæå å¥ Tiger ç¤¾åã",
+      followNote: "è¿½è¹¤äº¬å£«ææ¯é±æ´æ°ââæ°è¨ç·´ãåå¹´è¯æ¥åå ±åæéã",
+      followButton: "å¨ Instagram è¿½è¹¤ @usrctigers_minis",
     },
     faq: {
-      eyebrow: "常見問題",
-      title: "家長常問",
-      description:
-        "第一堂訓練前您需要知道的一切。仍有疑問？免費試玩，親身體驗。",
+      eyebrow: "å¸¸è¦åé¡",
+      title: "å®¶é·å¸¸å",
+      description: "ç¬¬ä¸å è¨ç·´åæ¨éè¦ç¥éçä¸åãä»æçåï¼åè²»è©¦ç©ï¼è¦ªèº«é«é©ã",
       items: [
-        {
-          question: "孩子需要欖球經驗嗎？",
-          answer:
-            "完全不需要。我們歡迎零基礎及曾玩其他運動的孩子。教練按個人進度調整訓練。",
-        },
-        {
-          question: "第一堂要帶什麼？",
-          answer:
-            "欖球鞋或釘鞋（如有）、舒適運動服、水壺及防曬。報名後我們會發送完整裝備清單。",
-        },
-        {
-          question: "幼兒欖球安全嗎？",
-          answer:
-            "安全是首要。訓練適齡、由合資格義工執教，並遵循 HKRU 幼兒欖球指引。對抗元素逐步、有技巧地引入。",
-        },
-        {
-          question: "費用是多少？",
-          answer:
-            "賽季費用每年確認，經 GameDay 處理。佔位符：視年齡組約 HK$2,500–3,500/季。試玩免費。",
-        },
-        {
-          question: "家長可以參與嗎？",
-          answer:
-            "當然！許多教練都是家長。無需經驗——我們提供培訓、資源和支援。您會加入一個溫馨的社區。",
-        },
-        {
-          question: "在哪裡訓練？",
-          answer: "京士柏運動場，何文田，香港。港鐵方便，空間充足，適合安全活潑的訓練。",
-        },
-      ],
+          {
+          question: "å­©å­éè¦æ¬çç¶é©åï¼",
+          answer: "å®å¨ä¸éè¦ãæåæ­¡è¿é¶åºç¤åæ¾ç©å¶ä»éåçå­©å­ãæç·´æåäººé²åº¦èª¿æ´è¨ç·´ã",
+          },
+          {
+          question: "ç¬¬ä¸å è¦å¸¶ä»éº¼ï¼",
+          answer: "æ¬çéæééï¼å¦æï¼ãèé©éåæãæ°´å£ºåé²æ¬ãå ±åå¾æåæç¼éå®æ´è£åæ¸å®ã",
+          },
+          {
+          question: "å¹¼åæ¬çå®å¨åï¼",
+          answer: "å®å¨æ¯é¦è¦ãè¨ç·´é©é½¡ãç±åè³æ ¼ç¾©å·¥å·æï¼ä¸¦éµå¾ª HKRU å¹¼åæ¬çæå¼ãå°æåç´ éæ­¥ãææå·§å°å¼å¥ã",
+          },
+          {
+          question: "è²»ç¨æ¯å¤å°ï¼",
+          answer: "è³½å­£è²»ç¨æ¯å¹´ç¢ºèªï¼ç¶ GameDay èçãä½ä½ç¬¦ï¼è¦å¹´é½¡çµç´ HK$2,500â3,500/å­£ãè©¦ç©åè²»ã",
+          },
+          {
+          question: "å®¶é·å¯ä»¥åèåï¼",
+          answer: "ç¶ç¶ï¼è¨±å¤æç·´é½æ¯å®¶é·ãç¡éç¶é©ââæåæä¾å¹è¨ãè³æºåæ¯æ´ãæ¨æå å¥ä¸åæº«é¦¨çç¤¾åã",
+          },
+          {
+          question: "å¨åªè£¡è¨ç·´ï¼",
+          answer: "äº¬å£«æéåå ´ï¼ä½æç°ï¼é¦æ¸¯ãæ¸¯éµæ¹ä¾¿ï¼ç©ºéåè¶³ï¼é©åå®å¨æ´»æ½çè¨ç·´ã",
+          },
+        ],
     },
     finalCta: {
-      eyebrow: "您孩子的冒險從這裡開始",
-      title: "給他們",
-      titleHighlight: "欖球的禮物",
-      description:
-        "一次免費試玩，無需承諾。點擊、在 GameDay 報名，看著他們愛上這項運動——和一個像家人一樣的社區。",
-      followInstagram: "在 Instagram 追蹤",
-      footer: "USRC Tigers RFC 旗下 · 香港京士柏 · 香港欖球發展通道",
+      eyebrow: "æ¨å­©å­çåéªå¾éè£¡éå§",
+      title: "çµ¦ä»å",
+      titleHighlight: "æ¬ççç¦®ç©",
+      description: "ä¸æ¬¡åè²»è©¦ç©ï¼ç¡éæ¿è«¾ãé»æãå¨ GameDay å ±åï¼çèä»åæä¸éé éåââåä¸ååå®¶äººä¸æ¨£çç¤¾åã",
+      followInstagram: "å¨ Instagram è¿½è¹¤",
+      footer: "USRC Tigers RFC æä¸ Â· é¦æ¸¯äº¬å£«æ Â· é¦æ¸¯æ¬çç¼å±éé",
     },
     footer: {
-      tagline: "香港頂尖幼兒欖球計劃——為 4–12 歲孩子而設，安全、快樂、共融。",
-      quickLinks: "快速連結",
-      registerConnect: "報名與聯絡",
-      gamedayLink: "GameDay 報名 →",
-      location: "京士柏運動場，何文田，香港",
-      readyTitle: "準備加入？",
-      readyBody: "首次試玩免費。數分鐘內經 GameDay 完成報名。",
-      copyright: "USRC Tigers 幼兒欖球。USRC Tigers RFC 旗下。",
-      legal:
-        "兒童保護及安全政策適用。所有教練均為審核義工。本網站不處理付款——所有報名及費用經官方 GameDay。",
+      tagline: "é¦æ¸¯é å°å¹¼åæ¬çè¨åââçº 4â12 æ­²å­©å­èè¨­ï¼å®å¨ãå¿«æ¨ãå±èã",
+      quickLinks: "å¿«éé£çµ",
+      registerConnect: "å ±åèè¯çµ¡",
+      gamedayLink: "GameDay å ±å â",
+      location: "äº¬å£«æéåå ´ï¼ä½æç°ï¼é¦æ¸¯",
+      readyTitle: "æºåå å¥ï¼",
+      readyBody: "é¦æ¬¡è©¦ç©åè²»ãæ¸åéå§ç¶ GameDay å®æå ±åã",
+      copyright: "USRC Tigers å¹¼åæ¬çãUSRC Tigers RFC æä¸ã",
+      legal: "åç«¥ä¿è­·åå®å¨æ¿ç­é©ç¨ãæææç·´åçºå¯©æ ¸ç¾©å·¥ãæ¬ç¶²ç«ä¸èçä»æ¬¾ââææå ±ååè²»ç¨ç¶å®æ¹ GameDayã",
     },
     videoModal: {
-      title: "幼兒風采",
-      subtitle: "在 Instagram 觀看我們的社區",
-      placeholder: "佔位符 — 嵌入 YouTube 精華或連結至",
-      viewOnInstagram: "在 Instagram 查看",
-      close: "關閉",
+      title: "å¹¼åé¢¨é",
+      subtitle: "å¨ Instagram è§çæåçç¤¾å",
+      placeholder: "ä½ä½ç¬¦ â åµå¥ YouTube ç²¾è¯æé£çµè³",
+      viewOnInstagram: "å¨ Instagram æ¥ç",
+      close: "éé",
     },
   },
 } as const;
