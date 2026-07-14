@@ -73,7 +73,7 @@ function buildNestedFromFlat(
       const next = parts[i + 1];
       const nextIsNum = /^\d+$/.test(next);
 
-      if (typeof current !== "object" || current === null || Array.isArray(current)) {
+      if (typeof current !== "object" || current === null) {
         break;
       }
 
@@ -87,8 +87,12 @@ function buildNestedFromFlat(
     }
 
     const lastPart = parts[parts.length - 1];
-    if (typeof current === "object" && current !== null && !Array.isArray(current)) {
-      (current as Record<string, unknown>)[lastPart] = value;
+    if (typeof current === "object" && current !== null) {
+      if (Array.isArray(current) && /^\d+$/.test(lastPart)) {
+        current[parseInt(lastPart)] = value;
+      } else if (!Array.isArray(current)) {
+        (current as Record<string, unknown>)[lastPart] = value;
+      }
     }
   }
 
