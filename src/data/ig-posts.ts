@@ -98,16 +98,6 @@ export const IG_POSTS: InstagramPost[] = [
     comments: 12,
     postUrl: "https://www.instagram.com/p/DXMGY1UidcW/",
   },
-  {
-    id: "post-1784003945524",
-    image: "https://raw.githubusercontent.com/sprincedeep10-ai/usrc-tigers-mini-rugby/main/public/images/ig-posts/post-16.jpg",
-    caption:
-      "",
-    date: "Jul 9",
-    likes: 1,
-    comments: 0,
-    postUrl: "",
-  },
 ];
 
 export function formatEngagement(n: number): string {
