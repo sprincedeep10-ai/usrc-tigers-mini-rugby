@@ -103,6 +103,31 @@ export async function GET(request: NextRequest) {
   }
 }
 
+function hasRequiredArrays(data: Record<string, unknown>): boolean {
+  for (const lang of ["en", "zh"]) {
+    const langData = data[lang] as Record<string, unknown> | undefined;
+    if (!langData || typeof langData !== "object") return false;
+
+    const about = langData.about as Record<string, unknown> | undefined;
+    if (!about || !Array.isArray(about.bullets) || about.bullets.length < 2) return false;
+    if (!Array.isArray(about.benefits) || about.benefits.length < 2) return false;
+    if (!Array.isArray(about.ageGroups) || about.ageGroups.length < 2) return false;
+
+    const faq = langData.faq as Record<string, unknown> | undefined;
+    if (!faq || !Array.isArray(faq.items) || faq.items.length < 2) return false;
+
+    const mission = langData.mission as Record<string, unknown> | undefined;
+    if (!mission || !Array.isArray(mission.pillars) || mission.pillars.length < 2) return false;
+
+    const joining = langData.joining as Record<string, unknown> | undefined;
+    if (!joining || !Array.isArray(joining.steps) || joining.steps.length < 2) return false;
+
+    const hero = langData.hero as Record<string, unknown> | undefined;
+    if (!hero || !Array.isArray(hero.trustSignals) || hero.trustSignals.length < 2) return false;
+  }
+  return true;
+}
+
 export async function PUT(request: NextRequest) {
   if (!authCheck(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -114,6 +139,13 @@ export async function PUT(request: NextRequest) {
     if (!translations || typeof translations !== "object") {
       return NextResponse.json(
         { error: "Invalid translations data" },
+        { status: 400 }
+      );
+    }
+
+    if (!hasRequiredArrays(translations)) {
+      return NextResponse.json(
+        { error: "Rejected: incoming data is missing required array fields. Your browser may have stale JavaScript — please hard-refresh (Cmd+Shift+R) the staff panel." },
         { status: 400 }
       );
     }
