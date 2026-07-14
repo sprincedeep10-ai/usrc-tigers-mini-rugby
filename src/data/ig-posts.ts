@@ -79,16 +79,6 @@ export const IG_POSTS: InstagramPost[] = [
     postUrl: "https://www.instagram.com/p/DXMHT_oCf-6/",
   },
   {
-    id: "post-8",
-    image: "/images/ig-posts/post-8.jpg",
-    caption:
-      "From minis to youth to senior — the Tiger pathway starts here 🐯 Come try a free session at King's Park.",
-    date: "Apr 16",
-    likes: 174,
-    comments: 12,
-    postUrl: "https://www.instagram.com/p/DXMGY1UidcW/",
-  },
-  {
     id: "post-7",
     image: "/images/ig-posts/post-7.jpg",
     caption:
@@ -97,6 +87,16 @@ export const IG_POSTS: InstagramPost[] = [
     likes: 312,
     comments: 18,
     postUrl: "https://www.instagram.com/p/DXMGeZrCV4S/",
+  },
+  {
+    id: "post-8",
+    image: "/images/ig-posts/post-8.jpg",
+    caption:
+      "From minis to youth to senior — the Tiger pathway starts here 🐯 Come try a free session at King's Park.",
+    date: "Apr 16",
+    likes: 174,
+    comments: 12,
+    postUrl: "https://www.instagram.com/p/DXMGY1UidcW/",
   },
 ];
 
