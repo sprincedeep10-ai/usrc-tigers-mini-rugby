@@ -1,6 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import Cropper from "react-easy-crop";
+import { getCroppedImg } from "@/lib/crop-image";
 import {
   ImagePlus,
   Pencil,
@@ -11,6 +13,9 @@ import {
   Heart,
   MessageCircle,
   Loader2,
+  Crop,
+  Check,
+  Calendar,
 } from "lucide-react";
 
 interface IGPost {
@@ -23,62 +28,141 @@ interface IGPost {
   postUrl?: string;
 }
 
-interface UseImageUploadProps {
-  onUpload?: (url: string) => void;
+interface CropModalProps {
+  imageSrc: string;
+  onCropComplete: (croppedBlob: Blob, croppedUrl: string) => void;
+  onCancel: () => void;
 }
 
-function useImageUpload({ onUpload }: UseImageUploadProps = {}) {
-  const previewRef = useRef<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string | null>(null);
+function CropModal({ imageSrc, onCropComplete, onCancel }: CropModalProps) {
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  } | null>(null);
+  const [processing, setProcessing] = useState(false);
 
-  const handleThumbnailClick = useCallback(() => {
-    fileInputRef.current?.click();
-  }, []);
-
-  const handleFileChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const file = event.target.files?.[0];
-      if (file) {
-        setFileName(file.name);
-        const url = URL.createObjectURL(file);
-        setPreviewUrl(url);
-        previewRef.current = url;
-        onUpload?.(url);
-      }
+  const onCropCompleteInternal = useCallback(
+    (_croppedArea: unknown, croppedAreaPixels: { x: number; y: number; width: number; height: number }) => {
+      setCroppedAreaPixels(croppedAreaPixels);
     },
-    [onUpload]
+    []
   );
 
-  const handleRemove = useCallback(() => {
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
+  const handleCrop = async () => {
+    if (!croppedAreaPixels) return;
+    setProcessing(true);
+    try {
+      const croppedBlob = await getCroppedImg(imageSrc, croppedAreaPixels);
+      const croppedUrl = URL.createObjectURL(croppedBlob);
+      onCropComplete(croppedBlob, croppedUrl);
+    } catch {
+      setProcessing(false);
     }
-    setPreviewUrl(null);
-    setFileName(null);
-    previewRef.current = null;
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  }, [previewUrl]);
-
-  useEffect(() => {
-    return () => {
-      if (previewRef.current) {
-        URL.revokeObjectURL(previewRef.current);
-      }
-    };
-  }, []);
-
-  return {
-    previewUrl,
-    fileName,
-    fileInputRef,
-    handleThumbnailClick,
-    handleFileChange,
-    handleRemove,
   };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+      <div className="w-full max-w-lg rounded-2xl bg-card border border-card-border shadow-2xl overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-card-border">
+          <div className="flex items-center gap-2">
+            <Crop className="h-4 w-4 text-tiger" />
+            <h3 className="text-sm font-bold text-foreground">Crop Image</h3>
+          </div>
+          <button onClick={onCancel} className="text-muted hover:text-foreground transition-colors">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="relative h-80 bg-black">
+          <Cropper
+            image={imageSrc}
+            crop={crop}
+            zoom={zoom}
+            aspect={4 / 5}
+            onCropChange={setCrop}
+            onZoomChange={setZoom}
+            onCropComplete={onCropCompleteInternal}
+            cropShape="rect"
+          />
+        </div>
+
+        <div className="px-5 py-4 space-y-4 border-t border-card-border">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs text-muted">
+              <span>Zoom</span>
+              <span>{zoom.toFixed(1)}x</span>
+            </div>
+            <input
+              type="range"
+              min={1}
+              max={3}
+              step={0.1}
+              value={zoom}
+              onChange={(e) => setZoom(Number(e.target.value))}
+              className="w-full h-1.5 rounded-full appearance-none bg-card-border accent-tiger cursor-pointer"
+            />
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={handleCrop}
+              disabled={processing}
+              className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[var(--btn-primary-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--btn-primary-fg)] transition-all hover:brightness-110 disabled:opacity-50"
+            >
+              {processing ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Check className="h-4 w-4" />
+              )}
+              {processing ? "Processing..." : "Apply Crop"}
+            </button>
+            <button
+              onClick={onCancel}
+              className="rounded-xl border border-card-border px-5 py-2.5 text-sm text-muted transition-colors hover:text-foreground"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function formatDateForInput(dateStr: string): string {
+  if (!dateStr) return "";
+  const months: Record<string, number> = {
+    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+    Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+  };
+  const parts = dateStr.trim().split(/\s+/);
+  if (parts.length === 2) {
+    const month = months[parts[0]];
+    const day = parseInt(parts[1], 10);
+    if (!isNaN(month) && !isNaN(day)) {
+      const d = new Date(2025, month, day);
+      return d.toISOString().split("T")[0];
+    }
+  }
+  return "";
+}
+
+function formatDateDisplay(dateStr: string): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr + "T00:00:00");
+    const months = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    ];
+    return `${months[d.getMonth()]} ${d.getDate()}`;
+  } catch {
+    return dateStr;
+  }
 }
 
 export function IGPostEditor({
@@ -110,20 +194,20 @@ export function IGPostEditor({
   const [newImagePath, setNewImagePath] = useState("");
   const [uploading, setUploading] = useState(false);
 
-  const newPostUpload = useImageUpload({
-    onUpload: (url) => setNewImagePath(url),
-  });
+  const [cropModal, setCropModal] = useState<{
+    src: string;
+    mode: "new" | "edit";
+  } | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const editFileInputRef = useRef<HTMLInputElement>(null);
 
   const showToast = (type: "success" | "error", msg: string) => {
     setToast({ type, msg });
     setTimeout(() => setToast(null), 3000);
   };
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  async function fetchPosts() {
+  const fetchPosts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await authFetch("/api/staff/ig-posts");
@@ -135,7 +219,11 @@ export function IGPostEditor({
       showToast("error", "Failed to load posts");
     }
     setLoading(false);
-  }
+  }, [authFetch]);
+
+  useState(() => {
+    fetchPosts();
+  });
 
   async function savePosts(updatedPosts: IGPost[]) {
     setSaving(true);
@@ -180,7 +268,7 @@ export function IGPostEditor({
         ? {
             ...p,
             caption: editCaption,
-            date: editDate,
+            date: formatDateDisplay(editDate) || editDate,
             likes: editLikes,
             comments: editComments,
             postUrl: editPostUrl || undefined,
@@ -191,15 +279,64 @@ export function IGPostEditor({
     setEditingId(null);
   }
 
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>, mode: "new" | "edit") {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setCropModal({ src: url, mode });
+  }
+
+  function handleCropComplete(croppedBlob: Blob, croppedUrl: string) {
+    if (!cropModal) return;
+    const mode = cropModal.mode;
+
+    if (mode === "new") {
+      setNewImagePath(croppedUrl);
+      const dataTransfer = new DataTransfer();
+      const file = new File([croppedBlob], "cropped.jpg", { type: "image/jpeg" });
+      dataTransfer.items.add(file);
+      if (fileInputRef.current) {
+        fileInputRef.current.files = dataTransfer.files;
+      }
+    } else {
+      const dataTransfer = new DataTransfer();
+      const file = new File([croppedBlob], "cropped.jpg", { type: "image/jpeg" });
+      dataTransfer.items.add(file);
+      if (editFileInputRef.current) {
+        editFileInputRef.current.files = dataTransfer.files;
+      }
+    }
+
+    if (cropModal.src) URL.revokeObjectURL(cropModal.src);
+    setCropModal(null);
+  }
+
+  async function uploadCroppedBlob(blob: Blob): Promise<string | null> {
+    const formData = new FormData();
+    formData.append("file", blob, "cropped.jpg");
+
+    try {
+      const uploadRes = await authFetch("/api/staff/ig-posts/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!uploadRes.ok) return null;
+      const { path } = await uploadRes.json();
+      return path;
+    } catch {
+      return null;
+    }
+  }
+
   async function handleUploadNew() {
-    if (!newPostUpload.previewUrl || !newImagePath) {
-      showToast("error", "Please select an image first");
+    if (!newImagePath) {
+      showToast("error", "Please select and crop an image first");
       return;
     }
 
     setUploading(true);
     try {
-      const fileInput = newPostUpload.fileInputRef.current;
+      const fileInput = fileInputRef.current;
       if (!fileInput?.files?.[0]) {
         showToast("error", "No file selected");
         setUploading(false);
@@ -227,7 +364,7 @@ export function IGPostEditor({
         id: nextId,
         image: path,
         caption: newCaption,
-        date: newDate || "Jan 1",
+        date: formatDateDisplay(newDate) || "Jan 1",
         likes: newLikes,
         comments: newComments,
         postUrl: newPostUrl || undefined,
@@ -241,7 +378,6 @@ export function IGPostEditor({
       setNewComments(0);
       setNewPostUrl("");
       setNewImagePath("");
-      newPostUpload.handleRemove();
       setShowAddForm(false);
     } catch {
       showToast("error", "Upload failed");
@@ -277,6 +413,17 @@ export function IGPostEditor({
         </div>
       )}
 
+      {cropModal && (
+        <CropModal
+          imageSrc={cropModal.src}
+          onCropComplete={handleCropComplete}
+          onCancel={() => {
+            if (cropModal.src) URL.revokeObjectURL(cropModal.src);
+            setCropModal(null);
+          }}
+        />
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-bold text-foreground">Instagram Posts</h2>
@@ -305,33 +452,47 @@ export function IGPostEditor({
             </label>
             <input
               type="file"
-              ref={newPostUpload.fileInputRef}
-              onChange={newPostUpload.handleFileChange}
+              ref={fileInputRef}
+              onChange={(e) => handleFileSelect(e, "new")}
               accept="image/*"
               className="hidden"
             />
 
-            {newPostUpload.previewUrl ? (
+            {newImagePath ? (
               <div className="relative inline-block">
                 <img
-                  src={newPostUpload.previewUrl}
+                  src={newImagePath}
                   alt="Preview"
-                  className="h-40 w-40 rounded-xl object-cover"
+                  className="h-52 w-52 rounded-xl object-cover border border-card-border"
                 />
-                <button
-                  onClick={newPostUpload.handleRemove}
-                  className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white"
-                >
-                  <X className="h-3 w-3" />
-                </button>
+                <div className="absolute -right-2 -top-2 flex gap-1">
+                  <button
+                    onClick={() => {
+                      fileInputRef.current?.click();
+                    }}
+                    className="flex h-6 w-6 items-center justify-center rounded-full bg-tiger text-black"
+                    title="Re-crop"
+                  >
+                    <Crop className="h-3 w-3" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setNewImagePath("");
+                      if (fileInputRef.current) fileInputRef.current.value = "";
+                    }}
+                    className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
               </div>
             ) : (
               <button
-                onClick={newPostUpload.handleThumbnailClick}
-                className="flex h-40 w-40 flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-card-border text-muted transition-colors hover:border-tiger/50 hover:text-tiger"
+                onClick={() => fileInputRef.current?.click()}
+                className="flex h-52 w-52 flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-card-border text-muted transition-colors hover:border-tiger/50 hover:text-tiger"
               >
                 <Upload className="h-8 w-8" />
-                <span className="text-xs">Choose image</span>
+                <span className="text-xs">Choose &amp; Crop</span>
               </button>
             )}
           </div>
@@ -351,13 +512,14 @@ export function IGPostEditor({
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-muted">
+                <Calendar className="inline h-3 w-3 mr-1" />
                 Date
               </label>
               <input
+                type="date"
                 value={newDate}
                 onChange={(e) => setNewDate(e.target.value)}
-                className="w-full rounded-xl border border-card-border bg-card px-4 py-2.5 text-sm text-foreground outline-none focus:border-tiger/50 focus:ring-1 focus:ring-tiger/20"
-                placeholder="Apr 16"
+                className="w-full rounded-xl border border-card-border bg-card px-4 py-2.5 text-sm text-foreground outline-none focus:border-tiger/50 focus:ring-1 focus:ring-tiger/20 [color-scheme:dark]"
               />
             </div>
             <div>
@@ -406,17 +568,18 @@ export function IGPostEditor({
               ) : (
                 <Upload className="h-4 w-4" />
               )}
-              Upload & Add
+              Upload &amp; Add
             </button>
             <button
               onClick={() => {
                 setShowAddForm(false);
-                newPostUpload.handleRemove();
                 setNewCaption("");
                 setNewDate("");
                 setNewLikes(0);
                 setNewComments(0);
                 setNewPostUrl("");
+                setNewImagePath("");
+                if (fileInputRef.current) fileInputRef.current.value = "";
               }}
               className="rounded-xl border border-card-border px-5 py-2.5 text-sm text-muted transition-colors hover:text-foreground"
             >
@@ -466,32 +629,51 @@ export function IGPostEditor({
                     className="w-full rounded-xl border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
                   />
                   <div className="grid grid-cols-2 gap-2">
-                    <input
-                      value={editDate}
-                      onChange={(e) => setEditDate(e.target.value)}
-                      className="rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                      placeholder="Date"
-                    />
-                    <input
-                      value={editPostUrl}
-                      onChange={(e) => setEditPostUrl(e.target.value)}
-                      className="rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                      placeholder="Post URL"
-                    />
-                    <input
-                      type="number"
-                      value={editLikes}
-                      onChange={(e) => setEditLikes(Number(e.target.value))}
-                      className="rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                      placeholder="Likes"
-                    />
-                    <input
-                      type="number"
-                      value={editComments}
-                      onChange={(e) => setEditComments(Number(e.target.value))}
-                      className="rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                      placeholder="Comments"
-                    />
+                    <div>
+                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                        <Calendar className="inline h-2.5 w-2.5 mr-0.5" />
+                        Date
+                      </label>
+                      <input
+                        type="date"
+                        value={formatDateForInput(editDate)}
+                        onChange={(e) => setEditDate(e.target.value)}
+                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50 [color-scheme:dark]"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                        Instagram URL
+                      </label>
+                      <input
+                        value={editPostUrl}
+                        onChange={(e) => setEditPostUrl(e.target.value)}
+                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                        placeholder="Post URL"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                        Likes
+                      </label>
+                      <input
+                        type="number"
+                        value={editLikes}
+                        onChange={(e) => setEditLikes(Number(e.target.value))}
+                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                        Comments
+                      </label>
+                      <input
+                        type="number"
+                        value={editComments}
+                        onChange={(e) => setEditComments(Number(e.target.value))}
+                        className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                      />
+                    </div>
                   </div>
                   <div className="flex gap-2">
                     <button
