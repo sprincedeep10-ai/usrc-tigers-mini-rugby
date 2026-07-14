@@ -71,9 +71,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const rawUrl = `https://raw.githubusercontent.com/sprincedeep10-ai/usrc-tigers-mini-rugby/main/public/images/ig-posts/${filename}`;
+
     return NextResponse.json({
       success: true,
-      path: `/images/ig-posts/${filename}`,
+      path: rawUrl,
       filename,
     });
   } catch (error) {
