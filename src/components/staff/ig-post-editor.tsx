@@ -210,10 +210,10 @@ function SortablePostCard({
   setEditCaption: (v: string) => void;
   editDate: string;
   setEditDate: (v: string) => void;
-  editLikes: number;
-  setEditLikes: (v: number) => void;
-  editComments: number;
-  setEditComments: (v: number) => void;
+  editLikes: string;
+  setEditLikes: (v: string) => void;
+  editComments: string;
+  setEditComments: (v: string) => void;
   editPostUrl: string;
   setEditPostUrl: (v: string) => void;
 }) {
@@ -314,21 +314,21 @@ function SortablePostCard({
                 <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
                   Likes
                 </label>
-                <input
-                  type="number"
-                  value={editLikes}
-                  onChange={(e) => setEditLikes(Number(e.target.value))}
-                  className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
-                />
-              </div>
-              <div>
-                <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
-                  Comments
-                </label>
-                <input
-                  type="number"
-                  value={editComments}
-                  onChange={(e) => setEditComments(Number(e.target.value))}
+                        <input
+                          type="number"
+                          value={editLikes}
+                          onChange={(e) => setEditLikes(e.target.value)}
+                          className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
+                        />
+                      </div>
+                      <div>
+                        <label className="mb-1 block text-[10px] uppercase tracking-wider text-muted">
+                          Comments
+                        </label>
+                        <input
+                          type="number"
+                          value={editComments}
+                          onChange={(e) => setEditComments(e.target.value)}
                   className="w-full rounded-lg border border-card-border bg-card-elevated px-3 py-2 text-sm text-foreground outline-none focus:border-tiger/50"
                 />
               </div>
@@ -392,14 +392,14 @@ export function IGPostEditor({
 
   const [editCaption, setEditCaption] = useState("");
   const [editDate, setEditDate] = useState("");
-  const [editLikes, setEditLikes] = useState(0);
-  const [editComments, setEditComments] = useState(0);
+  const [editLikes, setEditLikes] = useState("0");
+  const [editComments, setEditComments] = useState("0");
   const [editPostUrl, setEditPostUrl] = useState("");
 
   const [newCaption, setNewCaption] = useState("");
   const [newDate, setNewDate] = useState("");
-  const [newLikes, setNewLikes] = useState(0);
-  const [newComments, setNewComments] = useState(0);
+  const [newLikes, setNewLikes] = useState("0");
+  const [newComments, setNewComments] = useState("0");
   const [newPostUrl, setNewPostUrl] = useState("");
   const [newImagePath, setNewImagePath] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -481,8 +481,8 @@ export function IGPostEditor({
     setEditingId(post.id);
     setEditCaption(post.caption);
     setEditDate(post.date);
-    setEditLikes(post.likes);
-    setEditComments(post.comments);
+    setEditLikes(String(post.likes));
+    setEditComments(String(post.comments));
     setEditPostUrl(post.postUrl ?? "");
   }
 
@@ -498,8 +498,8 @@ export function IGPostEditor({
             ...p,
             caption: editCaption,
             date: formatDateDisplay(editDate) || editDate,
-            likes: editLikes,
-            comments: editComments,
+            likes: parseInt(editLikes, 10) || 0,
+            comments: parseInt(editComments, 10) || 0,
             postUrl: editPostUrl || undefined,
           }
         : p
@@ -567,8 +567,8 @@ export function IGPostEditor({
         image: path,
         caption: newCaption,
         date: formatDateDisplay(newDate) || "Jan 1",
-        likes: newLikes,
-        comments: newComments,
+        likes: parseInt(newLikes, 10) || 0,
+        comments: parseInt(newComments, 10) || 0,
         postUrl: newPostUrl || undefined,
       };
 
@@ -576,8 +576,8 @@ export function IGPostEditor({
 
       setNewCaption("");
       setNewDate("");
-      setNewLikes(0);
-      setNewComments(0);
+      setNewLikes("0");
+      setNewComments("0");
       setNewPostUrl("");
       setNewImagePath("");
       setShowAddForm(false);
@@ -742,7 +742,7 @@ export function IGPostEditor({
               <input
                 type="number"
                 value={newLikes}
-                onChange={(e) => setNewLikes(Number(e.target.value))}
+                onChange={(e) => setNewLikes(e.target.value)}
                 className="w-full rounded-xl border border-card-border bg-card px-4 py-2.5 text-sm text-foreground outline-none focus:border-tiger/50 focus:ring-1 focus:ring-tiger/20"
               />
             </div>
@@ -753,7 +753,7 @@ export function IGPostEditor({
               <input
                 type="number"
                 value={newComments}
-                onChange={(e) => setNewComments(Number(e.target.value))}
+                onChange={(e) => setNewComments(e.target.value)}
                 className="w-full rounded-xl border border-card-border bg-card px-4 py-2.5 text-sm text-foreground outline-none focus:border-tiger/50 focus:ring-1 focus:ring-tiger/20"
               />
             </div>
@@ -777,8 +777,8 @@ export function IGPostEditor({
                 setShowAddForm(false);
                 setNewCaption("");
                 setNewDate("");
-                setNewLikes(0);
-                setNewComments(0);
+                setNewLikes("0");
+                setNewComments("0");
                 setNewPostUrl("");
                 setNewImagePath("");
                 if (fileInputRef.current) fileInputRef.current.value = "";
