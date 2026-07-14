@@ -102,7 +102,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-9",
     image: "/images/ig-posts/post-10.webp",
     caption:
-      "",
+      "hhh",
     date: "Jan 1",
     likes: 0,
     comments: 0,
