@@ -79,16 +79,6 @@ export const IG_POSTS: InstagramPost[] = [
     postUrl: "https://www.instagram.com/p/DXMHT_oCf-6/",
   },
   {
-    id: "post-7",
-    image: "/images/ig-posts/post-7.jpg",
-    caption:
-      "Kit day vibes 🖤💛 New season registration open — includes playing shirt, shorts & socks. Register via GameDay.",
-    date: "Apr 16",
-    likes: 312,
-    comments: 18,
-    postUrl: "https://www.instagram.com/p/DXMGeZrCV4S/",
-  },
-  {
     id: "post-8",
     image: "/images/ig-posts/post-8.jpg",
     caption:
@@ -97,6 +87,16 @@ export const IG_POSTS: InstagramPost[] = [
     likes: 174,
     comments: 12,
     postUrl: "https://www.instagram.com/p/DXMGY1UidcW/",
+  },
+  {
+    id: "post-7",
+    image: "/images/ig-posts/post-7.jpg",
+    caption:
+      "Kit day vibes 🖤💛 New season registration open — includes playing shirt, shorts & socks. Register via GameDay.",
+    date: "Apr 16",
+    likes: 312,
+    comments: 18,
+    postUrl: "https://www.instagram.com/p/DXMGeZrCV4S/",
   },
 ];
 
