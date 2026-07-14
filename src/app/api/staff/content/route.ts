@@ -1,12 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/staff-auth";
-import { readFile, writeFile } from "fs/promises";
-import { join } from "path";
+import { getFileContents, commitFile } from "@/lib/github";
 
-const TRANSLATIONS_PATH = join(
-  process.cwd(),
-  "src/lib/i18n/translations.ts"
-);
+const TRANSLATIONS_PATH = "src/lib/i18n/translations.ts";
 
 function authCheck(request: NextRequest) {
   const token =
@@ -18,14 +14,20 @@ function authCheck(request: NextRequest) {
   return true;
 }
 
+function parseTranslations(source: string): Record<string, unknown> {
+  const cleaned = source
+    .replace(/export type .+/g, "")
+    .replace(/\} as const;/g, "};")
+    .replace(/export const translations/, "const translations");
+
+  const fn = new Function(`${cleaned}\nreturn translations;`);
+  return fn();
+}
+
 function serializeValue(value: unknown, indent: number): string {
   const pad = "  ".repeat(indent);
-  const padInner = "  ".repeat(indent + 1);
 
   if (typeof value === "string") {
-    if (value.includes("\n")) {
-      return `\n${padInner}${JSON.stringify(value)}`;
-    }
     return JSON.stringify(value);
   }
 
@@ -37,24 +39,21 @@ function serializeValue(value: unknown, indent: number): string {
     const items = value.map((item) => {
       if (typeof item === "object" && item !== null) {
         const objEntries = Object.entries(item)
-          .map(([k, v]) => `${padInner}  ${k}: ${serializeValue(v, indent + 2)}`)
+          .map(
+            ([k, v]) =>
+              `${pad}  ${k}: ${serializeValue(v, indent + 2)}`
+          )
           .join(",\n");
-        return `${padInner}{\n${objEntries},\n${padInner}}`;
+        return `${pad}  {\n${objEntries},\n${pad}  }`;
       }
-      return `${padInner}${serializeValue(item, indent + 1)}`;
+      return `${pad}  ${serializeValue(item, indent + 1)}`;
     });
     return `[\n${items.join(",\n")},\n${pad}]`;
   }
 
   if (typeof value === "object" && value !== null) {
     const entries = Object.entries(value)
-      .map(([k, v]) => {
-        const val = serializeValue(v, indent + 1);
-        if (typeof v === "string" && v.includes("\n")) {
-          return `${pad}${k}: ${val}`;
-        }
-        return `${pad}${k}: ${val}`;
-      })
+      .map(([k, v]) => `${pad}${k}: ${serializeValue(v, indent + 1)}`)
       .join(",\n");
     return `{\n${entries},\n${"  ".repeat(indent - 1)}}`;
   }
@@ -94,16 +93,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const content = await readFile(TRANSLATIONS_PATH, "utf-8");
-
-    const cleaned = content
-      .replace(/export type .+/g, "")
-      .replace(/\} as const;/g, "};")
-      .replace(/export const translations/, "const translations");
-
-    const fn = new Function(`${cleaned}\nreturn translations;`);
-    const translations = fn();
-
+    const { content } = await getFileContents(TRANSLATIONS_PATH);
+    const translations = parseTranslations(content);
     return NextResponse.json({ translations });
   } catch (error) {
     return NextResponse.json(
@@ -128,8 +119,14 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    const { sha } = await getFileContents(TRANSLATIONS_PATH);
     const fileContent = serializeTranslations(translations);
-    await writeFile(TRANSLATIONS_PATH, fileContent, "utf-8");
+    await commitFile(
+      TRANSLATIONS_PATH,
+      fileContent,
+      "chore: update site content via staff panel",
+      sha
+    );
 
     return NextResponse.json({ success: true });
   } catch (error) {

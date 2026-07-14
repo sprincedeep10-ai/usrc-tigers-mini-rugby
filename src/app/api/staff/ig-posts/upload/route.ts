@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/staff-auth";
-import { writeFile, readdir } from "fs/promises";
-import { join } from "path";
-
-const UPLOAD_DIR = join(
-  process.cwd(),
-  "public/images/ig-posts"
-);
+import { getFileContents, commitFile } from "@/lib/github";
 
 export async function POST(request: NextRequest) {
   const token =
@@ -27,19 +21,53 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const existing = await readdir(UPLOAD_DIR);
-    const existingNumbers = existing
-      .filter((f) => f.startsWith("post-") && f.endsWith(".jpg"))
-      .map((f) => parseInt(f.replace("post-", "").replace(".jpg", ""), 10))
-      .filter((n) => !isNaN(n));
+    const existing = await getFileContents("public/images/ig-posts/.gitkeep").catch(() => {
+      return null;
+    });
 
-    const nextNum =
-      existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
+    let nextNum = 1;
+    try {
+      const { content: listContent } = await getFileContents("src/data/ig-posts.ts");
+      const matches = listContent.match(/image: "\/images\/ig-posts\/post-(\d+)\.jpg"/g);
+      if (matches) {
+        const nums = matches.map((m: string) => {
+          const n = m.match(/post-(\d+)/);
+          return n ? parseInt(n[1], 10) : 0;
+        });
+        nextNum = Math.max(...nums) + 1;
+      }
+    } catch {
+      nextNum = 1;
+    }
+
     const filename = `post-${nextNum}.jpg`;
-    const filepath = join(UPLOAD_DIR, filename);
+    const filePath = `public/images/ig-posts/${filename}`;
 
     const bytes = await file.arrayBuffer();
-    await writeFile(filepath, Buffer.from(bytes));
+    const base64 = Buffer.from(bytes).toString("base64");
+
+    const url = `https://api.github.com/repos/sprincedeep10-ai/usrc-tigers-mini-rugby/contents/${filePath}`;
+    const res = await fetch(url, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+      body: JSON.stringify({
+        message: `chore: upload ${filename} via staff panel`,
+        content: base64,
+        branch: "main",
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      return NextResponse.json(
+        { error: `GitHub upload failed: ${err}` },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
