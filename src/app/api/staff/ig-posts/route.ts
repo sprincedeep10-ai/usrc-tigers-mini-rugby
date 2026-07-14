@@ -20,32 +20,26 @@ function parseIGPosts(source: string): unknown[] {
   );
   if (!match) throw new Error("Could not parse IG_POSTS from source");
 
-  const fn = new Function(`${match[1]}\nreturn ${match[1].split("=")[0].trim() ? match[1].split("=")[0].trim() : "x"}`);
-  try {
-    const varName = "posts";
-    const evalFn = new Function(`var ${varName} = ${match[1]}; return ${varName};`);
-    return evalFn();
-  } catch {
-    const evalFn = new Function(`return ${match[1]}`);
-    return evalFn();
-  }
+  const evalFn = new Function(`return ${match[1]}`);
+  return evalFn();
 }
 
 function serializeIGPosts(posts: unknown[]): string {
   const items = posts
-    .map((p: Record<string, unknown>) => {
-      const cap = String(p.caption ?? "")
+    .map((p: unknown) => {
+      const post = p as Record<string, unknown>;
+      const cap = String(post.caption ?? "")
         .replace(/\\/g, "\\\\")
         .replace(/"/g, '\\"');
       return `  {
-    id: "${p.id}",
-    image: "${p.image}",
+    id: "${post.id}",
+    image: "${post.image}",
     caption:
       "${cap}",
-    date: "${p.date}",
-    likes: ${p.likes},
-    comments: ${p.comments},
-    postUrl: "${p.postUrl ?? ""}",
+    date: "${post.date}",
+    likes: ${post.likes},
+    comments: ${post.comments},
+    postUrl: "${post.postUrl ?? ""}",
   }`;
     })
     .join(",\n");
