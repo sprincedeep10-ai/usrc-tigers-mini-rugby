@@ -22,7 +22,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-1",
     image: "/images/ig-posts/post-1.jpg",
     caption:
-      "USRC Tigers Mini Rugby community moments ð¯ð Follow @usrctigers_minis for training days, festivals, and registration updates from King's Park.",
+      "USRC Tigers Mini Rugby community moments 🐯🏉 Follow @usrctigers_minis for training days, festivals, and registration updates from King's Park.",
     date: "Apr 16",
     likes: 187,
     comments: 14,
@@ -32,7 +32,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-2",
     image: "/images/ig-posts/post-2.jpg",
     caption:
-      "Black and yellow pride â USRC Tigers RFC ð¤ð Our minis family showing up strong. #JoinTigersMiniRugby #USRCTigers",
+      "Black and yellow pride — USRC Tigers RFC 🖤💛 Our minis family showing up strong. #JoinTigersMiniRugby #USRCTigers",
     date: "Apr 16",
     likes: 143,
     comments: 9,
@@ -42,7 +42,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-3",
     image: "/images/ig-posts/post-3.jpg",
     caption:
-      "Team spirit at USRC Tigers Mini Rugby ð¤ Parent-coaches, players, and families â this community is what makes us special.",
+      "Team spirit at USRC Tigers Mini Rugby 🤝 Parent-coaches, players, and families — this community is what makes us special.",
     date: "Apr 16",
     likes: 264,
     comments: 22,
@@ -52,7 +52,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-4",
     image: "/images/ig-posts/post-4.jpg",
     caption:
-      "Sunday rugby at King's Park ð Safe, fun sessions for ages 4â12. First trial session is free â link in bio to register.",
+      "Sunday rugby at King's Park 🏉 Safe, fun sessions for ages 4–12. First trial session is free — link in bio to register.",
     date: "Apr 16",
     likes: 198,
     comments: 11,
@@ -62,7 +62,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-5",
     image: "/images/ig-posts/post-5.jpg",
     caption:
-      "Tigers on the pitch ð¯ Building confidence, teamwork, and friendships one session at a time.",
+      "Tigers on the pitch 🐯 Building confidence, teamwork, and friendships one session at a time.",
     date: "Apr 16",
     likes: 156,
     comments: 8,
@@ -72,7 +72,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-6",
     image: "/images/ig-posts/post-6.jpg",
     caption:
-      "Mini rugby memories from USRC Tigers ð Thank you to every parent-coach who makes Sunday mornings possible.",
+      "Mini rugby memories from USRC Tigers 🙌 Thank you to every parent-coach who makes Sunday mornings possible.",
     date: "Apr 16",
     likes: 221,
     comments: 31,
@@ -82,7 +82,7 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-7",
     image: "/images/ig-posts/post-7.jpg",
     caption:
-      "Kit day vibes ð¤ð New season registration open â includes playing shirt, shorts & socks. Register via GameDay.",
+      "Kit day vibes 🖤💛 New season registration open — includes playing shirt, shorts & socks. Register via GameDay.",
     date: "Apr 16",
     likes: 312,
     comments: 18,
@@ -92,21 +92,11 @@ export const IG_POSTS: InstagramPost[] = [
     id: "post-8",
     image: "/images/ig-posts/post-8.jpg",
     caption:
-      "From minis to youth to senior â the Tiger pathway starts here ð¯ Come try a free session at King's Park.",
+      "From minis to youth to senior — the Tiger pathway starts here 🐯 Come try a free session at King's Park.",
     date: "Apr 16",
     likes: 174,
     comments: 12,
     postUrl: "https://www.instagram.com/p/DXMGY1UidcW/",
-  },
-  {
-    id: "post-9",
-    image: "/images/ig-posts/post-9.jpg",
-    caption:
-      "",
-    date: "Jan 1",
-    likes: 0,
-    comments: 0,
-    postUrl: "",
   },
 ];
 

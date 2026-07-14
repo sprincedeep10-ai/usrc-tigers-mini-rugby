@@ -14,6 +14,24 @@ const headers = () => ({
   "X-GitHub-Api-Version": "2022-11-28",
 });
 
+function base64ToUtf8(b64: string): string {
+  const binaryString = atob(b64);
+  const bytes = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+function utf8ToBase64(str: string): string {
+  const bytes = new TextEncoder().encode(str);
+  let binaryString = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binaryString += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binaryString);
+}
+
 export async function getFileContents(path: string): Promise<{
   content: string;
   sha: string;
@@ -26,11 +44,7 @@ export async function getFileContents(path: string): Promise<{
   }
 
   const data = await res.json();
-  const content = decodeURIComponent(
-    atob(data.content).replace(/%([0-9A-F]{2})/g, (_, p1) =>
-      String.fromCharCode(parseInt(p1, 16))
-    )
-  );
+  const content = base64ToUtf8(data.content);
 
   return { content, sha: data.sha };
 }
@@ -45,7 +59,7 @@ export async function commitFile(
 
   const body: Record<string, unknown> = {
     message,
-    content: btoa(unescape(encodeURIComponent(content))),
+    content: utf8ToBase64(content),
     branch: BRANCH,
   };
 
