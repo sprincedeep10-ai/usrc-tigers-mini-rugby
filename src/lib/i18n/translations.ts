@@ -27,10 +27,10 @@ export const translations = {
       switchToEnglish: "Switch to English",
     },
     hero: {
-      badge: "Ages 4â12 Â· All Welcome",
+      badge: "Ages 4Ã¢ÂÂ12 ÃÂ· All Welcome",
       title: "Unleash Their",
       titleHighlight: "Inner Tiger",
-      subtitle: "Fun-first mini rugby at King's Park â safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
+      subtitle: "Fun-first mini rugby at King's Park Ã¢ÂÂ safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
       watchVideo: "Watch Our Minis in Action",
       imageAlt: "USRC Tigers mini rugby players in action at King's Park",
       trustSignals: [
@@ -48,23 +48,23 @@ export const translations = {
     about: {
       eyebrow: "The Mini Experience",
       title: "More Than a Game",
-      description: "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby â through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
-      body: "We believe every child deserves a brilliant start in sport â regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
+      description: "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby Ã¢ÂÂ through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
+      body: "We believe every child deserves a brilliant start in sport Ã¢ÂÂ regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
       bullets: [
           "Inclusive for all abilities and genders",
           "Character building through teamwork & respect",
           "Friendships that extend beyond the pitch",
-          "Clear touch â contact progression by age",
+          "Clear touch Ã¢ÂÂ contact progression by age",
         ],
       tryFree: "Try a Free Session",
       ageGroupsTitle: "Age Groups",
-      ageGroupsNote: "PLACEHOLDER â confirm exact groupings for 2026/27 season",
-      agesRange: "Ages 4â12",
+      ageGroupsNote: "PLACEHOLDER Ã¢ÂÂ confirm exact groupings for 2026/27 season",
+      agesRange: "Ages 4Ã¢ÂÂ12",
       imageAlt: "USRC Tigers mini rugby players running with the ball",
       benefits: [
           {
           title: "Fun First, Always",
-          description: "Every session is designed so kids fall in love with rugby â smiles before scrums.",
+          description: "Every session is designed so kids fall in love with rugby Ã¢ÂÂ smiles before scrums.",
           },
           {
           title: "Safe & Inclusive",
@@ -72,7 +72,7 @@ export const translations = {
           },
           {
           title: "Skills That Last",
-          description: "Coordination, teamwork, resilience, and respect â on and off the pitch.",
+          description: "Coordination, teamwork, resilience, and respect Ã¢ÂÂ on and off the pitch.",
           },
           {
           title: "Clear Pathway",
@@ -81,22 +81,22 @@ export const translations = {
         ],
       ageGroups: [
           {
-          name: "U5 â U6",
+          name: "U5 Ã¢ÂÂ U6",
           tag: "Touch Rugby",
           description: "Non-contact fun with tag games, running, and basic ball skills. Perfect first taste of rugby.",
           },
           {
-          name: "U7 â U8",
+          name: "U7 Ã¢ÂÂ U8",
           tag: "Mini Touch",
           description: "Introduction to teamwork, passing, and spatial awareness through structured games and drills.",
           },
           {
-          name: "U9 â U10",
+          name: "U9 Ã¢ÂÂ U10",
           tag: "Development",
           description: "Building core skills, confidence, and game understanding with gradual contact introduction.",
           },
           {
-          name: "U11 â U12",
+          name: "U11 Ã¢ÂÂ U12",
           tag: "Contact Ready",
           description: "Safe, coached contact rugby preparing players for youth rugby and HK competitions.",
           },
@@ -105,7 +105,7 @@ export const translations = {
     parents: {
       eyebrow: "Parents & Coaches",
       title: "You're Part of the Team",
-      description: "No experience needed â for kids or parents. USRC Tigers Mini Rugby is built on a supportive parent-coach model where families grow together.",
+      description: "No experience needed Ã¢ÂÂ for kids or parents. USRC Tigers Mini Rugby is built on a supportive parent-coach model where families grow together.",
       highlights: [
           {
           title: "Parent-Coach Model",
@@ -120,12 +120,12 @@ export const translations = {
           description: "HKRU-aligned coaching, safeguarding policies, and ongoing training for all volunteers.",
           },
         ],
-      testimonialsNote: "Real stories from families in our community â PLACEHOLDER testimonials to be replaced with actual parent quotes.",
+      testimonialsNote: "Real stories from families in our community Ã¢ÂÂ PLACEHOLDER testimonials to be replaced with actual parent quotes.",
       testimonials: [
           {
           name: "Sarah L.",
           role: "Parent of U7 player",
-          quote: "My son was nervous on day one â by week three he couldn't wait for Sunday. The coaches make every child feel seen and celebrated.",
+          quote: "My son was nervous on day one Ã¢ÂÂ by week three he couldn't wait for Sunday. The coaches make every child feel seen and celebrated.",
           },
           {
           name: "James & Mei C.",
@@ -135,16 +135,16 @@ export const translations = {
           {
           name: "Priya K.",
           role: "Parent of U6 player",
-          quote: "No rugby experience needed â they walked us through everything. Our daughter has made friends across schools and gained so much confidence.",
+          quote: "No rugby experience needed Ã¢ÂÂ they walked us through everything. Our daughter has made friends across schools and gained so much confidence.",
           },
           {
           name: "David W.",
           role: "Parent-coach, U10",
-          quote: "Coaching alongside my daughter has been incredible. The club supports parents every step â templates, guidance, and a real team spirit.",
+          quote: "Coaching alongside my daughter has been incredible. The club supports parents every step Ã¢ÂÂ templates, guidance, and a real team spirit.",
           },
         ],
       ctaTitle: "No Experience? No Problem.",
-      ctaBody: "Whether your child is picking up a rugby ball for the first time or you're considering coaching alongside them â we provide everything you need. Templates, mentoring, and a welcoming community that celebrates every small win.",
+      ctaBody: "Whether your child is picking up a rugby ball for the first time or you're considering coaching alongside them Ã¢ÂÂ we provide everything you need. Templates, mentoring, and a welcoming community that celebrates every small win.",
       ctaButton: "Join Our Community",
       imageAlt: "USRC Tigers parent-coach leading a safe tackle drill",
     },
@@ -162,7 +162,7 @@ export const translations = {
           {
           group: "All Age Groups",
           day: "Sunday",
-          time: "9:00 AM â 11:00 AM",
+          time: "9:00 AM Ã¢ÂÂ 11:00 AM",
           location: "King's Park Sports Ground, Ho Man Tin",
           note: "Exact session times by age group TBC for 2026/27 season",
           },
@@ -180,17 +180,17 @@ export const translations = {
       mapExpandHint: "Click to expand",
       mapDirections: "Get directions",
       competitionTitle: "HK Mini Rugby Competitions",
-      competitionBody: "Selected Sundays feature Hong Kong Mini Rugby festivals and tournaments â development-focused, fun, and a brilliant experience for the whole family.",
+      competitionBody: "Selected Sundays feature Hong Kong Mini Rugby festivals and tournaments Ã¢ÂÂ development-focused, fun, and a brilliant experience for the whole family.",
       cta: "Register & Get Schedule Updates",
     },
     joining: {
       eyebrow: "Getting Started",
       title: "Join in 4 Easy Steps",
-      description: "Super simple â register via our official GameDay link and we handle everything else. No payment processing on this website.",
+      description: "Super simple Ã¢ÂÂ register via our official GameDay link and we handle everything else. No payment processing on this website.",
       steps: [
           {
           title: "Click Register",
-          description: "Hit any yellow Register button â you'll go straight to our official GameDay form.",
+          description: "Hit any yellow Register button Ã¢ÂÂ you'll go straight to our official GameDay form.",
           },
           {
           title: "Complete GameDay",
@@ -202,44 +202,44 @@ export const translations = {
           },
           {
           title: "Show Up & Play",
-          description: "Bring boots, water, and a smile. First trial session is free â come see if Tigers is the right fit.",
+          description: "Bring boots, water, and a smile. First trial session is free Ã¢ÂÂ come see if Tigers is the right fit.",
           },
         ],
-      badge: "Official registration via GameDay â secure & simple",
+      badge: "Official registration via GameDay Ã¢ÂÂ secure & simple",
       ctaTitle: "Ready to Register?",
       ctaBody: "Just click, complete the GameDay form, and we'll take care of the rest. First trial session is completely free.",
       ctaButton: "Register on GameDay",
-      ctaNote: "No payment processing on this site â everything goes through official GameDay",
+      ctaNote: "No payment processing on this site Ã¢ÂÂ everything goes through official GameDay",
     },
     mission: {
       eyebrow: "Our Purpose",
       title: "Why We Exist",
-      description: "",
+      description: "USRC Tigers Mini Rugby exists to give every child the chance to discover rugby — and themselves — in a safe, joyful, and ambitious environment.",
       imageCaption: "Building Tigers for Life",
       pillars: [
           {
           title: "Joy Beyond Academics",
-          description: "Hong Kong children deserve space to run, laugh, and compete â rugby gives them that freedom and belonging.",
+          description: "Hong Kong children deserve space to run, laugh, and compete Ã¢ÂÂ rugby gives them that freedom and belonging.",
           },
           {
           title: "Confidence & Life Skills",
-          description: "Resilience, teamwork, discipline, and respect â lessons that shape character far beyond the try line.",
+          description: "Resilience, teamwork, discipline, and respect Ã¢ÂÂ lessons that shape character far beyond the try line.",
           },
           {
-          title: "Mini â Youth â Senior",
+          title: "Mini Ã¢ÂÂ Youth Ã¢ÂÂ Senior",
           description: "A clear, supported pathway from first touch rugby through USRC Tigers youth teams to senior Hong Kong rugby.",
           },
         ],
-      quote: "We're not just building rugby players â we're building confident, kind, resilient young people who carry the Tiger spirit wherever they go.",
-      quoteAuthor: "â USRC Tigers Mini Rugby Committee",
+      quote: "We're not just building rugby players Ã¢ÂÂ we're building confident, kind, resilient young people who carry the Tiger spirit wherever they go.",
+      quoteAuthor: "Ã¢ÂÂ USRC Tigers Mini Rugby Committee",
       cta: "Start Their Journey",
       imageAlt: "USRC Tigers mini rugby players in tiger-stripe kit",
     },
     instagram: {
       eyebrow: "Social Proof",
       title: "Real Moments from Our Minis",
-      description: "Training days, festival wins, kit handouts, and Sunday smiles â see why families love being part of the Tiger community.",
-      followNote: "Follow along for weekly updates from King's Park â new sessions, festival days, and registration reminders.",
+      description: "Training days, festival wins, kit handouts, and Sunday smiles Ã¢ÂÂ see why families love being part of the Tiger community.",
+      followNote: "Follow along for weekly updates from King's Park Ã¢ÂÂ new sessions, festival days, and registration reminders.",
       followButton: "Follow @usrctigers_minis on Instagram",
     },
     faq: {
@@ -261,11 +261,11 @@ export const translations = {
           },
           {
           question: "What are the fees?",
-          answer: "Season fees are confirmed each year and processed through GameDay. PLACEHOLDER: expect approximately HK$2,500â3,500 per season depending on age group. Trial sessions are free.",
+          answer: "Season fees are confirmed each year and processed through GameDay. PLACEHOLDER: expect approximately HK$2,500Ã¢ÂÂ3,500 per season depending on age group. Trial sessions are free.",
           },
           {
           question: "Can parents get involved?",
-          answer: "Absolutely! Many of our coaches are parents. No experience required â we provide training, resources, and support. You're part of a welcoming community.",
+          answer: "Absolutely! Many of our coaches are parents. No experience required Ã¢ÂÂ we provide training, resources, and support. You're part of a welcoming community.",
           },
           {
           question: "Where do you train?",
@@ -277,25 +277,25 @@ export const translations = {
       eyebrow: "Your Child's Adventure Starts Here",
       title: "Give Them the Gift of",
       titleHighlight: "Rugby",
-      description: "One free trial session. No commitment. Just click, register on GameDay, and watch them fall in love with the game â and a community that feels like family.",
+      description: "One free trial session. No commitment. Just click, register on GameDay, and watch them fall in love with the game Ã¢ÂÂ and a community that feels like family.",
       followInstagram: "Follow on Instagram",
-      footer: "Part of USRC Tigers RFC Â· King's Park, Hong Kong Â· HK Rugby Pathway",
+      footer: "Part of USRC Tigers RFC ÃÂ· King's Park, Hong Kong ÃÂ· HK Rugby Pathway",
     },
     footer: {
-      tagline: "Hong Kong's premier mini rugby programme â fun, safe, and built for every child aged 4â12.",
+      tagline: "Hong Kong's premier mini rugby programme Ã¢ÂÂ fun, safe, and built for every child aged 4Ã¢ÂÂ12.",
       quickLinks: "Quick Links",
       registerConnect: "Register & Connect",
-      gamedayLink: "GameDay Registration â",
+      gamedayLink: "GameDay Registration Ã¢ÂÂ",
       location: "King's Park Sports Ground, Ho Man Tin, HK",
       readyTitle: "Ready to Join?",
       readyBody: "First trial session is free. Register in minutes via GameDay.",
       copyright: "USRC Tigers Mini Rugby. Part of USRC Tigers RFC.",
-      legal: "Child protection and safeguarding policies apply. All coaches are vetted volunteers. No payment processing on this website â all registrations and fees via official GameDay.",
+      legal: "Child protection and safeguarding policies apply. All coaches are vetted volunteers. No payment processing on this website Ã¢ÂÂ all registrations and fees via official GameDay.",
     },
     videoModal: {
       title: "Minis in Action",
       subtitle: "Watch our community on Instagram",
-      placeholder: "PLACEHOLDER â embed a YouTube highlight reel or link directly to recent Instagram Reels from",
+      placeholder: "PLACEHOLDER Ã¢ÂÂ embed a YouTube highlight reel or link directly to recent Instagram Reels from",
       viewOnInstagram: "View on Instagram",
       close: "Close",
     },
@@ -303,300 +303,300 @@ export const translations = {
   zh: {
     nav: {
       instagram: "Instagram",
-      about: "éæ¼æ¬ç",
-      parents: "å®¶é·èæç·´",
-      schedule: "è¨ç·´æé",
-      joining: "å ±åæµç¨",
-      mission: "æåçä½¿å½",
-      registerFreeTrial: "åè²»è©¦ç©å ±å",
-      openMenu: "éåé¸å®",
-      closeMenu: "ééé¸å®",
-      faq: "å¸¸è¦åé¡",
+      about: "Ã©ÂÂÃ¦ÂÂ¼Ã¦Â¬ÂÃ§ÂÂ",
+      parents: "Ã¥Â®Â¶Ã©ÂÂ·Ã¨ÂÂÃ¦ÂÂÃ§Â·Â´",
+      schedule: "Ã¨Â¨ÂÃ§Â·Â´Ã¦ÂÂÃ©ÂÂ",
+      joining: "Ã¥Â Â±Ã¥ÂÂÃ¦ÂµÂÃ§Â¨Â",
+      mission: "Ã¦ÂÂÃ¥ÂÂÃ§ÂÂÃ¤Â½Â¿Ã¥ÂÂ½",
+      registerFreeTrial: "Ã¥ÂÂÃ¨Â²Â»Ã¨Â©Â¦Ã§ÂÂ©Ã¥Â Â±Ã¥ÂÂ",
+      openMenu: "Ã©ÂÂÃ¥ÂÂÃ©ÂÂ¸Ã¥ÂÂ®",
+      closeMenu: "Ã©ÂÂÃ©ÂÂÃ©ÂÂ¸Ã¥ÂÂ®",
+      faq: "Ã¥Â¸Â¸Ã¨Â¦ÂÃ¥ÂÂÃ©Â¡Â",
     },
     common: {
-      registerFreeTrial: "åè²»è©¦ç©å ±å",
-      registerForFreeTrial: "åè²»è©¦ç©å ±å",
-      miniRugby: "å¹¼åæ¬ç",
-      readMore: "æ¥çæ´å¤",
-      viewOnInstagram: "å¨ Instagram æ¥ç",
-      openInInstagram: "å¨ Instagram éå",
-      likes: "è®å¥½",
-      comments: "çè¨",
-      switchToChinese: "åæè³ç¹é«ä¸­æ",
-      switchToEnglish: "åæè³è±æ",
+      registerFreeTrial: "Ã¥ÂÂÃ¨Â²Â»Ã¨Â©Â¦Ã§ÂÂ©Ã¥Â Â±Ã¥ÂÂ",
+      registerForFreeTrial: "Ã¥ÂÂÃ¨Â²Â»Ã¨Â©Â¦Ã§ÂÂ©Ã¥Â Â±Ã¥ÂÂ",
+      miniRugby: "Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂ",
+      readMore: "Ã¦ÂÂ¥Ã§ÂÂÃ¦ÂÂ´Ã¥Â¤Â",
+      viewOnInstagram: "Ã¥ÂÂ¨ Instagram Ã¦ÂÂ¥Ã§ÂÂ",
+      openInInstagram: "Ã¥ÂÂ¨ Instagram Ã©ÂÂÃ¥ÂÂ",
+      likes: "Ã¨Â®ÂÃ¥Â¥Â½",
+      comments: "Ã§ÂÂÃ¨Â¨Â",
+      switchToChinese: "Ã¥ÂÂÃ¦ÂÂÃ¨ÂÂ³Ã§Â¹ÂÃ©Â«ÂÃ¤Â¸Â­Ã¦ÂÂ",
+      switchToEnglish: "Ã¥ÂÂÃ¦ÂÂÃ¨ÂÂ³Ã¨ÂÂ±Ã¦ÂÂ",
     },
     hero: {
-      badge: "4â12 æ­² Â· æ­¡è¿ææå°æå",
-      title: "éæ¾ä»åç",
-      titleHighlight: "çèç²¾ç¥",
-      subtitle: "å¨äº¬å£«æäº«åä»¥å¿«æ¨çºåçå¹¼åæ¬çââå®å¨ãå±èãå¾ªåºæ¼¸é²å°å¹é¤æè½ãè¸ä¸ USRC Tigers éå¹´åæäººéçæ¸æ°ç¼å±ä¹è·¯ã",
-      watchVideo: "è§çæåçå¹¼åè¨ç·´",
-      imageAlt: "ä¸è»æçèæ¬çæå¹¼åæ¬çè¨ç·´",
+      badge: "4Ã¢ÂÂ12 Ã¦Â­Â² ÃÂ· Ã¦Â­Â¡Ã¨Â¿ÂÃ¦ÂÂÃ¦ÂÂÃ¥Â°ÂÃ¦ÂÂÃ¥ÂÂ",
+      title: "Ã©ÂÂÃ¦ÂÂ¾Ã¤Â»ÂÃ¥ÂÂÃ§ÂÂ",
+      titleHighlight: "Ã§ÂÂÃ¨ÂÂÃ§Â²Â¾Ã§Â¥Â",
+      subtitle: "Ã¥ÂÂ¨Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ¤ÂºÂ«Ã¥ÂÂÃ¤Â»Â¥Ã¥Â¿Â«Ã¦Â¨ÂÃ§ÂÂºÃ¥ÂÂÃ§ÂÂÃ¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¢ÂÂÃ¢ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã£ÂÂÃ¥ÂÂ±Ã¨ÂÂÃ£ÂÂÃ¥Â¾ÂªÃ¥ÂºÂÃ¦Â¼Â¸Ã©ÂÂ²Ã¥ÂÂ°Ã¥ÂÂ¹Ã©Â¤ÂÃ¦ÂÂÃ¨ÂÂ½Ã£ÂÂÃ¨Â¸ÂÃ¤Â¸Â USRC Tigers Ã©ÂÂÃ¥Â¹Â´Ã¥ÂÂÃ¦ÂÂÃ¤ÂºÂºÃ©ÂÂÃ§ÂÂÃ¦Â¸ÂÃ¦ÂÂ°Ã§ÂÂ¼Ã¥Â±ÂÃ¤Â¹ÂÃ¨Â·Â¯Ã£ÂÂ",
+      watchVideo: "Ã¨Â§ÂÃ§ÂÂÃ¦ÂÂÃ¥ÂÂÃ§ÂÂÃ¥Â¹Â¼Ã¥ÂÂÃ¨Â¨ÂÃ§Â·Â´",
+      imageAlt: "Ã¤Â¸ÂÃ¨Â»ÂÃ¦ÂÂÃ§ÂÂÃ¨ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¦ÂÂÃ¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¨Â¨ÂÃ§Â·Â´",
       trustSignals: [
-          "USRC Tigers RFC æä¸",
-          "é¦æ¸¯äº¬å£«æ",
-          "éå¹´åæäººç¼å±éé",
+          "USRC Tigers RFC Ã¦ÂÂÃ¤Â¸Â",
+          "Ã©Â¦ÂÃ¦Â¸Â¯Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂ",
+          "Ã©ÂÂÃ¥Â¹Â´Ã¥ÂÂÃ¦ÂÂÃ¤ÂºÂºÃ§ÂÂ¼Ã¥Â±ÂÃ©ÂÂÃ©ÂÂ",
         ],
       stats: {
-        miniPlayers: "å¹¼åçå¡",
-        ageGroups: "å¹´é½¡çµå¥",
-        parentCoaches: "å®¶é·æç·´",
-        yearsHeritage: "å¹´å³çµ±",
+        miniPlayers: "Ã¥Â¹Â¼Ã¥ÂÂÃ§ÂÂÃ¥ÂÂ¡",
+        ageGroups: "Ã¥Â¹Â´Ã©Â½Â¡Ã§ÂµÂÃ¥ÂÂ¥",
+        parentCoaches: "Ã¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´",
+        yearsHeritage: "Ã¥Â¹Â´Ã¥ÂÂ³Ã§ÂµÂ±",
       },
     },
     about: {
-      eyebrow: "å¹¼åæ¬çé«é©",
-      title: "ä¸åªæ¯éå",
-      description: "USRC Tigers å¹¼åæ¬çè®é¦æ¸¯å°æåå¨æ­¡ç¬ãåèª¼åå¾ªåºæ¼¸é²çæè¡å¹é¤ä¸­ï¼ç¼ç¾æ¬ççæ¨è¶£ââå®å¨èæº«é¦¨çç°å¢ã",
-      body: "æåç¸ä¿¡æ¯åå­©å­é½å¼å¾ææç²¾å½©çéåèµ·æ­¥ââä¸è«è½åãæ§å¥æèæ¯ãè¨ç·´çµåæç³»çµ±çæå°èèªç±ç©èï¼è®å­©å­èªç¶å»ºç«èªä¿¡ã",
+      eyebrow: "Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ©Â«ÂÃ©Â©Â",
+      title: "Ã¤Â¸ÂÃ¥ÂÂªÃ¦ÂÂ¯Ã©ÂÂÃ¥ÂÂ",
+      description: "USRC Tigers Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¨Â®ÂÃ©Â¦ÂÃ¦Â¸Â¯Ã¥Â°ÂÃ¦ÂÂÃ¥ÂÂÃ¥ÂÂ¨Ã¦Â­Â¡Ã§Â¬ÂÃ£ÂÂÃ¥ÂÂÃ¨ÂªÂ¼Ã¥ÂÂÃ¥Â¾ÂªÃ¥ÂºÂÃ¦Â¼Â¸Ã©ÂÂ²Ã§ÂÂÃ¦ÂÂÃ¨Â¡ÂÃ¥ÂÂ¹Ã©Â¤ÂÃ¤Â¸Â­Ã¯Â¼ÂÃ§ÂÂ¼Ã§ÂÂ¾Ã¦Â¬ÂÃ§ÂÂÃ§ÂÂÃ¦Â¨ÂÃ¨Â¶Â£Ã¢ÂÂÃ¢ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã¨ÂÂÃ¦ÂºÂ«Ã©Â¦Â¨Ã§ÂÂÃ§ÂÂ°Ã¥Â¢ÂÃ£ÂÂ",
+      body: "Ã¦ÂÂÃ¥ÂÂÃ§ÂÂ¸Ã¤Â¿Â¡Ã¦Â¯ÂÃ¥ÂÂÃ¥Â­Â©Ã¥Â­ÂÃ©ÂÂ½Ã¥ÂÂ¼Ã¥Â¾ÂÃ¦ÂÂÃ¦ÂÂÃ§Â²Â¾Ã¥Â½Â©Ã§ÂÂÃ©ÂÂÃ¥ÂÂÃ¨ÂµÂ·Ã¦Â­Â¥Ã¢ÂÂÃ¢ÂÂÃ¤Â¸ÂÃ¨Â«ÂÃ¨ÂÂ½Ã¥ÂÂÃ£ÂÂÃ¦ÂÂ§Ã¥ÂÂ¥Ã¦ÂÂÃ¨ÂÂÃ¦ÂÂ¯Ã£ÂÂÃ¨Â¨ÂÃ§Â·Â´Ã§ÂµÂÃ¥ÂÂÃ¦ÂÂÃ§Â³Â»Ã§ÂµÂ±Ã§ÂÂÃ¦ÂÂÃ¥Â°ÂÃ¨ÂÂÃ¨ÂÂªÃ§ÂÂ±Ã§ÂÂ©Ã¨ÂÂÃ¯Â¼ÂÃ¨Â®ÂÃ¥Â­Â©Ã¥Â­ÂÃ¨ÂÂªÃ§ÂÂ¶Ã¥Â»ÂºÃ§Â«ÂÃ¨ÂÂªÃ¤Â¿Â¡Ã£ÂÂ",
       bullets: [
-          "æ­¡è¿ææè½åèæ§å¥",
-          "ééåéåä½èå°éå¹é¤åæ ¼",
-          "å»ºç«è¶è¶çå ´çåèª¼",
-          "æå¹´é½¡å¾ªåºæ¼¸é²ï¼éå°æ â å°æ",
+          "Ã¦Â­Â¡Ã¨Â¿ÂÃ¦ÂÂÃ¦ÂÂÃ¨ÂÂ½Ã¥ÂÂÃ¨ÂÂÃ¦ÂÂ§Ã¥ÂÂ¥",
+          "Ã©ÂÂÃ©ÂÂÃ¥ÂÂÃ©ÂÂÃ¥ÂÂÃ¤Â½ÂÃ¨ÂÂÃ¥Â°ÂÃ©ÂÂÃ¥ÂÂ¹Ã©Â¤ÂÃ¥ÂÂÃ¦Â Â¼",
+          "Ã¥Â»ÂºÃ§Â«ÂÃ¨Â¶ÂÃ¨Â¶ÂÃ§ÂÂÃ¥Â Â´Ã§ÂÂÃ¥ÂÂÃ¨ÂªÂ¼",
+          "Ã¦ÂÂÃ¥Â¹Â´Ã©Â½Â¡Ã¥Â¾ÂªÃ¥ÂºÂÃ¦Â¼Â¸Ã©ÂÂ²Ã¯Â¼ÂÃ©ÂÂÃ¥Â°ÂÃ¦ÂÂ Ã¢ÂÂ Ã¥Â°ÂÃ¦ÂÂ",
         ],
-      tryFree: "åè²»è©¦ç©ä¸èª²",
-      ageGroupsTitle: "å¹´é½¡çµå¥",
-      ageGroupsNote: "ä½ä½ç¬¦ â 2026/27 è³½å­£ç¢ºååçµå¾ç¢ºèª",
-      agesRange: "4â12 æ­²",
-      imageAlt: "ä¸è»æçèæ¬çæå¹¼åæ¬çå¡å¸¶çå¥è·",
+      tryFree: "Ã¥ÂÂÃ¨Â²Â»Ã¨Â©Â¦Ã§ÂÂ©Ã¤Â¸ÂÃ¨ÂªÂ²",
+      ageGroupsTitle: "Ã¥Â¹Â´Ã©Â½Â¡Ã§ÂµÂÃ¥ÂÂ¥",
+      ageGroupsNote: "Ã¤Â½ÂÃ¤Â½ÂÃ§Â¬Â¦ Ã¢ÂÂ 2026/27 Ã¨Â³Â½Ã¥Â­Â£Ã§Â¢ÂºÃ¥ÂÂÃ¥ÂÂÃ§ÂµÂÃ¥Â¾ÂÃ§Â¢ÂºÃ¨ÂªÂ",
+      agesRange: "4Ã¢ÂÂ12 Ã¦Â­Â²",
+      imageAlt: "Ã¤Â¸ÂÃ¨Â»ÂÃ¦ÂÂÃ§ÂÂÃ¨ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¦ÂÂÃ¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂ¡Ã¥Â¸Â¶Ã§ÂÂÃ¥Â¥ÂÃ¨Â·Â",
       benefits: [
           {
-          title: "å¿«æ¨è³ä¸",
-          description: "æ¯å è¨ç·´é½è®å­©å­æä¸æ¬çââç¬å®¹æ¯ scrum æ´éè¦ã",
+          title: "Ã¥Â¿Â«Ã¦Â¨ÂÃ¨ÂÂ³Ã¤Â¸Â",
+          description: "Ã¦Â¯ÂÃ¥Â ÂÃ¨Â¨ÂÃ§Â·Â´Ã©ÂÂ½Ã¨Â®ÂÃ¥Â­Â©Ã¥Â­ÂÃ¦ÂÂÃ¤Â¸ÂÃ¦Â¬ÂÃ§ÂÂÃ¢ÂÂÃ¢ÂÂÃ§Â¬ÂÃ¥Â®Â¹Ã¦Â¯Â scrum Ã¦ÂÂ´Ã©ÂÂÃ¨Â¦ÂÃ£ÂÂ",
           },
           {
-          title: "å®å¨å±è",
-          description: "æ­¡è¿ææè½åèæ§å¥ãåè³æ ¼æç·´ãé©é½¡è¨ç·´ãæ¯æ´æ§æåã",
+          title: "Ã¥Â®ÂÃ¥ÂÂ¨Ã¥ÂÂ±Ã¨ÂÂ",
+          description: "Ã¦Â­Â¡Ã¨Â¿ÂÃ¦ÂÂÃ¦ÂÂÃ¨ÂÂ½Ã¥ÂÂÃ¨ÂÂÃ¦ÂÂ§Ã¥ÂÂ¥Ã£ÂÂÃ¥ÂÂÃ¨Â³ÂÃ¦Â Â¼Ã¦ÂÂÃ§Â·Â´Ã£ÂÂÃ©ÂÂ©Ã©Â½Â¡Ã¨Â¨ÂÃ§Â·Â´Ã£ÂÂÃ¦ÂÂ¯Ã¦ÂÂ´Ã¦ÂÂ§Ã¦ÂÂÃ¥ÂÂÃ£ÂÂ",
           },
           {
-          title: "çµèº«åç¨çæè½",
-          description: "åèª¿ãåéãéæ§èå°éââå ´å§å ´å¤çåçã",
+          title: "Ã§ÂµÂÃ¨ÂºÂ«Ã¥ÂÂÃ§ÂÂ¨Ã§ÂÂÃ¦ÂÂÃ¨ÂÂ½",
+          description: "Ã¥ÂÂÃ¨ÂªÂ¿Ã£ÂÂÃ¥ÂÂÃ©ÂÂÃ£ÂÂÃ©ÂÂÃ¦ÂÂ§Ã¨ÂÂÃ¥Â°ÂÃ©ÂÂÃ¢ÂÂÃ¢ÂÂÃ¥Â Â´Ã¥ÂÂ§Ã¥Â Â´Ã¥Â¤ÂÃ§ÂÂÃ¥ÂÂÃ§ÂÂÃ£ÂÂ",
           },
           {
-          title: "æ¸æ°ç¼å±éé",
-          description: "å¾å¹¼åå° USRC Tigers éå¹´éï¼ä»¥è³é¦æ¸¯æäººæ¬çã",
+          title: "Ã¦Â¸ÂÃ¦ÂÂ°Ã§ÂÂ¼Ã¥Â±ÂÃ©ÂÂÃ©ÂÂ",
+          description: "Ã¥Â¾ÂÃ¥Â¹Â¼Ã¥ÂÂÃ¥ÂÂ° USRC Tigers Ã©ÂÂÃ¥Â¹Â´Ã©ÂÂÃ¯Â¼ÂÃ¤Â»Â¥Ã¨ÂÂ³Ã©Â¦ÂÃ¦Â¸Â¯Ã¦ÂÂÃ¤ÂºÂºÃ¦Â¬ÂÃ§ÂÂÃ£ÂÂ",
           },
         ],
       ageGroups: [
           {
-          name: "U5 â U6",
-          tag: "éå°ææ¬ç",
-          description: "éå°æçè¿½ééæ²ãè·æ­¥ååºæ¬æ§çââå®ç¾çæ¬çåé«é©ã",
+          name: "U5 Ã¢ÂÂ U6",
+          tag: "Ã©ÂÂÃ¥Â°ÂÃ¦ÂÂÃ¦Â¬ÂÃ§ÂÂ",
+          description: "Ã©ÂÂÃ¥Â°ÂÃ¦ÂÂÃ§ÂÂÃ¨Â¿Â½Ã©ÂÂÃ©ÂÂÃ¦ÂÂ²Ã£ÂÂÃ¨Â·ÂÃ¦Â­Â¥Ã¥ÂÂÃ¥ÂÂºÃ¦ÂÂ¬Ã¦ÂÂ§Ã§ÂÂÃ¢ÂÂÃ¢ÂÂÃ¥Â®ÂÃ§Â¾ÂÃ§ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂÃ©Â«ÂÃ©Â©ÂÃ£ÂÂ",
           },
           {
-          name: "U7 â U8",
-          tag: "è¿·ä½ éå°æ",
-          description: "ééæç³»çµ±çéæ²åç·´ç¿ï¼èªè­åéåä½ãå³çåç©ºéæè­ã",
+          name: "U7 Ã¢ÂÂ U8",
+          tag: "Ã¨Â¿Â·Ã¤Â½Â Ã©ÂÂÃ¥Â°ÂÃ¦ÂÂ",
+          description: "Ã©ÂÂÃ©ÂÂÃ¦ÂÂÃ§Â³Â»Ã§ÂµÂ±Ã§ÂÂÃ©ÂÂÃ¦ÂÂ²Ã¥ÂÂÃ§Â·Â´Ã§Â¿ÂÃ¯Â¼ÂÃ¨ÂªÂÃ¨Â­ÂÃ¥ÂÂÃ©ÂÂÃ¥ÂÂÃ¤Â½ÂÃ£ÂÂÃ¥ÂÂ³Ã§ÂÂÃ¥ÂÂÃ§Â©ÂºÃ©ÂÂÃ¦ÂÂÃ¨Â­ÂÃ£ÂÂ",
           },
           {
-          name: "U9 â U10",
-          tag: "ç¼å±éæ®µ",
-          description: "å»ºç«æ ¸å¿æè½ãä¿¡å¿åæ¯è³½çè§£ï¼éæ­¥å¼å¥å°æåç´ ã",
+          name: "U9 Ã¢ÂÂ U10",
+          tag: "Ã§ÂÂ¼Ã¥Â±ÂÃ©ÂÂÃ¦Â®Âµ",
+          description: "Ã¥Â»ÂºÃ§Â«ÂÃ¦Â Â¸Ã¥Â¿ÂÃ¦ÂÂÃ¨ÂÂ½Ã£ÂÂÃ¤Â¿Â¡Ã¥Â¿ÂÃ¥ÂÂÃ¦Â¯ÂÃ¨Â³Â½Ã§ÂÂÃ¨Â§Â£Ã¯Â¼ÂÃ©ÂÂÃ¦Â­Â¥Ã¥Â¼ÂÃ¥ÂÂ¥Ã¥Â°ÂÃ¦ÂÂÃ¥ÂÂÃ§Â´Â Ã£ÂÂ",
           },
           {
-          name: "U11 â U12",
-          tag: "å°ææºå",
-          description: "å®å¨ãææå°çå°ææ¬çï¼çºéå¹´æ¬çåé¦æ¸¯æ¯è³½åå¥½æºåã",
+          name: "U11 Ã¢ÂÂ U12",
+          tag: "Ã¥Â°ÂÃ¦ÂÂÃ¦ÂºÂÃ¥ÂÂ",
+          description: "Ã¥Â®ÂÃ¥ÂÂ¨Ã£ÂÂÃ¦ÂÂÃ¦ÂÂÃ¥Â°ÂÃ§ÂÂÃ¥Â°ÂÃ¦ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¯Â¼ÂÃ§ÂÂºÃ©ÂÂÃ¥Â¹Â´Ã¦Â¬ÂÃ§ÂÂÃ¥ÂÂÃ©Â¦ÂÃ¦Â¸Â¯Ã¦Â¯ÂÃ¨Â³Â½Ã¥ÂÂÃ¥Â¥Â½Ã¦ÂºÂÃ¥ÂÂÃ£ÂÂ",
           },
         ],
     },
     parents: {
-      eyebrow: "å®¶é·èæç·´",
-      title: "æ¨ä¹æ¯åéä¸å¡",
-      description: "å°æååå®¶é·é½ç¡éç¶é©ãUSRC Tigers å¹¼åæ¬çä»¥å®¶é·æç·´æ¨¡å¼çºæ¬ï¼è®å®¶åº­ä¸èµ·æé·ã",
+      eyebrow: "Ã¥Â®Â¶Ã©ÂÂ·Ã¨ÂÂÃ¦ÂÂÃ§Â·Â´",
+      title: "Ã¦ÂÂ¨Ã¤Â¹ÂÃ¦ÂÂ¯Ã¥ÂÂÃ©ÂÂÃ¤Â¸ÂÃ¥ÂÂ¡",
+      description: "Ã¥Â°ÂÃ¦ÂÂÃ¥ÂÂÃ¥ÂÂÃ¥Â®Â¶Ã©ÂÂ·Ã©ÂÂ½Ã§ÂÂ¡Ã©ÂÂÃ§Â¶ÂÃ©Â©ÂÃ£ÂÂUSRC Tigers Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¤Â»Â¥Ã¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´Ã¦Â¨Â¡Ã¥Â¼ÂÃ§ÂÂºÃ¦ÂÂ¬Ã¯Â¼ÂÃ¨Â®ÂÃ¥Â®Â¶Ã¥ÂºÂ­Ã¤Â¸ÂÃ¨ÂµÂ·Ã¦ÂÂÃ©ÂÂ·Ã£ÂÂ",
       highlights: [
           {
-          title: "å®¶é·æç·´æ¨¡å¼",
-          description: "è¨±å¤è¨ç·´ç±åè¨çå®¶é·æç·´å¸¶é ï¼èªè­æ¯åå­©å­çåå­ââéæ¯ç¤¾åï¼ä¸åªæ¯çæã",
+          title: "Ã¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´Ã¦Â¨Â¡Ã¥Â¼Â",
+          description: "Ã¨Â¨Â±Ã¥Â¤ÂÃ¨Â¨ÂÃ§Â·Â´Ã§ÂÂ±Ã¥ÂÂÃ¨Â¨ÂÃ§ÂÂÃ¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´Ã¥Â¸Â¶Ã©Â ÂÃ¯Â¼ÂÃ¨ÂªÂÃ¨Â­ÂÃ¦Â¯ÂÃ¥ÂÂÃ¥Â­Â©Ã¥Â­ÂÃ§ÂÂÃ¥ÂÂÃ¥Â­ÂÃ¢ÂÂÃ¢ÂÂÃ©ÂÂÃ¦ÂÂ¯Ã§Â¤Â¾Ã¥ÂÂÃ¯Â¼ÂÃ¤Â¸ÂÃ¥ÂÂªÃ¦ÂÂ¯Ã§ÂÂÃ¦ÂÂÃ£ÂÂ",
           },
           {
-          title: "æ¸æ°æºé",
-          description: "WhatsApp ç¾¤çµãè¨ç·´æ´æ°ãæ¯æ¬¡è¨ç·´ççæé¢å­ââæ¨æ°¸é ç¥éç¼çä»éº¼äºã",
+          title: "Ã¦Â¸ÂÃ¦ÂÂ°Ã¦ÂºÂÃ©ÂÂ",
+          description: "WhatsApp Ã§Â¾Â¤Ã§ÂµÂÃ£ÂÂÃ¨Â¨ÂÃ§Â·Â´Ã¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ¦Â¯ÂÃ¦Â¬Â¡Ã¨Â¨ÂÃ§Â·Â´Ã§ÂÂÃ§ÂÂÃ¦ÂÂÃ©ÂÂ¢Ã¥Â­ÂÃ¢ÂÂÃ¢ÂÂÃ¦ÂÂ¨Ã¦Â°Â¸Ã©ÂÂ Ã§ÂÂ¥Ã©ÂÂÃ§ÂÂ¼Ã§ÂÂÃ¤Â»ÂÃ©ÂºÂ¼Ã¤ÂºÂÃ£ÂÂ",
           },
           {
-          title: "å°æ¥­æ¨æº",
-          description: "ç¬¦å HKRU çæå°ãåç«¥ä¿è­·æ¿ç­ï¼ä»¥åæçºçç¾©å·¥å¹è¨ã",
+          title: "Ã¥Â°ÂÃ¦Â¥Â­Ã¦Â¨ÂÃ¦ÂºÂ",
+          description: "Ã§Â¬Â¦Ã¥ÂÂ HKRU Ã§ÂÂÃ¦ÂÂÃ¥Â°ÂÃ£ÂÂÃ¥ÂÂÃ§Â«Â¥Ã¤Â¿ÂÃ¨Â­Â·Ã¦ÂÂ¿Ã§Â­ÂÃ¯Â¼ÂÃ¤Â»Â¥Ã¥ÂÂÃ¦ÂÂÃ§ÂºÂÃ§ÂÂÃ§Â¾Â©Ã¥Â·Â¥Ã¥ÂÂ¹Ã¨Â¨ÂÃ£ÂÂ",
           },
         ],
-      testimonialsNote: "ä¾èªæåç¤¾åå®¶åº­ççå¯¦æäºââä½ä½ç¬¦è©å¹ï¼æ¥å¾æ¿æçºçå¯¦å®¶é·åäº«ã",
+      testimonialsNote: "Ã¤Â¾ÂÃ¨ÂÂªÃ¦ÂÂÃ¥ÂÂÃ§Â¤Â¾Ã¥ÂÂÃ¥Â®Â¶Ã¥ÂºÂ­Ã§ÂÂÃ§ÂÂÃ¥Â¯Â¦Ã¦ÂÂÃ¤ÂºÂÃ¢ÂÂÃ¢ÂÂÃ¤Â½ÂÃ¤Â½ÂÃ§Â¬Â¦Ã¨Â©ÂÃ¥ÂÂ¹Ã¯Â¼ÂÃ¦ÂÂ¥Ã¥Â¾ÂÃ¦ÂÂ¿Ã¦ÂÂÃ§ÂÂºÃ§ÂÂÃ¥Â¯Â¦Ã¥Â®Â¶Ã©ÂÂ·Ã¥ÂÂÃ¤ÂºÂ«Ã£ÂÂ",
       testimonials: [
           {
           name: "Sarah L.",
-          role: "U7 çå¡å®¶é·",
-          quote: "åå­ç¬¬ä¸æ¥å¾ç·å¼µââå°ç¬¬ä¸åææå·²ç­ä¸åæææ¥ãæç·´è®æ¯åå­©å­é½æå°è¢«çè¦åè®è³ã",
+          role: "U7 Ã§ÂÂÃ¥ÂÂ¡Ã¥Â®Â¶Ã©ÂÂ·",
+          quote: "Ã¥ÂÂÃ¥Â­ÂÃ§Â¬Â¬Ã¤Â¸ÂÃ¦ÂÂ¥Ã¥Â¾ÂÃ§Â·ÂÃ¥Â¼ÂµÃ¢ÂÂÃ¢ÂÂÃ¥ÂÂ°Ã§Â¬Â¬Ã¤Â¸ÂÃ¥ÂÂÃ¦ÂÂÃ¦ÂÂÃ¥Â·Â²Ã§Â­ÂÃ¤Â¸ÂÃ¥ÂÂÃ¦ÂÂÃ¦ÂÂÃ¦ÂÂ¥Ã£ÂÂÃ¦ÂÂÃ§Â·Â´Ã¨Â®ÂÃ¦Â¯ÂÃ¥ÂÂÃ¥Â­Â©Ã¥Â­ÂÃ©ÂÂ½Ã¦ÂÂÃ¥ÂÂ°Ã¨Â¢Â«Ã§ÂÂÃ¨Â¦ÂÃ¥ÂÂÃ¨Â®ÂÃ¨Â³ÂÃ£ÂÂ",
           },
           {
           name: "James & Mei C.",
-          role: "U9 éèèå®¶é·",
-          quote: "æåå¾åæ­¡å®¶é·æç·´ç¤¾åãæ¸æ°ç WhatsApp æ´æ°ãååçé¢å­ãé¶å£åââæ¯ä¸é±çäº®é»ã",
+          role: "U9 Ã©ÂÂÃ¨ÂÂÃ¨ÂÂÃ¥Â®Â¶Ã©ÂÂ·",
+          quote: "Ã¦ÂÂÃ¥ÂÂÃ¥Â¾ÂÃ¥ÂÂÃ¦Â­Â¡Ã¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´Ã§Â¤Â¾Ã¥ÂÂÃ£ÂÂÃ¦Â¸ÂÃ¦ÂÂ°Ã§ÂÂ WhatsApp Ã¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂÃ¥ÂÂÃ¥ÂÂÃ§ÂÂÃ©ÂÂ¢Ã¥Â­ÂÃ£ÂÂÃ©ÂÂ¶Ã¥Â£ÂÃ¥ÂÂÃ¢ÂÂÃ¢ÂÂÃ¦ÂÂ¯Ã¤Â¸ÂÃ©ÂÂ±Ã§ÂÂÃ¤ÂºÂ®Ã©Â»ÂÃ£ÂÂ",
           },
           {
           name: "Priya K.",
-          role: "U6 çå¡å®¶é·",
-          quote: "å®å¨ä¸éè¦æ¬çç¶é©ââä»åä¸æ­¥æ­¥å¸¶é æåãå¥³åçµè­äºè·¨æ ¡æåï¼ä¿¡å¿å¤§å¢ã",
+          role: "U6 Ã§ÂÂÃ¥ÂÂ¡Ã¥Â®Â¶Ã©ÂÂ·",
+          quote: "Ã¥Â®ÂÃ¥ÂÂ¨Ã¤Â¸ÂÃ©ÂÂÃ¨Â¦ÂÃ¦Â¬ÂÃ§ÂÂÃ§Â¶ÂÃ©Â©ÂÃ¢ÂÂÃ¢ÂÂÃ¤Â»ÂÃ¥ÂÂÃ¤Â¸ÂÃ¦Â­Â¥Ã¦Â­Â¥Ã¥Â¸Â¶Ã©Â ÂÃ¦ÂÂÃ¥ÂÂÃ£ÂÂÃ¥Â¥Â³Ã¥ÂÂÃ§ÂµÂÃ¨Â­ÂÃ¤ÂºÂÃ¨Â·Â¨Ã¦Â Â¡Ã¦ÂÂÃ¥ÂÂÃ¯Â¼ÂÃ¤Â¿Â¡Ã¥Â¿ÂÃ¥Â¤Â§Ã¥Â¢ÂÃ£ÂÂ",
           },
           {
           name: "David W.",
-          role: "U10 å®¶é·æç·´",
-          quote: "èå¥³åä¸èµ·å·æéå¸¸é£å¿ãçæå¨æ¯ä¸æ­¥é½æ¯æå®¶é·ââç¯æ¬ãæå°åçæ­£çåéç²¾ç¥ã",
+          role: "U10 Ã¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´",
+          quote: "Ã¨ÂÂÃ¥Â¥Â³Ã¥ÂÂÃ¤Â¸ÂÃ¨ÂµÂ·Ã¥ÂÂ·Ã¦ÂÂÃ©ÂÂÃ¥Â¸Â¸Ã©ÂÂ£Ã¥Â¿ÂÃ£ÂÂÃ§ÂÂÃ¦ÂÂÃ¥ÂÂ¨Ã¦Â¯ÂÃ¤Â¸ÂÃ¦Â­Â¥Ã©ÂÂ½Ã¦ÂÂ¯Ã¦ÂÂÃ¥Â®Â¶Ã©ÂÂ·Ã¢ÂÂÃ¢ÂÂÃ§Â¯ÂÃ¦ÂÂ¬Ã£ÂÂÃ¦ÂÂÃ¥Â°ÂÃ¥ÂÂÃ§ÂÂÃ¦Â­Â£Ã§ÂÂÃ¥ÂÂÃ©ÂÂÃ§Â²Â¾Ã§Â¥ÂÃ£ÂÂ",
           },
         ],
-      ctaTitle: "æ²æç¶é©ï¼æ²åé¡ã",
-      ctaBody: "ç¡è«æ¯å­©å­ç¬¬ä¸æ¬¡æ¿èµ·æ¬çï¼éæ¯æ¨èæ®èä»åä¸èµ·å·æââæåæä¾æéçä¸åï¼ç¯æ¬ãæå°åæ¶ç¥æ¯åå°æå°±çæº«é¦¨ç¤¾åã",
-      ctaButton: "å å¥æåçç¤¾å",
-      imageAlt: "ä¸è»æçèæ¬çæå®¶é·æç·´å¸¶é å®å¨ææ±è¨ç·´",
+      ctaTitle: "Ã¦Â²ÂÃ¦ÂÂÃ§Â¶ÂÃ©Â©ÂÃ¯Â¼ÂÃ¦Â²ÂÃ¥ÂÂÃ©Â¡ÂÃ£ÂÂ",
+      ctaBody: "Ã§ÂÂ¡Ã¨Â«ÂÃ¦ÂÂ¯Ã¥Â­Â©Ã¥Â­ÂÃ§Â¬Â¬Ã¤Â¸ÂÃ¦Â¬Â¡Ã¦ÂÂ¿Ã¨ÂµÂ·Ã¦Â¬ÂÃ§ÂÂÃ¯Â¼ÂÃ©ÂÂÃ¦ÂÂ¯Ã¦ÂÂ¨Ã¨ÂÂÃ¦ÂÂ®Ã¨ÂÂÃ¤Â»ÂÃ¥ÂÂÃ¤Â¸ÂÃ¨ÂµÂ·Ã¥ÂÂ·Ã¦ÂÂÃ¢ÂÂÃ¢ÂÂÃ¦ÂÂÃ¥ÂÂÃ¦ÂÂÃ¤Â¾ÂÃ¦ÂÂÃ©ÂÂÃ§ÂÂÃ¤Â¸ÂÃ¥ÂÂÃ¯Â¼ÂÃ§Â¯ÂÃ¦ÂÂ¬Ã£ÂÂÃ¦ÂÂÃ¥Â°ÂÃ¥ÂÂÃ¦ÂÂ¶Ã§Â¥ÂÃ¦Â¯ÂÃ¥ÂÂÃ¥Â°ÂÃ¦ÂÂÃ¥Â°Â±Ã§ÂÂÃ¦ÂºÂ«Ã©Â¦Â¨Ã§Â¤Â¾Ã¥ÂÂÃ£ÂÂ",
+      ctaButton: "Ã¥ÂÂ Ã¥ÂÂ¥Ã¦ÂÂÃ¥ÂÂÃ§ÂÂÃ§Â¤Â¾Ã¥ÂÂ",
+      imageAlt: "Ã¤Â¸ÂÃ¨Â»ÂÃ¦ÂÂÃ§ÂÂÃ¨ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¦ÂÂÃ¥Â®Â¶Ã©ÂÂ·Ã¦ÂÂÃ§Â·Â´Ã¥Â¸Â¶Ã©Â ÂÃ¥Â®ÂÃ¥ÂÂ¨Ã¦ÂÂÃ¦ÂÂ±Ã¨Â¨ÂÃ§Â·Â´",
     },
     schedule: {
-      eyebrow: "è¨ç·´èæ¯è³½",
-      title: "è¨ç·´æé",
-      description: "æ¯é±æ¥æ¼äº¬å£«æè¨ç·´ï¼è³½å­£æééæé¦æ¸¯å¹¼åæ¬çåå¹´è¯ã2026/27 ç¢ºåæéæ¼å ±åå¾ç¢ºèªã",
+      eyebrow: "Ã¨Â¨ÂÃ§Â·Â´Ã¨ÂÂÃ¦Â¯ÂÃ¨Â³Â½",
+      title: "Ã¨Â¨ÂÃ§Â·Â´Ã¦ÂÂÃ©ÂÂ",
+      description: "Ã¦Â¯ÂÃ©ÂÂ±Ã¦ÂÂ¥Ã¦ÂÂ¼Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ¨Â¨ÂÃ§Â·Â´Ã¯Â¼ÂÃ¨Â³Â½Ã¥Â­Â£Ã¦ÂÂÃ©ÂÂÃ©ÂÂÃ¦ÂÂÃ©Â¦ÂÃ¦Â¸Â¯Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂÃ¥Â¹Â´Ã¨ÂÂ¯Ã£ÂÂ2026/27 Ã§Â¢ÂºÃ¥ÂÂÃ¦ÂÂÃ©ÂÂÃ¦ÂÂ¼Ã¥Â Â±Ã¥ÂÂÃ¥Â¾ÂÃ§Â¢ÂºÃ¨ÂªÂÃ£ÂÂ",
       table: {
-        group: "çµå¥",
-        day: "æ¥å­",
-        time: "æé",
-        location: "å°é»",
+        group: "Ã§ÂµÂÃ¥ÂÂ¥",
+        day: "Ã¦ÂÂ¥Ã¥Â­Â",
+        time: "Ã¦ÂÂÃ©ÂÂ",
+        location: "Ã¥ÂÂ°Ã©Â»Â",
       },
       rows: [
           {
-          group: "ææå¹´é½¡çµ",
-          day: "æææ¥",
-          time: "ä¸å 9:00 â 11:00",
-          location: "äº¬å£«æéåå ´ï¼ä½æç°",
-          note: "2026/27 è³½å­£åå¹´é½¡çµç¢ºåæéå¾å®",
+          group: "Ã¦ÂÂÃ¦ÂÂÃ¥Â¹Â´Ã©Â½Â¡Ã§ÂµÂ",
+          day: "Ã¦ÂÂÃ¦ÂÂÃ¦ÂÂ¥",
+          time: "Ã¤Â¸ÂÃ¥ÂÂ 9:00 Ã¢ÂÂ 11:00",
+          location: "Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ©ÂÂÃ¥ÂÂÃ¥Â Â´Ã¯Â¼ÂÃ¤Â½ÂÃ¦ÂÂÃ§ÂÂ°",
+          note: "2026/27 Ã¨Â³Â½Ã¥Â­Â£Ã¥ÂÂÃ¥Â¹Â´Ã©Â½Â¡Ã§ÂµÂÃ§Â¢ÂºÃ¥ÂÂÃ¦ÂÂÃ©ÂÂÃ¥Â¾ÂÃ¥Â®Â",
           },
           {
-          group: "æ¯è³½æ¥",
-          day: "æå®æææ¥",
-          time: "è¦ä¹å®æ",
-          location: "é¦æ¸¯å¹¼åæ¬çå ´å°",
-          note: "ä»¥ç¼å±çºæ¬çé¦æ¸¯å¹¼åæ¬çåå¹´è¯åé¦æ¨è³½",
+          group: "Ã¦Â¯ÂÃ¨Â³Â½Ã¦ÂÂ¥",
+          day: "Ã¦ÂÂÃ¥Â®ÂÃ¦ÂÂÃ¦ÂÂÃ¦ÂÂ¥",
+          time: "Ã¨Â¦ÂÃ¤Â¹ÂÃ¥Â®ÂÃ¦ÂÂ",
+          location: "Ã©Â¦ÂÃ¦Â¸Â¯Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥Â Â´Ã¥ÂÂ°",
+          note: "Ã¤Â»Â¥Ã§ÂÂ¼Ã¥Â±ÂÃ§ÂÂºÃ¦ÂÂ¬Ã§ÂÂÃ©Â¦ÂÃ¦Â¸Â¯Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂÃ¥Â¹Â´Ã¨ÂÂ¯Ã¥ÂÂÃ©ÂÂ¦Ã¦Â¨ÂÃ¨Â³Â½",
           },
         ],
-      locationTitle: "äº¬å£«æéåå ´",
-      locationBody: "ä½æç°ï¼é¦æ¸¯ãå¯¬æçå ´é©åå®å¨çå¹¼åæ¬çï¼æ¸¯éµåå·´å£«æ¹ä¾¿å°éã",
-      mapLive: "å³æ",
-      mapExpandHint: "é»æå±é",
-      mapDirections: "éåå°åå°èª",
-      competitionTitle: "é¦æ¸¯å¹¼åæ¬çæ¯è³½",
-      competitionBody: "æå®æææ¥èè¾¦é¦æ¸¯å¹¼åæ¬çåå¹´è¯åé¦æ¨è³½ââä»¥ç¼å±çºæ¬ãåæ»¿æ¨è¶£ï¼æ¯å¨å®¶äººçç²¾å½©é«é©ã",
-      cta: "å ±åä¸¦ç²åæéè¡¨æ´æ°",
+      locationTitle: "Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ©ÂÂÃ¥ÂÂÃ¥Â Â´",
+      locationBody: "Ã¤Â½ÂÃ¦ÂÂÃ§ÂÂ°Ã¯Â¼ÂÃ©Â¦ÂÃ¦Â¸Â¯Ã£ÂÂÃ¥Â¯Â¬Ã¦ÂÂÃ§ÂÂÃ¥Â Â´Ã©ÂÂ©Ã¥ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã§ÂÂÃ¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¯Â¼ÂÃ¦Â¸Â¯Ã©ÂÂµÃ¥ÂÂÃ¥Â·Â´Ã¥Â£Â«Ã¦ÂÂ¹Ã¤Â¾Â¿Ã¥ÂÂ°Ã©ÂÂÃ£ÂÂ",
+      mapLive: "Ã¥ÂÂ³Ã¦ÂÂ",
+      mapExpandHint: "Ã©Â»ÂÃ¦ÂÂÃ¥Â±ÂÃ©ÂÂ",
+      mapDirections: "Ã©ÂÂÃ¥ÂÂÃ¥ÂÂ°Ã¥ÂÂÃ¥Â°ÂÃ¨ÂÂª",
+      competitionTitle: "Ã©Â¦ÂÃ¦Â¸Â¯Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¦Â¯ÂÃ¨Â³Â½",
+      competitionBody: "Ã¦ÂÂÃ¥Â®ÂÃ¦ÂÂÃ¦ÂÂÃ¦ÂÂ¥Ã¨ÂÂÃ¨Â¾Â¦Ã©Â¦ÂÃ¦Â¸Â¯Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂÃ¥Â¹Â´Ã¨ÂÂ¯Ã¥ÂÂÃ©ÂÂ¦Ã¦Â¨ÂÃ¨Â³Â½Ã¢ÂÂÃ¢ÂÂÃ¤Â»Â¥Ã§ÂÂ¼Ã¥Â±ÂÃ§ÂÂºÃ¦ÂÂ¬Ã£ÂÂÃ¥ÂÂÃ¦Â»Â¿Ã¦Â¨ÂÃ¨Â¶Â£Ã¯Â¼ÂÃ¦ÂÂ¯Ã¥ÂÂ¨Ã¥Â®Â¶Ã¤ÂºÂºÃ§ÂÂÃ§Â²Â¾Ã¥Â½Â©Ã©Â«ÂÃ©Â©ÂÃ£ÂÂ",
+      cta: "Ã¥Â Â±Ã¥ÂÂÃ¤Â¸Â¦Ã§ÂÂ²Ã¥ÂÂÃ¦ÂÂÃ©ÂÂÃ¨Â¡Â¨Ã¦ÂÂ´Ã¦ÂÂ°",
     },
     joining: {
-      eyebrow: "éå§å ±å",
-      title: "åæ­¥è¼é¬å å¥",
-      description: "éå¸¸ç°¡å®ââééå®æ¹ GameDay é£çµå ±åï¼å¶é¤äº¤çµ¦æåãæ¬ç¶²ç«ä¸èçä»æ¬¾ã",
+      eyebrow: "Ã©ÂÂÃ¥Â§ÂÃ¥Â Â±Ã¥ÂÂ",
+      title: "Ã¥ÂÂÃ¦Â­Â¥Ã¨Â¼ÂÃ©Â¬ÂÃ¥ÂÂ Ã¥ÂÂ¥",
+      description: "Ã©ÂÂÃ¥Â¸Â¸Ã§Â°Â¡Ã¥ÂÂ®Ã¢ÂÂÃ¢ÂÂÃ©ÂÂÃ©ÂÂÃ¥Â®ÂÃ¦ÂÂ¹ GameDay Ã©ÂÂ£Ã§ÂµÂÃ¥Â Â±Ã¥ÂÂÃ¯Â¼ÂÃ¥ÂÂ¶Ã©Â¤ÂÃ¤ÂºÂ¤Ã§ÂµÂ¦Ã¦ÂÂÃ¥ÂÂÃ£ÂÂÃ¦ÂÂ¬Ã§Â¶Â²Ã§Â«ÂÃ¤Â¸ÂÃ¨ÂÂÃ§ÂÂÃ¤Â»ÂÃ¦Â¬Â¾Ã£ÂÂ",
       steps: [
           {
-          title: "æå ±å",
-          description: "æä»»ä½é»è²å ±åæéââç´æ¥åå¾å®æ¹ GameDay è¡¨æ ¼ã",
+          title: "Ã¦ÂÂÃ¥Â Â±Ã¥ÂÂ",
+          description: "Ã¦ÂÂÃ¤Â»Â»Ã¤Â½ÂÃ©Â»ÂÃ¨ÂÂ²Ã¥Â Â±Ã¥ÂÂÃ¦ÂÂÃ©ÂÂÃ¢ÂÂÃ¢ÂÂÃ§ÂÂ´Ã¦ÂÂ¥Ã¥ÂÂÃ¥Â¾ÂÃ¥Â®ÂÃ¦ÂÂ¹ GameDay Ã¨Â¡Â¨Ã¦Â Â¼Ã£ÂÂ",
           },
           {
-          title: "å¡«å¯« GameDay",
-          description: "å¡«å¯«çå¡è³æãç·æ¥è¯çµ¡äººååææ¸ãæ¬ç¶²ç«ä¸æ¶è²»ã",
+          title: "Ã¥Â¡Â«Ã¥Â¯Â« GameDay",
+          description: "Ã¥Â¡Â«Ã¥Â¯Â«Ã§ÂÂÃ¥ÂÂ¡Ã¨Â³ÂÃ¦ÂÂÃ£ÂÂÃ§Â·ÂÃ¦ÂÂ¥Ã¨ÂÂ¯Ã§ÂµÂ¡Ã¤ÂºÂºÃ¥ÂÂÃ¥ÂÂÃ¦ÂÂÃ¦ÂÂ¸Ã£ÂÂÃ¦ÂÂ¬Ã§Â¶Â²Ã§Â«ÂÃ¤Â¸ÂÃ¦ÂÂ¶Ã¨Â²Â»Ã£ÂÂ",
           },
           {
-          title: "æåæ­¡è¿æ¨",
-          description: "åéç¢ºèªå ±åä¸¦ç¼éç¬¬ä¸å è¨ç·´æéçä¸åã",
+          title: "Ã¦ÂÂÃ¥ÂÂÃ¦Â­Â¡Ã¨Â¿ÂÃ¦ÂÂ¨",
+          description: "Ã¥ÂÂÃ©ÂÂÃ§Â¢ÂºÃ¨ÂªÂÃ¥Â Â±Ã¥ÂÂÃ¤Â¸Â¦Ã§ÂÂ¼Ã©ÂÂÃ§Â¬Â¬Ã¤Â¸ÂÃ¥Â ÂÃ¨Â¨ÂÃ§Â·Â´Ã¦ÂÂÃ©ÂÂÃ§ÂÂÃ¤Â¸ÂÃ¥ÂÂÃ£ÂÂ",
           },
           {
-          title: "åºå¸­ä¸¦éæ³¢",
-          description: "å¸¶çéãæ°´åç¬å®¹ãé¦æ¬¡è©¦ç©åè²»ââçç Tigers æ¯å¦é©åæ¨çå­©å­ã",
+          title: "Ã¥ÂÂºÃ¥Â¸Â­Ã¤Â¸Â¦Ã©ÂÂÃ¦Â³Â¢",
+          description: "Ã¥Â¸Â¶Ã§ÂÂÃ©ÂÂÃ£ÂÂÃ¦Â°Â´Ã¥ÂÂÃ§Â¬ÂÃ¥Â®Â¹Ã£ÂÂÃ©Â¦ÂÃ¦Â¬Â¡Ã¨Â©Â¦Ã§ÂÂ©Ã¥ÂÂÃ¨Â²Â»Ã¢ÂÂÃ¢ÂÂÃ§ÂÂÃ§ÂÂ Tigers Ã¦ÂÂ¯Ã¥ÂÂ¦Ã©ÂÂ©Ã¥ÂÂÃ¦ÂÂ¨Ã§ÂÂÃ¥Â­Â©Ã¥Â­ÂÃ£ÂÂ",
           },
         ],
-      badge: "éé GameDay å®æ¹å ±åââå®å¨ç°¡ä¾¿",
-      ctaTitle: "æºåå¥½å ±åï¼",
-      ctaBody: "åªéé»æãå¡«å¯« GameDay è¡¨æ ¼ï¼å¶é¤äº¤çµ¦æåãé¦æ¬¡è©¦ç©å®å¨åè²»ã",
-      ctaButton: "å¨ GameDay å ±å",
-      ctaNote: "æ¬ç¶²ç«ä¸èçä»æ¬¾ââä¸åç¶å®æ¹ GameDay",
+      badge: "Ã©ÂÂÃ©ÂÂ GameDay Ã¥Â®ÂÃ¦ÂÂ¹Ã¥Â Â±Ã¥ÂÂÃ¢ÂÂÃ¢ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã§Â°Â¡Ã¤Â¾Â¿",
+      ctaTitle: "Ã¦ÂºÂÃ¥ÂÂÃ¥Â¥Â½Ã¥Â Â±Ã¥ÂÂÃ¯Â¼Â",
+      ctaBody: "Ã¥ÂÂªÃ©ÂÂÃ©Â»ÂÃ¦ÂÂÃ£ÂÂÃ¥Â¡Â«Ã¥Â¯Â« GameDay Ã¨Â¡Â¨Ã¦Â Â¼Ã¯Â¼ÂÃ¥ÂÂ¶Ã©Â¤ÂÃ¤ÂºÂ¤Ã§ÂµÂ¦Ã¦ÂÂÃ¥ÂÂÃ£ÂÂÃ©Â¦ÂÃ¦Â¬Â¡Ã¨Â©Â¦Ã§ÂÂ©Ã¥Â®ÂÃ¥ÂÂ¨Ã¥ÂÂÃ¨Â²Â»Ã£ÂÂ",
+      ctaButton: "Ã¥ÂÂ¨ GameDay Ã¥Â Â±Ã¥ÂÂ",
+      ctaNote: "Ã¦ÂÂ¬Ã§Â¶Â²Ã§Â«ÂÃ¤Â¸ÂÃ¨ÂÂÃ§ÂÂÃ¤Â»ÂÃ¦Â¬Â¾Ã¢ÂÂÃ¢ÂÂÃ¤Â¸ÂÃ¥ÂÂÃ§Â¶ÂÃ¥Â®ÂÃ¦ÂÂ¹ GameDay",
     },
     mission: {
-      eyebrow: "æåçå®æ¨",
-      title: "çºä½èå­å¨",
-      description: "USRC Tigers å¹¼åæ¬çè®æ¯åå­©å­å¨å®å¨ãå¿«æ¨ãææ±è² çç°å¢ä¸­ï¼ç¼ç¾æ¬çââä¹ç¼ç¾èªå·±ã",
-      imageCaption: "çµèº«çè",
+      eyebrow: "Ã¦ÂÂÃ¥ÂÂÃ§ÂÂÃ¥Â®ÂÃ¦ÂÂ¨",
+      title: "Ã§ÂÂºÃ¤Â½ÂÃ¨ÂÂÃ¥Â­ÂÃ¥ÂÂ¨",
+      description: "USRC Tigers Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¨Â®ÂÃ¦Â¯ÂÃ¥ÂÂÃ¥Â­Â©Ã¥Â­ÂÃ¥ÂÂ¨Ã¥Â®ÂÃ¥ÂÂ¨Ã£ÂÂÃ¥Â¿Â«Ã¦Â¨ÂÃ£ÂÂÃ¦ÂÂÃ¦ÂÂ±Ã¨Â²Â Ã§ÂÂÃ§ÂÂ°Ã¥Â¢ÂÃ¤Â¸Â­Ã¯Â¼ÂÃ§ÂÂ¼Ã§ÂÂ¾Ã¦Â¬ÂÃ§ÂÂÃ¢ÂÂÃ¢ÂÂÃ¤Â¹ÂÃ§ÂÂ¼Ã§ÂÂ¾Ã¨ÂÂªÃ¥Â·Â±Ã£ÂÂ",
+      imageCaption: "Ã§ÂµÂÃ¨ÂºÂ«Ã§ÂÂÃ¨ÂÂ",
       pillars: [
           {
-          title: "å­¸æ¥­ä»¥å¤çå¿«æ¨",
-          description: "é¦æ¸¯å­©å­å¼å¾æç©ºéå¥è·ãæ­¡ç¬åç«¶ç­ââæ¬ççµ¦ä»åèªç±èæ­¸å±¬æã",
+          title: "Ã¥Â­Â¸Ã¦Â¥Â­Ã¤Â»Â¥Ã¥Â¤ÂÃ§ÂÂÃ¥Â¿Â«Ã¦Â¨Â",
+          description: "Ã©Â¦ÂÃ¦Â¸Â¯Ã¥Â­Â©Ã¥Â­ÂÃ¥ÂÂ¼Ã¥Â¾ÂÃ¦ÂÂÃ§Â©ÂºÃ©ÂÂÃ¥Â¥ÂÃ¨Â·ÂÃ£ÂÂÃ¦Â­Â¡Ã§Â¬ÂÃ¥ÂÂÃ§Â«Â¶Ã§ÂÂ­Ã¢ÂÂÃ¢ÂÂÃ¦Â¬ÂÃ§ÂÂÃ§ÂµÂ¦Ã¤Â»ÂÃ¥ÂÂÃ¨ÂÂªÃ§ÂÂ±Ã¨ÂÂÃ¦Â­Â¸Ã¥Â±Â¬Ã¦ÂÂÃ£ÂÂ",
           },
           {
-          title: "èªä¿¡èäººçæè½",
-          description: "éæ§ãåéãç´å¾èå°éââå¡é è¶è¶éé£ç·çåæ ¼ã",
+          title: "Ã¨ÂÂªÃ¤Â¿Â¡Ã¨ÂÂÃ¤ÂºÂºÃ§ÂÂÃ¦ÂÂÃ¨ÂÂ½",
+          description: "Ã©ÂÂÃ¦ÂÂ§Ã£ÂÂÃ¥ÂÂÃ©ÂÂÃ£ÂÂÃ§Â´ÂÃ¥Â¾ÂÃ¨ÂÂÃ¥Â°ÂÃ©ÂÂÃ¢ÂÂÃ¢ÂÂÃ¥Â¡ÂÃ©ÂÂ Ã¨Â¶ÂÃ¨Â¶ÂÃ©ÂÂÃ©ÂÂ£Ã§Â·ÂÃ§ÂÂÃ¥ÂÂÃ¦Â Â¼Ã£ÂÂ",
           },
           {
-          title: "å¹¼å â éå¹´ â æäºº",
-          description: "å¾é¦æ¬¡éå°ææ¬çï¼å° USRC Tigers éå¹´éï¼ä»¥è³é¦æ¸¯æäººæ¬çââæ¸æ°æ¯æ´çééã",
+          title: "Ã¥Â¹Â¼Ã¥ÂÂ Ã¢ÂÂ Ã©ÂÂÃ¥Â¹Â´ Ã¢ÂÂ Ã¦ÂÂÃ¤ÂºÂº",
+          description: "Ã¥Â¾ÂÃ©Â¦ÂÃ¦Â¬Â¡Ã©ÂÂÃ¥Â°ÂÃ¦ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¯Â¼ÂÃ¥ÂÂ° USRC Tigers Ã©ÂÂÃ¥Â¹Â´Ã©ÂÂÃ¯Â¼ÂÃ¤Â»Â¥Ã¨ÂÂ³Ã©Â¦ÂÃ¦Â¸Â¯Ã¦ÂÂÃ¤ÂºÂºÃ¦Â¬ÂÃ§ÂÂÃ¢ÂÂÃ¢ÂÂÃ¦Â¸ÂÃ¦ÂÂ°Ã¦ÂÂ¯Ã¦ÂÂ´Ã§ÂÂÃ©ÂÂÃ©ÂÂÃ£ÂÂ",
           },
         ],
-      quote: "æåä¸åªå¹é¤æ¬çå¡ââæ´å¹é¤èªä¿¡ãåè¯ãæéæ§çå¹´è¼äººï¼ç¡è«èµ°å°åªè£¡é½å¸¶èçèç²¾ç¥ã",
-      quoteAuthor: "â USRC Tigers å¹¼åæ¬çå§å¡æ",
-      cta: "éå§ä»åçæç¨",
-      imageAlt: "ä¸è»æçèæ¬çæå¹¼åæ¬çå¡èç´çè¡£è¨ç·´",
+      quote: "Ã¦ÂÂÃ¥ÂÂÃ¤Â¸ÂÃ¥ÂÂªÃ¥ÂÂ¹Ã©Â¤ÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂ¡Ã¢ÂÂÃ¢ÂÂÃ¦ÂÂ´Ã¥ÂÂ¹Ã©Â¤ÂÃ¨ÂÂªÃ¤Â¿Â¡Ã£ÂÂÃ¥ÂÂÃ¨ÂÂ¯Ã£ÂÂÃ¦ÂÂÃ©ÂÂÃ¦ÂÂ§Ã§ÂÂÃ¥Â¹Â´Ã¨Â¼ÂÃ¤ÂºÂºÃ¯Â¼ÂÃ§ÂÂ¡Ã¨Â«ÂÃ¨ÂµÂ°Ã¥ÂÂ°Ã¥ÂÂªÃ¨Â£Â¡Ã©ÂÂ½Ã¥Â¸Â¶Ã¨ÂÂÃ§ÂÂÃ¨ÂÂÃ§Â²Â¾Ã§Â¥ÂÃ£ÂÂ",
+      quoteAuthor: "Ã¢ÂÂ USRC Tigers Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥Â§ÂÃ¥ÂÂ¡Ã¦ÂÂ",
+      cta: "Ã©ÂÂÃ¥Â§ÂÃ¤Â»ÂÃ¥ÂÂÃ§ÂÂÃ¦ÂÂÃ§Â¨Â",
+      imageAlt: "Ã¤Â¸ÂÃ¨Â»ÂÃ¦ÂÂÃ§ÂÂÃ¨ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¦ÂÂÃ¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥ÂÂ¡Ã¨ÂÂÃ§Â´ÂÃ§ÂÂÃ¨Â¡Â£Ã¨Â¨ÂÃ§Â·Â´",
     },
     instagram: {
-      eyebrow: "ç¤¾ååäº«",
-      title: "å¹¼åççå¯¦æå»",
-      description: "è¨ç·´æ¥ãåå¹´è¯ãçè¡£æ´¾ç¼ãæææ¥ç¬å®¹ââçççºä½å®¶åº­åæå å¥ Tiger ç¤¾åã",
-      followNote: "è¿½è¹¤äº¬å£«ææ¯é±æ´æ°ââæ°è¨ç·´ãåå¹´è¯æ¥åå ±åæéã",
-      followButton: "å¨ Instagram è¿½è¹¤ @usrctigers_minis",
+      eyebrow: "Ã§Â¤Â¾Ã¥ÂÂÃ¥ÂÂÃ¤ÂºÂ«",
+      title: "Ã¥Â¹Â¼Ã¥ÂÂÃ§ÂÂÃ§ÂÂÃ¥Â¯Â¦Ã¦ÂÂÃ¥ÂÂ»",
+      description: "Ã¨Â¨ÂÃ§Â·Â´Ã¦ÂÂ¥Ã£ÂÂÃ¥ÂÂÃ¥Â¹Â´Ã¨ÂÂ¯Ã£ÂÂÃ§ÂÂÃ¨Â¡Â£Ã¦Â´Â¾Ã§ÂÂ¼Ã£ÂÂÃ¦ÂÂÃ¦ÂÂÃ¦ÂÂ¥Ã§Â¬ÂÃ¥Â®Â¹Ã¢ÂÂÃ¢ÂÂÃ§ÂÂÃ§ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥Â®Â¶Ã¥ÂºÂ­Ã¥ÂÂÃ¦ÂÂÃ¥ÂÂ Ã¥ÂÂ¥ Tiger Ã§Â¤Â¾Ã¥ÂÂÃ£ÂÂ",
+      followNote: "Ã¨Â¿Â½Ã¨Â¹Â¤Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ¦Â¯ÂÃ©ÂÂ±Ã¦ÂÂ´Ã¦ÂÂ°Ã¢ÂÂÃ¢ÂÂÃ¦ÂÂ°Ã¨Â¨ÂÃ§Â·Â´Ã£ÂÂÃ¥ÂÂÃ¥Â¹Â´Ã¨ÂÂ¯Ã¦ÂÂ¥Ã¥ÂÂÃ¥Â Â±Ã¥ÂÂÃ¦ÂÂÃ©ÂÂÃ£ÂÂ",
+      followButton: "Ã¥ÂÂ¨ Instagram Ã¨Â¿Â½Ã¨Â¹Â¤ @usrctigers_minis",
     },
     faq: {
-      eyebrow: "å¸¸è¦åé¡",
-      title: "å®¶é·å¸¸å",
-      description: "ç¬¬ä¸å è¨ç·´åæ¨éè¦ç¥éçä¸åãä»æçåï¼åè²»è©¦ç©ï¼è¦ªèº«é«é©ã",
+      eyebrow: "Ã¥Â¸Â¸Ã¨Â¦ÂÃ¥ÂÂÃ©Â¡Â",
+      title: "Ã¥Â®Â¶Ã©ÂÂ·Ã¥Â¸Â¸Ã¥ÂÂ",
+      description: "Ã§Â¬Â¬Ã¤Â¸ÂÃ¥Â ÂÃ¨Â¨ÂÃ§Â·Â´Ã¥ÂÂÃ¦ÂÂ¨Ã©ÂÂÃ¨Â¦ÂÃ§ÂÂ¥Ã©ÂÂÃ§ÂÂÃ¤Â¸ÂÃ¥ÂÂÃ£ÂÂÃ¤Â»ÂÃ¦ÂÂÃ§ÂÂÃ¥ÂÂÃ¯Â¼ÂÃ¥ÂÂÃ¨Â²Â»Ã¨Â©Â¦Ã§ÂÂ©Ã¯Â¼ÂÃ¨Â¦ÂªÃ¨ÂºÂ«Ã©Â«ÂÃ©Â©ÂÃ£ÂÂ",
       items: [
           {
-          question: "å­©å­éè¦æ¬çç¶é©åï¼",
-          answer: "å®å¨ä¸éè¦ãæåæ­¡è¿é¶åºç¤åæ¾ç©å¶ä»éåçå­©å­ãæç·´æåäººé²åº¦èª¿æ´è¨ç·´ã",
+          question: "Ã¥Â­Â©Ã¥Â­ÂÃ©ÂÂÃ¨Â¦ÂÃ¦Â¬ÂÃ§ÂÂÃ§Â¶ÂÃ©Â©ÂÃ¥ÂÂÃ¯Â¼Â",
+          answer: "Ã¥Â®ÂÃ¥ÂÂ¨Ã¤Â¸ÂÃ©ÂÂÃ¨Â¦ÂÃ£ÂÂÃ¦ÂÂÃ¥ÂÂÃ¦Â­Â¡Ã¨Â¿ÂÃ©ÂÂ¶Ã¥ÂÂºÃ§Â¤ÂÃ¥ÂÂÃ¦ÂÂ¾Ã§ÂÂ©Ã¥ÂÂ¶Ã¤Â»ÂÃ©ÂÂÃ¥ÂÂÃ§ÂÂÃ¥Â­Â©Ã¥Â­ÂÃ£ÂÂÃ¦ÂÂÃ§Â·Â´Ã¦ÂÂÃ¥ÂÂÃ¤ÂºÂºÃ©ÂÂ²Ã¥ÂºÂ¦Ã¨ÂªÂ¿Ã¦ÂÂ´Ã¨Â¨ÂÃ§Â·Â´Ã£ÂÂ",
           },
           {
-          question: "ç¬¬ä¸å è¦å¸¶ä»éº¼ï¼",
-          answer: "æ¬çéæééï¼å¦æï¼ãèé©éåæãæ°´å£ºåé²æ¬ãå ±åå¾æåæç¼éå®æ´è£åæ¸å®ã",
+          question: "Ã§Â¬Â¬Ã¤Â¸ÂÃ¥Â ÂÃ¨Â¦ÂÃ¥Â¸Â¶Ã¤Â»ÂÃ©ÂºÂ¼Ã¯Â¼Â",
+          answer: "Ã¦Â¬ÂÃ§ÂÂÃ©ÂÂÃ¦ÂÂÃ©ÂÂÃ©ÂÂÃ¯Â¼ÂÃ¥Â¦ÂÃ¦ÂÂÃ¯Â¼ÂÃ£ÂÂÃ¨ÂÂÃ©ÂÂ©Ã©ÂÂÃ¥ÂÂÃ¦ÂÂÃ£ÂÂÃ¦Â°Â´Ã¥Â£ÂºÃ¥ÂÂÃ©ÂÂ²Ã¦ÂÂ¬Ã£ÂÂÃ¥Â Â±Ã¥ÂÂÃ¥Â¾ÂÃ¦ÂÂÃ¥ÂÂÃ¦ÂÂÃ§ÂÂ¼Ã©ÂÂÃ¥Â®ÂÃ¦ÂÂ´Ã¨Â£ÂÃ¥ÂÂÃ¦Â¸ÂÃ¥ÂÂ®Ã£ÂÂ",
           },
           {
-          question: "å¹¼åæ¬çå®å¨åï¼",
-          answer: "å®å¨æ¯é¦è¦ãè¨ç·´é©é½¡ãç±åè³æ ¼ç¾©å·¥å·æï¼ä¸¦éµå¾ª HKRU å¹¼åæ¬çæå¼ãå°æåç´ éæ­¥ãææå·§å°å¼å¥ã",
+          question: "Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã¥ÂÂÃ¯Â¼Â",
+          answer: "Ã¥Â®ÂÃ¥ÂÂ¨Ã¦ÂÂ¯Ã©Â¦ÂÃ¨Â¦ÂÃ£ÂÂÃ¨Â¨ÂÃ§Â·Â´Ã©ÂÂ©Ã©Â½Â¡Ã£ÂÂÃ§ÂÂ±Ã¥ÂÂÃ¨Â³ÂÃ¦Â Â¼Ã§Â¾Â©Ã¥Â·Â¥Ã¥ÂÂ·Ã¦ÂÂÃ¯Â¼ÂÃ¤Â¸Â¦Ã©ÂÂµÃ¥Â¾Âª HKRU Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¦ÂÂÃ¥Â¼ÂÃ£ÂÂÃ¥Â°ÂÃ¦ÂÂÃ¥ÂÂÃ§Â´Â Ã©ÂÂÃ¦Â­Â¥Ã£ÂÂÃ¦ÂÂÃ¦ÂÂÃ¥Â·Â§Ã¥ÂÂ°Ã¥Â¼ÂÃ¥ÂÂ¥Ã£ÂÂ",
           },
           {
-          question: "è²»ç¨æ¯å¤å°ï¼",
-          answer: "è³½å­£è²»ç¨æ¯å¹´ç¢ºèªï¼ç¶ GameDay èçãä½ä½ç¬¦ï¼è¦å¹´é½¡çµç´ HK$2,500â3,500/å­£ãè©¦ç©åè²»ã",
+          question: "Ã¨Â²Â»Ã§ÂÂ¨Ã¦ÂÂ¯Ã¥Â¤ÂÃ¥Â°ÂÃ¯Â¼Â",
+          answer: "Ã¨Â³Â½Ã¥Â­Â£Ã¨Â²Â»Ã§ÂÂ¨Ã¦Â¯ÂÃ¥Â¹Â´Ã§Â¢ÂºÃ¨ÂªÂÃ¯Â¼ÂÃ§Â¶Â GameDay Ã¨ÂÂÃ§ÂÂÃ£ÂÂÃ¤Â½ÂÃ¤Â½ÂÃ§Â¬Â¦Ã¯Â¼ÂÃ¨Â¦ÂÃ¥Â¹Â´Ã©Â½Â¡Ã§ÂµÂÃ§Â´Â HK$2,500Ã¢ÂÂ3,500/Ã¥Â­Â£Ã£ÂÂÃ¨Â©Â¦Ã§ÂÂ©Ã¥ÂÂÃ¨Â²Â»Ã£ÂÂ",
           },
           {
-          question: "å®¶é·å¯ä»¥åèåï¼",
-          answer: "ç¶ç¶ï¼è¨±å¤æç·´é½æ¯å®¶é·ãç¡éç¶é©ââæåæä¾å¹è¨ãè³æºåæ¯æ´ãæ¨æå å¥ä¸åæº«é¦¨çç¤¾åã",
+          question: "Ã¥Â®Â¶Ã©ÂÂ·Ã¥ÂÂ¯Ã¤Â»Â¥Ã¥ÂÂÃ¨ÂÂÃ¥ÂÂÃ¯Â¼Â",
+          answer: "Ã§ÂÂ¶Ã§ÂÂ¶Ã¯Â¼ÂÃ¨Â¨Â±Ã¥Â¤ÂÃ¦ÂÂÃ§Â·Â´Ã©ÂÂ½Ã¦ÂÂ¯Ã¥Â®Â¶Ã©ÂÂ·Ã£ÂÂÃ§ÂÂ¡Ã©ÂÂÃ§Â¶ÂÃ©Â©ÂÃ¢ÂÂÃ¢ÂÂÃ¦ÂÂÃ¥ÂÂÃ¦ÂÂÃ¤Â¾ÂÃ¥ÂÂ¹Ã¨Â¨ÂÃ£ÂÂÃ¨Â³ÂÃ¦ÂºÂÃ¥ÂÂÃ¦ÂÂ¯Ã¦ÂÂ´Ã£ÂÂÃ¦ÂÂ¨Ã¦ÂÂÃ¥ÂÂ Ã¥ÂÂ¥Ã¤Â¸ÂÃ¥ÂÂÃ¦ÂºÂ«Ã©Â¦Â¨Ã§ÂÂÃ§Â¤Â¾Ã¥ÂÂÃ£ÂÂ",
           },
           {
-          question: "å¨åªè£¡è¨ç·´ï¼",
-          answer: "äº¬å£«æéåå ´ï¼ä½æç°ï¼é¦æ¸¯ãæ¸¯éµæ¹ä¾¿ï¼ç©ºéåè¶³ï¼é©åå®å¨æ´»æ½çè¨ç·´ã",
+          question: "Ã¥ÂÂ¨Ã¥ÂÂªÃ¨Â£Â¡Ã¨Â¨ÂÃ§Â·Â´Ã¯Â¼Â",
+          answer: "Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ©ÂÂÃ¥ÂÂÃ¥Â Â´Ã¯Â¼ÂÃ¤Â½ÂÃ¦ÂÂÃ§ÂÂ°Ã¯Â¼ÂÃ©Â¦ÂÃ¦Â¸Â¯Ã£ÂÂÃ¦Â¸Â¯Ã©ÂÂµÃ¦ÂÂ¹Ã¤Â¾Â¿Ã¯Â¼ÂÃ§Â©ÂºÃ©ÂÂÃ¥ÂÂÃ¨Â¶Â³Ã¯Â¼ÂÃ©ÂÂ©Ã¥ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã¦Â´Â»Ã¦Â½ÂÃ§ÂÂÃ¨Â¨ÂÃ§Â·Â´Ã£ÂÂ",
           },
         ],
     },
     finalCta: {
-      eyebrow: "æ¨å­©å­çåéªå¾éè£¡éå§",
-      title: "çµ¦ä»å",
-      titleHighlight: "æ¬ççç¦®ç©",
-      description: "ä¸æ¬¡åè²»è©¦ç©ï¼ç¡éæ¿è«¾ãé»æãå¨ GameDay å ±åï¼çèä»åæä¸éé éåââåä¸ååå®¶äººä¸æ¨£çç¤¾åã",
-      followInstagram: "å¨ Instagram è¿½è¹¤",
-      footer: "USRC Tigers RFC æä¸ Â· é¦æ¸¯äº¬å£«æ Â· é¦æ¸¯æ¬çç¼å±éé",
+      eyebrow: "Ã¦ÂÂ¨Ã¥Â­Â©Ã¥Â­ÂÃ§ÂÂÃ¥ÂÂÃ©ÂÂªÃ¥Â¾ÂÃ©ÂÂÃ¨Â£Â¡Ã©ÂÂÃ¥Â§Â",
+      title: "Ã§ÂµÂ¦Ã¤Â»ÂÃ¥ÂÂ",
+      titleHighlight: "Ã¦Â¬ÂÃ§ÂÂÃ§ÂÂÃ§Â¦Â®Ã§ÂÂ©",
+      description: "Ã¤Â¸ÂÃ¦Â¬Â¡Ã¥ÂÂÃ¨Â²Â»Ã¨Â©Â¦Ã§ÂÂ©Ã¯Â¼ÂÃ§ÂÂ¡Ã©ÂÂÃ¦ÂÂ¿Ã¨Â«Â¾Ã£ÂÂÃ©Â»ÂÃ¦ÂÂÃ£ÂÂÃ¥ÂÂ¨ GameDay Ã¥Â Â±Ã¥ÂÂÃ¯Â¼ÂÃ§ÂÂÃ¨ÂÂÃ¤Â»ÂÃ¥ÂÂÃ¦ÂÂÃ¤Â¸ÂÃ©ÂÂÃ©Â ÂÃ©ÂÂÃ¥ÂÂÃ¢ÂÂÃ¢ÂÂÃ¥ÂÂÃ¤Â¸ÂÃ¥ÂÂÃ¥ÂÂÃ¥Â®Â¶Ã¤ÂºÂºÃ¤Â¸ÂÃ¦Â¨Â£Ã§ÂÂÃ§Â¤Â¾Ã¥ÂÂÃ£ÂÂ",
+      followInstagram: "Ã¥ÂÂ¨ Instagram Ã¨Â¿Â½Ã¨Â¹Â¤",
+      footer: "USRC Tigers RFC Ã¦ÂÂÃ¤Â¸Â ÃÂ· Ã©Â¦ÂÃ¦Â¸Â¯Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂ ÃÂ· Ã©Â¦ÂÃ¦Â¸Â¯Ã¦Â¬ÂÃ§ÂÂÃ§ÂÂ¼Ã¥Â±ÂÃ©ÂÂÃ©ÂÂ",
     },
     footer: {
-      tagline: "é¦æ¸¯é å°å¹¼åæ¬çè¨åââçº 4â12 æ­²å­©å­èè¨­ï¼å®å¨ãå¿«æ¨ãå±èã",
-      quickLinks: "å¿«éé£çµ",
-      registerConnect: "å ±åèè¯çµ¡",
-      gamedayLink: "GameDay å ±å â",
-      location: "äº¬å£«æéåå ´ï¼ä½æç°ï¼é¦æ¸¯",
-      readyTitle: "æºåå å¥ï¼",
-      readyBody: "é¦æ¬¡è©¦ç©åè²»ãæ¸åéå§ç¶ GameDay å®æå ±åã",
-      copyright: "USRC Tigers å¹¼åæ¬çãUSRC Tigers RFC æä¸ã",
-      legal: "åç«¥ä¿è­·åå®å¨æ¿ç­é©ç¨ãæææç·´åçºå¯©æ ¸ç¾©å·¥ãæ¬ç¶²ç«ä¸èçä»æ¬¾ââææå ±ååè²»ç¨ç¶å®æ¹ GameDayã",
+      tagline: "Ã©Â¦ÂÃ¦Â¸Â¯Ã©Â ÂÃ¥Â°ÂÃ¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ¨Â¨ÂÃ¥ÂÂÃ¢ÂÂÃ¢ÂÂÃ§ÂÂº 4Ã¢ÂÂ12 Ã¦Â­Â²Ã¥Â­Â©Ã¥Â­ÂÃ¨ÂÂÃ¨Â¨Â­Ã¯Â¼ÂÃ¥Â®ÂÃ¥ÂÂ¨Ã£ÂÂÃ¥Â¿Â«Ã¦Â¨ÂÃ£ÂÂÃ¥ÂÂ±Ã¨ÂÂÃ£ÂÂ",
+      quickLinks: "Ã¥Â¿Â«Ã©ÂÂÃ©ÂÂ£Ã§ÂµÂ",
+      registerConnect: "Ã¥Â Â±Ã¥ÂÂÃ¨ÂÂÃ¨ÂÂ¯Ã§ÂµÂ¡",
+      gamedayLink: "GameDay Ã¥Â Â±Ã¥ÂÂ Ã¢ÂÂ",
+      location: "Ã¤ÂºÂ¬Ã¥Â£Â«Ã¦ÂÂÃ©ÂÂÃ¥ÂÂÃ¥Â Â´Ã¯Â¼ÂÃ¤Â½ÂÃ¦ÂÂÃ§ÂÂ°Ã¯Â¼ÂÃ©Â¦ÂÃ¦Â¸Â¯",
+      readyTitle: "Ã¦ÂºÂÃ¥ÂÂÃ¥ÂÂ Ã¥ÂÂ¥Ã¯Â¼Â",
+      readyBody: "Ã©Â¦ÂÃ¦Â¬Â¡Ã¨Â©Â¦Ã§ÂÂ©Ã¥ÂÂÃ¨Â²Â»Ã£ÂÂÃ¦ÂÂ¸Ã¥ÂÂÃ©ÂÂÃ¥ÂÂ§Ã§Â¶Â GameDay Ã¥Â®ÂÃ¦ÂÂÃ¥Â Â±Ã¥ÂÂÃ£ÂÂ",
+      copyright: "USRC Tigers Ã¥Â¹Â¼Ã¥ÂÂÃ¦Â¬ÂÃ§ÂÂÃ£ÂÂUSRC Tigers RFC Ã¦ÂÂÃ¤Â¸ÂÃ£ÂÂ",
+      legal: "Ã¥ÂÂÃ§Â«Â¥Ã¤Â¿ÂÃ¨Â­Â·Ã¥ÂÂÃ¥Â®ÂÃ¥ÂÂ¨Ã¦ÂÂ¿Ã§Â­ÂÃ©ÂÂ©Ã§ÂÂ¨Ã£ÂÂÃ¦ÂÂÃ¦ÂÂÃ¦ÂÂÃ§Â·Â´Ã¥ÂÂÃ§ÂÂºÃ¥Â¯Â©Ã¦Â Â¸Ã§Â¾Â©Ã¥Â·Â¥Ã£ÂÂÃ¦ÂÂ¬Ã§Â¶Â²Ã§Â«ÂÃ¤Â¸ÂÃ¨ÂÂÃ§ÂÂÃ¤Â»ÂÃ¦Â¬Â¾Ã¢ÂÂÃ¢ÂÂÃ¦ÂÂÃ¦ÂÂÃ¥Â Â±Ã¥ÂÂÃ¥ÂÂÃ¨Â²Â»Ã§ÂÂ¨Ã§Â¶ÂÃ¥Â®ÂÃ¦ÂÂ¹ GameDayÃ£ÂÂ",
     },
     videoModal: {
-      title: "å¹¼åé¢¨é",
-      subtitle: "å¨ Instagram è§çæåçç¤¾å",
-      placeholder: "ä½ä½ç¬¦ â åµå¥ YouTube ç²¾è¯æé£çµè³",
-      viewOnInstagram: "å¨ Instagram æ¥ç",
-      close: "éé",
+      title: "Ã¥Â¹Â¼Ã¥ÂÂÃ©Â¢Â¨Ã©ÂÂ",
+      subtitle: "Ã¥ÂÂ¨ Instagram Ã¨Â§ÂÃ§ÂÂÃ¦ÂÂÃ¥ÂÂÃ§ÂÂÃ§Â¤Â¾Ã¥ÂÂ",
+      placeholder: "Ã¤Â½ÂÃ¤Â½ÂÃ§Â¬Â¦ Ã¢ÂÂ Ã¥ÂµÂÃ¥ÂÂ¥ YouTube Ã§Â²Â¾Ã¨ÂÂ¯Ã¦ÂÂÃ©ÂÂ£Ã§ÂµÂÃ¨ÂÂ³",
+      viewOnInstagram: "Ã¥ÂÂ¨ Instagram Ã¦ÂÂ¥Ã§ÂÂ",
+      close: "Ã©ÂÂÃ©ÂÂ",
     },
   },
 } as const;
