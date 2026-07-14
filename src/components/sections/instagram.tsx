@@ -15,7 +15,7 @@ import {
   IG_PROFILE_URL,
   type InstagramPost,
 } from "@/data/ig-posts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
 const POSTS_CACHE_KEY = "usrc-tigers-ig-cache";
@@ -24,33 +24,29 @@ export function InstagramSection() {
   const { t } = useLanguage();
   const [activePost, setActivePost] = useState<InstagramPost | null>(null);
   const [posts, setPosts] = useState<InstagramPost[]>(staticPosts);
-  const fetchedRef = useRef(false);
 
   useEffect(() => {
-    try {
-      const cached = localStorage.getItem(POSTS_CACHE_KEY);
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setPosts(parsed);
+    fetch("/api/content")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.posts && Array.isArray(data.posts) && data.posts.length > 0) {
+          setPosts(data.posts);
+          try {
+            localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify(data.posts));
+          } catch {}
         }
-      }
-    } catch {}
-
-    if (!fetchedRef.current) {
-      fetchedRef.current = true;
-      fetch("/api/content")
-        .then((r) => r.json())
-        .then((data) => {
-          if (data.posts && Array.isArray(data.posts) && data.posts.length > 0) {
-            setPosts(data.posts);
-            try {
-              localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify(data.posts));
-            } catch {}
+      })
+      .catch(() => {
+        try {
+          const cached = localStorage.getItem(POSTS_CACHE_KEY);
+          if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setPosts(parsed);
+            }
           }
-        })
-        .catch(() => {});
-    }
+        } catch {}
+      });
   }, []);
 
   return (
