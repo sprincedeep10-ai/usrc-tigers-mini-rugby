@@ -66,65 +66,57 @@ function buildNestedFromFlat(
 
   for (const [key, value] of Object.entries(flat)) {
     const parts = key.split(".");
-    let current: Record<string, unknown> = root;
+    let current: unknown = root;
 
     for (let i = 0; i < parts.length - 1; i++) {
       const part = parts[i];
       const next = parts[i + 1];
       const nextIsNum = /^\d+$/.test(next);
 
-      if (current[part] === undefined || current[part] === null) {
-        current[part] = nextIsNum ? [] : {};
+      if (typeof current !== "object" || current === null || Array.isArray(current)) {
+        break;
       }
 
-      if (Array.isArray(current[part])) {
-        const idx = parseInt(part, 10);
-        if (!isNaN(idx)) {
-          if (!current[idx]) {
-            (current as unknown[])[idx] = nextIsNum ? [] : {};
-          }
-          current = (current as unknown[])[idx] as Record<string, unknown>;
-        } else {
-          current = current[part] as Record<string, unknown>;
-        }
-      } else {
-        current = current[part] as Record<string, unknown>;
+      const obj = current as Record<string, unknown>;
+
+      if (obj[part] === undefined || obj[part] === null) {
+        obj[part] = nextIsNum ? [] : {};
       }
+
+      current = obj[part];
     }
 
     const lastPart = parts[parts.length - 1];
-    if (/^\d+$/.test(lastPart)) {
-      if (!Array.isArray(current)) {
-        const arr: unknown[] = [];
-        (current as Record<string, unknown>)["__temp_arr"] = arr;
-      }
+    if (typeof current === "object" && current !== null && !Array.isArray(current)) {
+      (current as Record<string, unknown>)[lastPart] = value;
     }
-    current[lastPart] = value;
   }
 
-  function cleanArrays(obj: Record<string, unknown>): Record<string, unknown> {
+  function objectsToArrays(obj: Record<string, unknown>): Record<string, unknown> {
     const result: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(obj)) {
-      if (key === "__temp_arr") continue;
       if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-        const cleaned = cleanArrays(value as Record<string, unknown>);
-        if ("__temp_arr" in cleaned) {
-          const arr = (cleaned as Record<string, unknown>).__temp_arr as unknown[];
-          delete (cleaned as Record<string, unknown>).__temp_arr;
-          const sortedArr = arr.map((item) => {
-            if (typeof item === "object" && item !== null) {
-              return cleanArrays(item as Record<string, unknown>);
+        const inner = value as Record<string, unknown>;
+        const numericKeys = Object.keys(inner).every((k) => /^\d+$/.test(k));
+        if (numericKeys && Object.keys(inner).length > 0) {
+          const maxIdx = Math.max(...Object.keys(inner).map(Number));
+          const arr: unknown[] = [];
+          for (let i = 0; i <= maxIdx; i++) {
+            const item = inner[String(i)];
+            if (typeof item === "object" && item !== null && !Array.isArray(item)) {
+              arr.push(objectsToArrays(item as Record<string, unknown>));
+            } else {
+              arr.push(item);
             }
-            return item;
-          });
-          result[key] = sortedArr;
+          }
+          result[key] = arr;
         } else {
-          result[key] = cleaned;
+          result[key] = objectsToArrays(inner);
         }
       } else if (Array.isArray(value)) {
         result[key] = value.map((item) => {
-          if (typeof item === "object" && item !== null) {
-            return cleanArrays(item as Record<string, unknown>);
+          if (typeof item === "object" && item !== null && !Array.isArray(item)) {
+            return objectsToArrays(item as Record<string, unknown>);
           }
           return item;
         });
@@ -135,7 +127,7 @@ function buildNestedFromFlat(
     return result;
   }
 
-  return cleanArrays(root);
+  return objectsToArrays(root);
 }
 
 function niceLabel(key: string): string {
