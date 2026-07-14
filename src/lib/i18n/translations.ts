@@ -33,11 +33,6 @@ export const translations = {
       subtitle: "Fun-first mini rugby at King's Park — safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
       watchVideo: "Watch Our Minis in Action",
       imageAlt: "USRC Tigers mini rugby players in action at King's Park",
-      trustSignals: [
-          "Part of USRC Tigers RFC",
-          "King's Park, Hong Kong",
-          "Youth & Senior Pathway",
-        ],
       stats: {
         miniPlayers: "Mini Players",
         ageGroups: "Age Groups",
@@ -50,99 +45,17 @@ export const translations = {
       title: "More Than a Game",
       description: "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby — through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
       body: "We believe every child deserves a brilliant start in sport — regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
-      bullets: [
-          "Inclusive for all abilities and genders",
-          "Character building through teamwork & respect",
-          "Friendships that extend beyond the pitch",
-          "Clear touch → contact progression by age",
-        ],
       tryFree: "Try a Free Session",
       ageGroupsTitle: "Age Groups",
       ageGroupsNote: "PLACEHOLDER — confirm exact groupings for 2026/27 season",
       agesRange: "Ages 4–12",
       imageAlt: "USRC Tigers mini rugby players running with the ball",
-      benefits: [
-          {
-          title: "Fun First, Always",
-          description: "Every session is designed so kids fall in love with rugby — smiles before scrums.",
-          },
-          {
-          title: "Safe & Inclusive",
-          description: "All abilities and genders welcome. Qualified coaches, age-appropriate training, and a supportive culture.",
-          },
-          {
-          title: "Skills That Last",
-          description: "Coordination, teamwork, resilience, and respect — on and off the pitch.",
-          },
-          {
-          title: "Clear Pathway",
-          description: "From minis through USRC Tigers youth teams to senior rugby in Hong Kong.",
-          },
-        ],
-      ageGroups: [
-          {
-          name: "U5 – U6",
-          tag: "Touch Rugby",
-          description: "Non-contact fun with tag games, running, and basic ball skills. Perfect first taste of rugby.",
-          },
-          {
-          name: "U7 – U8",
-          tag: "Mini Touch",
-          description: "Introduction to teamwork, passing, and spatial awareness through structured games and drills.",
-          },
-          {
-          name: "U9 – U10",
-          tag: "Development",
-          description: "Building core skills, confidence, and game understanding with gradual contact introduction.",
-          },
-          {
-          name: "U11 – U12",
-          tag: "Contact Ready",
-          description: "Safe, coached contact rugby preparing players for youth rugby and HK competitions.",
-          },
-        ],
     },
     parents: {
       eyebrow: "Parents & Coaches",
       title: "You're Part of the Team",
       description: "No experience needed — for kids or parents. USRC Tigers Mini Rugby is built on a supportive parent-coach model where families grow together.",
-      highlights: [
-          {
-          title: "Parent-Coach Model",
-          description: "Many sessions are led by trained parent-coaches who know your child by name. It's a community, not just a club.",
-          },
-          {
-          title: "Clear Communication",
-          description: "WhatsApp groups, session updates, and friendly faces at every training. You'll always know what's happening.",
-          },
-          {
-          title: "Professional Standards",
-          description: "HKRU-aligned coaching, safeguarding policies, and ongoing training for all volunteers.",
-          },
-        ],
       testimonialsNote: "Real stories from families in our community — PLACEHOLDER testimonials to be replaced with actual parent quotes.",
-      testimonials: [
-          {
-          name: "Sarah L.",
-          role: "Parent of U7 player",
-          quote: "My son was nervous on day one — by week three he couldn't wait for Sunday. The coaches make every child feel seen and celebrated.",
-          },
-          {
-          name: "James & Mei C.",
-          role: "Parents of U9 twins",
-          quote: "We love the parent-coach community. Clear WhatsApp updates, friendly faces, and zero pressure. It's the highlight of our week.",
-          },
-          {
-          name: "Priya K.",
-          role: "Parent of U6 player",
-          quote: "No rugby experience needed — they walked us through everything. Our daughter has made friends across schools and gained so much confidence.",
-          },
-          {
-          name: "David W.",
-          role: "Parent-coach, U10",
-          quote: "Coaching alongside my daughter has been incredible. The club supports parents every step — templates, guidance, and a real team spirit.",
-          },
-        ],
       ctaTitle: "No Experience? No Problem.",
       ctaBody: "Whether your child is picking up a rugby ball for the first time or you're considering coaching alongside them — we provide everything you need. Templates, mentoring, and a welcoming community that celebrates every small win.",
       ctaButton: "Join Our Community",
@@ -158,22 +71,6 @@ export const translations = {
         time: "Time",
         location: "Location",
       },
-      rows: [
-          {
-          group: "All Age Groups",
-          day: "Sunday",
-          time: "9:00 AM – 11:00 AM",
-          location: "King's Park Sports Ground, Ho Man Tin",
-          note: "Exact session times by age group TBC for 2026/27 season",
-          },
-          {
-          group: "Competition Days",
-          day: "Selected Sundays",
-          time: "Varies",
-          location: "HK Mini Rugby venues",
-          note: "Fun, development-focused HK Mini Rugby festivals & tournaments",
-          },
-        ],
       locationTitle: "King's Park Sports Ground",
       locationBody: "Ho Man Tin, Hong Kong. Spacious pitches perfect for safe mini rugby. Easy access via MTR and bus routes.",
       mapLive: "Live",
@@ -187,24 +84,6 @@ export const translations = {
       eyebrow: "Getting Started",
       title: "Join in 4 Easy Steps",
       description: "Super simple — register via our official GameDay link and we handle everything else. No payment processing on this website.",
-      steps: [
-          {
-          title: "Click Register",
-          description: "Hit any yellow Register button — you'll go straight to our official GameDay form.",
-          },
-          {
-          title: "Complete GameDay",
-          description: "Fill in player details, emergency contacts, and consent. No payment on this website.",
-          },
-          {
-          title: "We Welcome You",
-          description: "Our team confirms your registration and sends everything you need for the first session.",
-          },
-          {
-          title: "Show Up & Play",
-          description: "Bring boots, water, and a smile. First trial session is free — come see if Tigers is the right fit.",
-          },
-        ],
       badge: "Official registration via GameDay — secure & simple",
       ctaTitle: "Ready to Register?",
       ctaBody: "Just click, complete the GameDay form, and we'll take care of the rest. First trial session is completely free.",
@@ -216,20 +95,6 @@ export const translations = {
       title: "Why We Exist",
       description: "USRC Tigers Mini Rugby exists to give every child the chance to discover rugby — and themselves — in a safe, joyful, and ambitious environment.",
       imageCaption: "Building Tigers for Life",
-      pillars: [
-          {
-          title: "Joy Beyond Academics",
-          description: "Hong Kong children deserve space to run, laugh, and compete — rugby gives them that freedom and belonging.",
-          },
-          {
-          title: "Confidence & Life Skills",
-          description: "Resilience, teamwork, discipline, and respect — lessons that shape character far beyond the try line.",
-          },
-          {
-          title: "Mini → Youth → Senior",
-          description: "A clear, supported pathway from first touch rugby through USRC Tigers youth teams to senior Hong Kong rugby.",
-          },
-        ],
       quote: "We're not just building rugby players — we're building confident, kind, resilient young people who carry the Tiger spirit wherever they go.",
       quoteAuthor: "— USRC Tigers Mini Rugby Committee",
       cta: "Start Their Journey",
@@ -246,32 +111,6 @@ export const translations = {
       eyebrow: "FAQ",
       title: "Parent Questions",
       description: "Everything you need to know before the first session. Still unsure? Register for a free trial and see for yourself.",
-      items: [
-          {
-          question: "Does my child need rugby experience?",
-          answer: "Not at all. We welcome complete beginners and children who've played other sports. Coaches adapt sessions so every child progresses at their own pace.",
-          },
-          {
-          question: "What should we bring to the first session?",
-          answer: "Rugby boots or trainers with studs (if you have them), comfortable sports clothes, a water bottle, and sun protection. We'll send a full kit list after registration.",
-          },
-          {
-          question: "How safe is mini rugby?",
-          answer: "Safety is our top priority. Sessions are age-appropriate, coached by qualified volunteers, and follow HK Rugby Union mini rugby guidelines. Contact is introduced gradually with proper technique.",
-          },
-          {
-          question: "What are the fees?",
-          answer: "Season fees are confirmed each year and processed through GameDay. PLACEHOLDER: expect approximately HK$2,500–3,500 per season depending on age group. Trial sessions are free.",
-          },
-          {
-          question: "Can parents get involved?",
-          answer: "Absolutely! Many of our coaches are parents. No experience required — we provide training, resources, and support. You're part of a welcoming community.",
-          },
-          {
-          question: "Where do you train?",
-          answer: "King's Park Sports Ground, Ho Man Tin, Hong Kong. Easy MTR access and plenty of space for safe, energetic sessions.",
-          },
-        ],
     },
     finalCta: {
       eyebrow: "Your Child's Adventure Starts Here",
@@ -282,7 +121,7 @@ export const translations = {
       footer: "Part of USRC Tigers RFC · King's Park, Hong Kong · HK Rugby Pathway",
     },
     footer: {
-      tagline: "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12.",
+      tagline: "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12.us afuiagigfiua",
       quickLinks: "Quick Links",
       registerConnect: "Register & Connect",
       gamedayLink: "GameDay Registration →",
