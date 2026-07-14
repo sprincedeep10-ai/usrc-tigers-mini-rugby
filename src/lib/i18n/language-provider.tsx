@@ -99,7 +99,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       fetch("/api/content")
         .then((r) => r.json())
         .then((data) => {
-          if (data.translations) {
+          if (data.translations && isValidTranslations(data.translations)) {
             setLiveTranslations(data.translations);
             cacheContent(data);
           }
@@ -121,8 +121,53 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLocaleState((prev) => (prev === "en" ? "zh" : "en"));
   }, []);
 
-  const t = (liveTranslations?.[locale] ??
-    staticTranslations[locale]) as TranslationKeys;
+  const t = (() => {
+    const live = liveTranslations?.[locale] as Record<string, unknown> | undefined;
+    const fallback = staticTranslations[locale] as Record<string, unknown>;
+    if (!live) return fallback as TranslationKeys;
+
+    function deepMerge(
+      base: Record<string, unknown>,
+      override: Record<string, unknown>
+    ): Record<string, unknown> {
+      const result: Record<string, unknown> = {};
+      for (const key of Object.keys(base)) {
+        const baseVal = base[key];
+        const overVal = override[key];
+        if (overVal === undefined || overVal === null) {
+          result[key] = baseVal;
+        } else if (
+          Array.isArray(baseVal) &&
+          Array.isArray(overVal) &&
+          overVal.length > 0
+        ) {
+          result[key] = overVal;
+        } else if (
+          Array.isArray(baseVal) &&
+          (!Array.isArray(overVal) || overVal.length === 0)
+        ) {
+          result[key] = baseVal;
+        } else if (
+          typeof baseVal === "object" &&
+          baseVal !== null &&
+          !Array.isArray(baseVal) &&
+          typeof overVal === "object" &&
+          overVal !== null &&
+          !Array.isArray(overVal)
+        ) {
+          result[key] = deepMerge(
+            baseVal as Record<string, unknown>,
+            overVal as Record<string, unknown>
+          );
+        } else {
+          result[key] = overVal;
+        }
+      }
+      return result;
+    }
+
+    return deepMerge(fallback, live) as TranslationKeys;
+  })();
 
   return (
     <LanguageContext.Provider value={{ locale, t, setLocale, toggleLocale }}>

@@ -30,7 +30,10 @@ export function InstagramSection() {
     try {
       const cached = localStorage.getItem(POSTS_CACHE_KEY);
       if (cached) {
-        setPosts(JSON.parse(cached));
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setPosts(parsed);
+        }
       }
     } catch {}
 
