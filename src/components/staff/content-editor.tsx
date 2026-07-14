@@ -41,16 +41,119 @@ function flattenObj(
     } else if (Array.isArray(value)) {
       value.forEach((item, idx) => {
         if (typeof item === "string") {
-          result[`${fullKey}[${idx}]`] = item;
+          result[`${fullKey}.${idx}`] = item;
         } else if (typeof item === "object" && item !== null) {
-          Object.assign(result, flattenObj(item as Record<string, unknown>, `${fullKey}[${idx}]`));
+          Object.assign(
+            result,
+            flattenObj(item as Record<string, unknown>, `${fullKey}.${idx}`)
+          );
         }
       });
     } else if (typeof value === "object" && value !== null) {
-      Object.assign(result, flattenObj(value as Record<string, unknown>, fullKey));
+      Object.assign(
+        result,
+        flattenObj(value as Record<string, unknown>, fullKey)
+      );
     }
   }
   return result;
+}
+
+function buildNestedFromFlat(
+  flat: Record<string, string>
+): Record<string, unknown> {
+  const root: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(flat)) {
+    const parts = key.split(".");
+    let current: Record<string, unknown> = root;
+
+    for (let i = 0; i < parts.length - 1; i++) {
+      const part = parts[i];
+      const next = parts[i + 1];
+      const nextIsNum = /^\d+$/.test(next);
+
+      if (current[part] === undefined || current[part] === null) {
+        current[part] = nextIsNum ? [] : {};
+      }
+
+      if (Array.isArray(current[part])) {
+        const idx = parseInt(part, 10);
+        if (!isNaN(idx)) {
+          if (!current[idx]) {
+            (current as unknown[])[idx] = nextIsNum ? [] : {};
+          }
+          current = (current as unknown[])[idx] as Record<string, unknown>;
+        } else {
+          current = current[part] as Record<string, unknown>;
+        }
+      } else {
+        current = current[part] as Record<string, unknown>;
+      }
+    }
+
+    const lastPart = parts[parts.length - 1];
+    if (/^\d+$/.test(lastPart)) {
+      if (!Array.isArray(current)) {
+        const arr: unknown[] = [];
+        (current as Record<string, unknown>)["__temp_arr"] = arr;
+      }
+    }
+    current[lastPart] = value;
+  }
+
+  function cleanArrays(obj: Record<string, unknown>): Record<string, unknown> {
+    const result: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(obj)) {
+      if (key === "__temp_arr") continue;
+      if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+        const cleaned = cleanArrays(value as Record<string, unknown>);
+        if ("__temp_arr" in cleaned) {
+          const arr = (cleaned as Record<string, unknown>).__temp_arr as unknown[];
+          delete (cleaned as Record<string, unknown>).__temp_arr;
+          const sortedArr = arr.map((item) => {
+            if (typeof item === "object" && item !== null) {
+              return cleanArrays(item as Record<string, unknown>);
+            }
+            return item;
+          });
+          result[key] = sortedArr;
+        } else {
+          result[key] = cleaned;
+        }
+      } else if (Array.isArray(value)) {
+        result[key] = value.map((item) => {
+          if (typeof item === "object" && item !== null) {
+            return cleanArrays(item as Record<string, unknown>);
+          }
+          return item;
+        });
+      } else {
+        result[key] = value;
+      }
+    }
+    return result;
+  }
+
+  return cleanArrays(root);
+}
+
+function niceLabel(key: string): string {
+  const parts = key.split(".");
+  const last = parts[parts.length - 1];
+  const parent = parts.length > 1 ? parts[parts.length - 2] : "";
+
+  if (/^\d+$/.test(last)) {
+    return `${parent} #${parseInt(last) + 1}`;
+  }
+
+  const nice = last
+    .replace(/([A-Z])/g, " $1")
+    .replace(/[_-]/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim();
+
+  return nice;
 }
 
 export function ContentEditor({ authFetch }: ContentEditorProps) {
@@ -78,7 +181,9 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
 
   useEffect(() => {
     if (translations[activeLang]) {
-      setFlatFields(flattenObj(translations[activeLang] as Record<string, unknown>));
+      setFlatFields(
+        flattenObj(translations[activeLang] as Record<string, unknown>)
+      );
     }
   }, [translations, activeLang]);
 
@@ -100,31 +205,6 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
     setFlatFields((prev) => ({ ...prev, [key]: value }));
   }
 
-  function buildNestedFromFlat(
-    flat: Record<string, string>
-  ): Record<string, unknown> {
-    const result: Record<string, unknown> = {};
-    for (const [key, value] of Object.entries(flat)) {
-      const parts = key.split(/\.|\[(\d+)\]/).filter(Boolean);
-      let current: Record<string, unknown> = result;
-
-      for (let i = 0; i < parts.length - 1; i++) {
-        const part = parts[i];
-        const next = parts[i + 1];
-        const isIndex = /^\d+$/.test(next);
-
-        if (!current[part]) {
-          current[part] = isIndex ? [] : {};
-        }
-        current = current[part] as Record<string, unknown>;
-      }
-
-      const lastPart = parts[parts.length - 1];
-      current[lastPart] = value;
-    }
-    return result;
-  }
-
   async function handleSave() {
     setSaving(true);
     try {
@@ -139,7 +219,19 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
 
       if (res.ok) {
         setTranslations(updated);
-        showToast("success", "Content saved successfully");
+
+        try {
+          localStorage.setItem(
+            "usrc-tigers-content-cache",
+            JSON.stringify(updated)
+          );
+          localStorage.setItem(
+            "usrc-tigers-content-ts",
+            String(Date.now())
+          );
+        } catch {}
+
+        showToast("success", "Content saved & applied instantly");
       } else {
         showToast("error", "Failed to save content");
       }
@@ -158,7 +250,10 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
     });
   }
 
-  function groupedFields(): Record<string, Array<{ key: string; value: string }>> {
+  function groupedFields(): Record<
+    string,
+    Array<{ key: string; value: string }>
+  > {
     const groups: Record<string, Array<{ key: string; value: string }>> = {};
     for (const [key, value] of Object.entries(flatFields)) {
       const section = key.split(".")[0];
@@ -196,7 +291,7 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
         <div>
           <h2 className="text-lg font-bold text-foreground">Site Content</h2>
           <p className="text-sm text-muted">
-            Edit text across all sections of the website
+            Edit text across all sections — changes apply instantly
           </p>
         </div>
         <button
@@ -209,7 +304,7 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
           ) : (
             <Save className="h-4 w-4" />
           )}
-          Save All Changes
+          Save & Apply
         </button>
       </div>
 
@@ -258,13 +353,16 @@ export function ContentEditor({ authFetch }: ContentEditorProps) {
             {openSections.has(section) && (
               <div className="space-y-3 border-t border-card-border px-5 py-4">
                 {fields.map(({ key, value }) => {
-                  const label = key.split(".").slice(1).join(" ") || key;
+                  const label = niceLabel(key);
                   const isLong = value.length > 80 || value.includes("\n");
                   return (
                     <div key={key}>
                       <label className="mb-1 block text-xs text-muted">
                         <span className="font-medium text-foreground/70">
                           {label}
+                        </span>
+                        <span className="ml-2 text-muted/50 text-[10px]">
+                          {key}
                         </span>
                       </label>
                       {isLong ? (

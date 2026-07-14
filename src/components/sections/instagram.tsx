@@ -10,13 +10,45 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/motion/reveal";
-import { IG_POSTS, IG_PROFILE_URL, type InstagramPost } from "@/data/ig-posts";
-import { useState } from "react";
+import {
+  IG_POSTS as staticPosts,
+  IG_PROFILE_URL,
+  type InstagramPost,
+} from "@/data/ig-posts";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language-provider";
+
+const POSTS_CACHE_KEY = "usrc-tigers-ig-cache";
 
 export function InstagramSection() {
   const { t } = useLanguage();
   const [activePost, setActivePost] = useState<InstagramPost | null>(null);
+  const [posts, setPosts] = useState<InstagramPost[]>(staticPosts);
+  const fetchedRef = useRef(false);
+
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem(POSTS_CACHE_KEY);
+      if (cached) {
+        setPosts(JSON.parse(cached));
+      }
+    } catch {}
+
+    if (!fetchedRef.current) {
+      fetchedRef.current = true;
+      fetch("/api/content")
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.posts && Array.isArray(data.posts) && data.posts.length > 0) {
+            setPosts(data.posts);
+            try {
+              localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify(data.posts));
+            } catch {}
+          }
+        })
+        .catch(() => {});
+    }
+  }, []);
 
   return (
     <>
@@ -46,7 +78,7 @@ export function InstagramSection() {
           </div>
 
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-            {IG_POSTS.slice(0, 8).map((post) => (
+            {posts.slice(0, 8).map((post) => (
               <StaggerItem key={post.id}>
                 <InstagramPostCard post={post} onOpen={setActivePost} />
               </StaggerItem>

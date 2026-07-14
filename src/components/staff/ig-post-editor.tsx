@@ -147,7 +147,10 @@ export function IGPostEditor({
       });
       if (res.ok) {
         setPosts(updatedPosts);
-        showToast("success", "Posts saved");
+        try {
+          localStorage.setItem("usrc-tigers-ig-cache", JSON.stringify(updatedPosts));
+        } catch {}
+        showToast("success", "Posts saved & applied instantly");
       } else {
         showToast("error", "Failed to save");
       }

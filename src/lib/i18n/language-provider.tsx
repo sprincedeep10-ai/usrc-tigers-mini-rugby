@@ -5,11 +5,18 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
-import { translations, type Locale, type TranslationKeys } from "./translations";
+import {
+  translations as staticTranslations,
+  type Locale,
+  type TranslationKeys,
+} from "./translations";
 
 const STORAGE_KEY = "usrc-tigers-locale";
+const CONTENT_CACHE_KEY = "usrc-tigers-content-cache";
+const CONTENT_CACHE_TS_KEY = "usrc-tigers-content-ts";
 
 interface LanguageContextValue {
   locale: Locale;
@@ -20,13 +27,51 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
+function cacheContent(data: { translations: Record<string, unknown> }) {
+  try {
+    localStorage.setItem(CONTENT_CACHE_KEY, JSON.stringify(data.translations));
+    localStorage.setItem(CONTENT_CACHE_TS_KEY, String(Date.now()));
+  } catch {}
+}
+
+function getCachedContent(): Record<string, unknown> | null {
+  try {
+    const raw = localStorage.getItem(CONTENT_CACHE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
+  const [liveTranslations, setLiveTranslations] = useState<
+    Record<string, unknown> | null
+  >(null);
+  const fetchedRef = useRef(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
     if (stored === "en" || stored === "zh") {
       setLocaleState(stored);
+    }
+
+    const cached = getCachedContent();
+    if (cached) {
+      setLiveTranslations(cached);
+    }
+
+    if (!fetchedRef.current) {
+      fetchedRef.current = true;
+      fetch("/api/content")
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.translations) {
+            setLiveTranslations(data.translations);
+            cacheContent(data);
+          }
+        })
+        .catch(() => {});
     }
   }, []);
 
@@ -43,7 +88,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLocaleState((prev) => (prev === "en" ? "zh" : "en"));
   }, []);
 
-  const t = translations[locale];
+  const t = (liveTranslations?.[locale] ??
+    staticTranslations[locale]) as TranslationKeys;
 
   return (
     <LanguageContext.Provider value={{ locale, t, setLocale, toggleLocale }}>
