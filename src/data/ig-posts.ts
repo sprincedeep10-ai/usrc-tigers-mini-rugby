@@ -88,6 +88,16 @@ export const IG_POSTS: InstagramPost[] = [
     comments: 18,
     postUrl: "https://www.instagram.com/p/DXMGeZrCV4S/",
   },
+  {
+    id: "post-8",
+    image: "/images/ig-posts/post-8.jpg",
+    caption:
+      "From minis to youth to senior — the Tiger pathway starts here 🐯 Come try a free session at King's Park.",
+    date: "Apr 16",
+    likes: 174,
+    comments: 12,
+    postUrl: "https://www.instagram.com/p/DXMGY1UidcW/",
+  },
 ];
 
 export function formatEngagement(n: number): string {
