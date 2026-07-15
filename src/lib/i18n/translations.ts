@@ -282,7 +282,7 @@ export const translations = {
       footer: "Part of USRC Tigers RFC · King's Park, Hong Kong · HK Rugby Pathway",
     },
     footer: {
-      tagline: "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12. 00000000",
+      tagline: "Hong Kong's premier mini rugby programme — fun, safe, and built for every child aged 4–12.",
       quickLinks: "Quick Links",
       registerConnect: "Register & Connect",
       gamedayLink: "GameDay Registration →",
