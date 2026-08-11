@@ -28,9 +28,9 @@ export const translations = {
     },
     hero: {
       badge: "Ages 4–12 · All Welcome",
-      title: "",
-      titleHighlight: "",
-      subtitle: "Minis rugby for children. Non contact age U4 to U8, Contact tackle rugby U9 to U12",
+      title: "USRC Tigers",
+      titleHighlight: "minis rugby",
+      subtitle: "Rugby for children. Non contact age U4 to U8, Contact tackle rugby U9 to U12",
       watchVideo: "Watch Our Minis in Action",
       imageAlt: "USRC Tigers mini rugby players in action at King's Park",
       trustSignals: [
