@@ -28,9 +28,9 @@ export const translations = {
     },
     hero: {
       badge: "Ages 4–12 · All Welcome",
-      title: "Unleash Their",
-      titleHighlight: "Inner Tiger",
-      subtitle: "Fun-first mini rugby at King's Park — safe, inclusive, and skill-building. The perfect start on the pathway to USRC Tigers youth & senior teams.",
+      title: "",
+      titleHighlight: "",
+      subtitle: "Minis rugby for children. Non contact age U4 to U8, Contact tackle rugby U9 to U12",
       watchVideo: "Watch Our Minis in Action",
       imageAlt: "USRC Tigers mini rugby players in action at King's Park",
       trustSignals: [
@@ -46,7 +46,7 @@ export const translations = {
       },
     },
     about: {
-      eyebrow: "The Mini Experience",
+      eyebrow: "The Minis Experience",
       title: "More Than a Game",
       description: "USRC Tigers Mini Rugby is where Hong Kong children discover the joy of rugby — through laughter, friendship, and gradual skill development in a safe, welcoming environment.",
       body: "We believe every child deserves a brilliant start in sport — regardless of ability, gender, or background. Our sessions blend structured coaching with free play, so kids build confidence naturally.",
