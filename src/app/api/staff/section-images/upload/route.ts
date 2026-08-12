@@ -4,7 +4,7 @@ import {
   isCloudinaryConfigured,
   uploadSectionImage,
 } from "@/lib/section-image-cloudinary";
-import { mergeManifests, type SectionImageManifest } from "@/lib/section-image-utils";
+import { type SectionImageManifest } from "@/lib/section-image-utils";
 import { SECTION_IMAGE_PATHS, type SectionImageKey } from "@/data/section-images";
 
 function isSectionKey(value: string): value is SectionImageKey {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          "Cloudinary is not set up yet. Open src/config/cloudinary.ts, add your Cloud name and Upload preset from cloudinary.com (free), then push to GitHub once.",
+          "Cloudinary is not set up yet. Open src/config/cloudinary.ts and add Cloud name, API Key, and API Secret from cloudinary.com, then push to GitHub once.",
       },
       { status: 503 }
     );
