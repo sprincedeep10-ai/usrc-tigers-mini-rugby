@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n/language-provider";
 import { motion } from "framer-motion";
 import { ArrowRight, Play, Shield } from "lucide-react";
 import Image from "next/image";
+import { useSectionImage } from "@/hooks/use-section-image";
 
 interface HeroProps {
   onWatchClick: () => void;
@@ -15,6 +16,7 @@ interface HeroProps {
 
 export function Hero({ onWatchClick }: HeroProps) {
   const { t } = useLanguage();
+  const heroImage = useSectionImage("hero");
 
   return (
     <section className="relative min-h-[88svh] flex items-center hero-gradient overflow-hidden">
@@ -95,12 +97,14 @@ export function Hero({ onWatchClick }: HeroProps) {
                 transition={{ duration: 0.4 }}
               >
                 <Image
-                  src="/images/sections/hero-usrc-tigers.jpg"
+                  key={heroImage}
+                  src={heroImage}
                   alt={t.hero.imageAlt}
                   fill
                   className="object-cover"
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  unoptimized={heroImage.startsWith("https://")}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
