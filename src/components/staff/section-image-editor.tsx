@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
 import { getCroppedImg } from "@/lib/crop-image";
 import {
@@ -125,6 +125,14 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
   const [uploading, setUploading] = useState<SectionImageKey | null>(null);
   const [cropModal, setCropModal] = useState<CropState | null>(null);
   const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
+  const [cloudinaryReady, setCloudinaryReady] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    fetch("/api/section-images/versions")
+      .then((res) => res.json())
+      .then((data) => setCloudinaryReady(Boolean(data.configured)))
+      .catch(() => setCloudinaryReady(false));
+  }, []);
 
   function showToast(type: "success" | "error", msg: string) {
     setToast({ type, msg });
@@ -172,8 +180,11 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       if (data.images) {
         applyManifest(data.images);
         notifySectionImagesUpdated(data.images);
-      } else if (data.updatedAt) {
-        const entry = { updatedAt: data.updatedAt as number };
+      } else if (data.imageUrl && data.updatedAt) {
+        const entry = {
+          url: data.imageUrl as string,
+          updatedAt: data.updatedAt as number,
+        };
         applyManifest({ [key]: entry });
         notifySectionImagesUpdated({ [key]: entry });
       }
@@ -233,7 +244,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       <div className="rounded-2xl border border-tiger/20 bg-tiger/5 p-5">
         <h3 className="text-sm font-semibold text-foreground">Homepage Images</h3>
         <p className="mt-1 text-sm text-muted">
-          Replace the 4 main photos on the website. Changes go live instantly — no redeploy needed.
+          Replace the 4 main photos on the website. Uploads go to Cloudinary — changes appear on the homepage instantly.
         </p>
         <ol className="mt-3 list-decimal space-y-1 pl-4 text-xs text-muted">
           <li>
@@ -253,6 +264,39 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
           </li>
         </ol>
       </div>
+
+      {cloudinaryReady === false && (
+        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5">
+          <h3 className="text-sm font-semibold text-amber-200">One-time setup needed</h3>
+          <p className="mt-2 text-sm text-amber-100/90">
+            Photo uploads use Cloudinary (free, instant CDN — same service used by millions of sites).
+            Add these three values in Vercel → Project → Settings → Environment Variables, then redeploy once:
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-amber-100/80">
+            <li>
+              <code className="text-amber-50">CLOUDINARY_CLOUD_NAME</code>
+            </li>
+            <li>
+              <code className="text-amber-50">CLOUDINARY_API_KEY</code>
+            </li>
+            <li>
+              <code className="text-amber-50">CLOUDINARY_API_SECRET</code>
+            </li>
+          </ul>
+          <p className="mt-3 text-xs text-amber-100/80">
+            Get them free at{" "}
+            <a
+              href="https://cloudinary.com/users/register/free"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-amber-50"
+            >
+              cloudinary.com
+            </a>
+            . After that, uploads work immediately with no redeploy.
+          </p>
+        </div>
+      )}
 
       <div className="grid gap-5 sm:grid-cols-2">
         {SECTION_IMAGES.map((section) => {

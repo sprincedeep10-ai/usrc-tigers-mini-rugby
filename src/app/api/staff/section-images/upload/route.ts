@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/staff-auth";
 import {
-  isGitHubStorageConfigured,
+  isCloudinaryConfigured,
   uploadSectionImage,
-} from "@/lib/section-image-github";
+} from "@/lib/section-image-cloudinary";
 import { getSectionImageDisplayUrl } from "@/lib/section-image-utils";
 import { SECTION_IMAGE_PATHS, type SectionImageKey } from "@/data/section-images";
 
@@ -19,11 +19,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!isGitHubStorageConfigured()) {
+  if (!isCloudinaryConfigured()) {
     return NextResponse.json(
       {
         error:
-          "GITHUB_TOKEN is not configured on the server. Add it in Vercel project Settings → Environment Variables, then redeploy once.",
+          "Cloudinary is not set up yet. Add CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in Vercel → Settings → Environment Variables, then redeploy once.",
       },
       { status: 503 }
     );

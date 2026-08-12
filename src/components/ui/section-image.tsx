@@ -57,7 +57,7 @@ export function SectionImage({
     };
   }, [targetUrl, displayUrl]);
 
-  const isRemote = displayUrl.startsWith("http") || displayUrl.startsWith("/api/");
+  const isRemote = displayUrl.startsWith("http");
 
   return (
     <Image

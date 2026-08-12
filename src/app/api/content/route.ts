@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getFileContents } from "@/lib/github";
-import { fetchSectionImageManifest } from "@/lib/section-image-github";
+import { fetchSectionImageManifest } from "@/lib/section-image-cloudinary";
 import { manifestToVersions } from "@/lib/section-image-utils";
 
 export const dynamic = "force-dynamic";

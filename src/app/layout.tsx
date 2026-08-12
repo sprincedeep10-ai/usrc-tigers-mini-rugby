@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SectionImageProvider } from "@/components/section-image-provider";
-import { fetchSectionImageManifest } from "@/lib/section-image-github";
+import { fetchSectionImageManifest } from "@/lib/section-image-cloudinary";
 import Script from "next/script";
 import "./globals.css";
 

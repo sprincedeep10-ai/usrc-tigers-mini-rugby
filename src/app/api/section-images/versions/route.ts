@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { fetchSectionImageManifest } from "@/lib/section-image-github";
+import {
+  fetchSectionImageManifest,
+  isCloudinaryConfigured,
+} from "@/lib/section-image-cloudinary";
 import { manifestToVersions } from "@/lib/section-image-utils";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +16,8 @@ export async function GET() {
       {
         images,
         sectionImageVersions,
-        storage: "github",
+        storage: "cloudinary",
+        configured: isCloudinaryConfigured(),
       },
       {
         headers: {
