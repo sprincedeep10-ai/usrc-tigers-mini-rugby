@@ -10,14 +10,12 @@ import {
 import { GAMEDAY_URL } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { Heart, Rocket, Target } from "lucide-react";
-import Image from "next/image";
-import { useSectionImage } from "@/hooks/use-section-image";
+import { SectionImage } from "@/components/ui/section-image";
 
 const pillarIcons = [Heart, Target, Rocket];
 
 export function MissionSection() {
   const { t } = useLanguage();
-  const missionImage = useSectionImage("mission");
 
   return (
     <section id="mission" className="relative py-24 lg:py-32 bg-background">
@@ -27,14 +25,11 @@ export function MissionSection() {
             <div className="relative">
               <div className="absolute -inset-6 rounded-3xl bg-tiger/10 blur-3xl" />
               <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-card-border">
-                <Image
-                  key={missionImage}
-                  src={missionImage}
+                <SectionImage
+                  section="mission"
                   alt={t.mission.imageAlt}
                   fill
-                  className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  unoptimized={missionImage.startsWith("https://")}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">

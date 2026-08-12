@@ -53,7 +53,7 @@ export const SECTION_IMAGE_FILES: Record<SectionImageKey, string> = {
 const GITHUB_RAW_BASE =
   "https://raw.githubusercontent.com/sprincedeep10-ai/usrc-tigers-mini-rugby/main";
 
-/** GitHub raw URL for a section image (repo path includes public/) */
+/** GitHub raw URL — used only by the server-side image proxy */
 export function sectionImageRawUrl(
   key: SectionImageKey,
   version?: number
@@ -61,4 +61,10 @@ export function sectionImageRawUrl(
   const path = SECTION_IMAGE_FILES[key];
   const query = version ? `?v=${version}` : "";
   return `${GITHUB_RAW_BASE}/${path}${query}`;
+}
+
+/** Same-origin URL served via /api/section-images (reliable + cache-friendly) */
+export function sectionImageUrl(key: SectionImageKey, version?: number): string {
+  const query = version ? `?v=${version}` : "";
+  return `/api/section-images/${key}${query}`;
 }
