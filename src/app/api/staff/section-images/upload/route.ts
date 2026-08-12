@@ -3,7 +3,7 @@ import { verifySessionToken } from "@/lib/staff-auth";
 import { commitFile, getFileContents } from "@/lib/github";
 import {
   SECTION_IMAGE_FILES,
-  sectionImageRawUrl,
+  sectionImageUrl,
   type SectionImageKey,
 } from "@/data/section-images";
 
@@ -58,25 +58,43 @@ async function commitBinaryFile(
 }
 
 async function bumpVersion(section: SectionImageKey): Promise<number> {
-  const version = Date.now();
-  const { content, sha } = await getFileContents("src/data/section-image-versions.ts");
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const version = Date.now() + attempt;
+    const { content, sha } = await getFileContents("src/data/section-image-versions.ts");
 
-  const keyPattern = new RegExp(`(${section}:\\s*)\\d+`);
-  const updated = keyPattern.test(content)
-    ? content.replace(keyPattern, `$1${version}`)
-    : content.replace(
-        /(\{[\s\S]*?)(\n\};)/,
-        `$1,\n  ${section}: ${version}$2`
+    const keyPattern = new RegExp(`(${section}:\\s*)\\d+`);
+    const updated = keyPattern.test(content)
+      ? content.replace(keyPattern, `$1${version}`)
+      : content.replace(
+          /(\{[\s\S]*?)(\n\};)/,
+          `$1,\n  ${section}: ${version}$2`
+        );
+
+    try {
+      await commitFile(
+        "src/data/section-image-versions.ts",
+        updated,
+        `chore: update ${section} image version via admin panel`,
+        sha
       );
+      return version;
+    } catch (error) {
+      if (attempt === 3) throw error;
+      await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
+    }
+  }
 
-  await commitFile(
-    "src/data/section-image-versions.ts",
-    updated,
-    `chore: update ${section} image version via admin panel`,
-    sha
-  );
+  throw new Error("Failed to bump section image version");
+}
 
-  return version;
+async function waitForProxyImage(url: string): Promise<void> {
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (res.ok) return;
+    } catch {}
+    await new Promise((r) => setTimeout(r, 400 * attempt));
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -111,10 +129,15 @@ export async function POST(request: NextRequest) {
       existingSha
     );
 
+    await new Promise((r) => setTimeout(r, 600));
     const version = await bumpVersion(section);
-    const rawUrl = sectionImageRawUrl(section, version);
+    const imageUrl = sectionImageUrl(section, version);
 
-    return NextResponse.json({ success: true, version, rawUrl });
+    await waitForProxyImage(
+      `${request.nextUrl.origin}${imageUrl}`
+    );
+
+    return NextResponse.json({ success: true, version, imageUrl });
   } catch (error) {
     return NextResponse.json(
       { error: `Upload failed: ${error}` },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
 import Image from "next/image";
 import { getCroppedImg } from "@/lib/crop-image";
@@ -9,9 +9,10 @@ import {
   type SectionImageKey,
 } from "@/data/section-images";
 import {
-  cacheSectionImageVersion,
   getSectionImageDisplayUrl,
-} from "@/hooks/use-section-image";
+  notifySectionImagesUpdated,
+  useSectionImages,
+} from "@/components/section-image-provider";
 import { Loader2, Upload, Check, X, Crop } from "lucide-react";
 
 interface SectionImageEditorProps {
@@ -118,24 +119,13 @@ function CropModal({
 }
 
 export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
+  const { versions, setVersion, refreshVersions } = useSectionImages();
   const fileInputRefs = useRef<Partial<Record<SectionImageKey, HTMLInputElement>>>({});
-  const [versions, setVersions] = useState<Partial<Record<SectionImageKey, number>>>({});
   const [pendingFiles, setPendingFiles] = useState<Partial<Record<SectionImageKey, Blob>>>({});
   const [previews, setPreviews] = useState<Partial<Record<SectionImageKey, string>>>({});
   const [uploading, setUploading] = useState<SectionImageKey | null>(null);
   const [cropModal, setCropModal] = useState<CropState | null>(null);
   const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
-
-  useEffect(() => {
-    fetch("/api/content")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.sectionImageVersions) {
-          setVersions(data.sectionImageVersions);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   function showToast(type: "success" | "error", msg: string) {
     setToast({ type, msg });
@@ -180,8 +170,10 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Upload failed");
 
-      cacheSectionImageVersion(key, data.version);
-      setVersions((prev) => ({ ...prev, [key]: data.version }));
+      setVersion(key, data.version);
+      const latest = await refreshVersions();
+      notifySectionImagesUpdated({ ...latest, [key]: data.version });
+
       setPendingFiles((prev) => {
         const next = { ...prev };
         delete next[key];
@@ -195,7 +187,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
 
       showToast(
         "success",
-        `${SECTION_IMAGES.find((s) => s.key === key)?.label} updated — live on the site within a minute`
+        `${SECTION_IMAGES.find((s) => s.key === key)?.label} updated — open or refresh the homepage to see it`
       );
     } catch {
       showToast("error", "Upload failed — please try again");
@@ -250,7 +242,8 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
             green success message
           </li>
           <li>
-            Open the homepage in a new tab to confirm (may take up to a minute)
+            Open the homepage in a new tab — the photo updates right away with a
+            smooth fade
           </li>
         </ol>
       </div>

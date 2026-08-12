@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getFileContents } from "@/lib/github";
-import { SECTION_IMAGE_VERSIONS } from "@/data/section-image-versions";
+import {
+  fetchSectionImageVersions,
+  parseSectionImageVersions,
+} from "@/lib/section-image-versions";
 
 export const dynamic = "force-dynamic";
 
@@ -11,18 +14,6 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
       setTimeout(() => reject(new Error(`Timeout after ${ms}ms`)), ms)
     ),
   ]);
-}
-
-function parseSectionImageVersions(content: string): Record<string, number> {
-  try {
-    const match = content.match(
-      /export const SECTION_IMAGE_VERSIONS[^=]*=\s*(\{[\s\S]*?\});/
-    );
-    if (match) {
-      return new Function(`return ${match[1]}`)() as Record<string, number>;
-    }
-  } catch {}
-  return { ...SECTION_IMAGE_VERSIONS };
 }
 
 export async function GET() {
@@ -56,7 +47,7 @@ export async function GET() {
 
     const sectionImageVersions = versionsContent
       ? parseSectionImageVersions(versionsContent.content)
-      : { ...SECTION_IMAGE_VERSIONS };
+      : await fetchSectionImageVersions();
 
     return NextResponse.json(
       { posts, translations, sectionImageVersions },

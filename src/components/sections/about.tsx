@@ -11,14 +11,12 @@ import { GAMEDAY_URL } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { cn } from "@/lib/utils";
 import { Heart, Route, Shield, Sparkles, Trophy, Users } from "lucide-react";
-import Image from "next/image";
-import { useSectionImage } from "@/hooks/use-section-image";
+import { SectionImage } from "@/components/ui/section-image";
 
 const iconList = [Sparkles, Shield, Trophy, Route];
 
 export function AboutSection() {
   const { t } = useLanguage();
-  const aboutImage = useSectionImage("about");
 
   return (
     <section id="about" className="relative py-24 lg:py-32 bg-background">
@@ -33,14 +31,11 @@ export function AboutSection() {
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-center mb-20">
           <Reveal direction="right">
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-card-border">
-              <Image
-                key={aboutImage}
-                src={aboutImage}
+              <SectionImage
+                section="about"
                 alt={t.about.imageAlt}
                 fill
-                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                unoptimized={aboutImage.startsWith("https://")}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/50 to-transparent" />
             </div>

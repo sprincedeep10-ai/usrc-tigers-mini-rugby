@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SectionImageProvider } from "@/components/section-image-provider";
+import { fetchSectionImageVersions } from "@/lib/section-image-versions";
 import Script from "next/script";
 import "./globals.css";
 
@@ -40,11 +42,13 @@ const themeInitScript = `
 })();
 `;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const sectionImageVersions = await fetchSectionImageVersions();
+
   return (
     <html lang="en" className="h-full scroll-smooth" suppressHydrationWarning>
       <head>
@@ -54,7 +58,11 @@ export default function RootLayout({
       </head>
       <body className="min-h-full antialiased bg-background text-foreground">
         <ThemeProvider>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <SectionImageProvider initialVersions={sectionImageVersions}>
+              {children}
+            </SectionImageProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

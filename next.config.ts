@@ -4,6 +4,11 @@ import path from "path";
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   images: {
+    localPatterns: [
+      {
+        pathname: "/api/section-images/**",
+      },
+    ],
     remotePatterns: [
       {
         protocol: "https",
