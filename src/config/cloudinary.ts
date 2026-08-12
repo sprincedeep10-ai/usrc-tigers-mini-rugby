@@ -8,8 +8,8 @@
  * No upload preset needed — signed uploads handle everything reliably.
  */
 export const CLOUDINARY_CLOUD_NAME = "aai6silw";
-export const CLOUDINARY_API_KEY = "";
-export const CLOUDINARY_API_SECRET = "";
+export const CLOUDINARY_API_KEY = "761241984759955";
+export const CLOUDINARY_API_SECRET = "-u_xmhohQ9qJZyX9oiGskZ4q4Zg";
 
 export function isCloudinaryConfigured(): boolean {
   return Boolean(
