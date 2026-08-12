@@ -1,3 +1,3 @@
 export const SECTION_IMAGE_VERSIONS: Record<string, number> = {
-  about: 1786529438285,
+  about: 1786530619011,
 };
