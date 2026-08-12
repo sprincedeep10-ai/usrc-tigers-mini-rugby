@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          "Cloudinary is not set up yet. Add CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in Vercel → Settings → Environment Variables, then redeploy once.",
+          "Cloudinary is not set up yet. Open src/config/cloudinary.ts, add your Cloud name and Upload preset from cloudinary.com (free), then push to GitHub once.",
       },
       { status: 503 }
     );

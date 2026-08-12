@@ -269,31 +269,35 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5">
           <h3 className="text-sm font-semibold text-amber-200">One-time setup needed</h3>
           <p className="mt-2 text-sm text-amber-100/90">
-            Photo uploads use Cloudinary (free, instant CDN — same service used by millions of sites).
-            Add these three values in Vercel → Project → Settings → Environment Variables, then redeploy once:
+            Photo uploads use Cloudinary (free, instant CDN). No Vercel Pro or environment
+            variables needed — just two values in a config file:
           </p>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-amber-100/80">
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-xs text-amber-100/80">
             <li>
-              <code className="text-amber-50">CLOUDINARY_CLOUD_NAME</code>
+              Sign up free at{" "}
+              <a
+                href="https://cloudinary.com/users/register/free"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-amber-50"
+              >
+                cloudinary.com
+              </a>
+            </li>
+            <li>Copy your <strong className="text-amber-50">Cloud name</strong> from the dashboard</li>
+            <li>
+              Settings → Upload → Upload presets → Add preset → set{" "}
+              <strong className="text-amber-50">Signing mode: Unsigned</strong>, enable{" "}
+              <strong className="text-amber-50">Overwrite</strong>
             </li>
             <li>
-              <code className="text-amber-50">CLOUDINARY_API_KEY</code>
+              Edit{" "}
+              <code className="text-amber-50">src/config/cloudinary.ts</code> on GitHub — paste
+              Cloud name + preset name, commit &amp; push (one redeploy)
             </li>
-            <li>
-              <code className="text-amber-50">CLOUDINARY_API_SECRET</code>
-            </li>
-          </ul>
+          </ol>
           <p className="mt-3 text-xs text-amber-100/80">
-            Get them free at{" "}
-            <a
-              href="https://cloudinary.com/users/register/free"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline text-amber-50"
-            >
-              cloudinary.com
-            </a>
-            . After that, uploads work immediately with no redeploy.
+            After that, uploads work instantly with no further setup.
           </p>
         </div>
       )}

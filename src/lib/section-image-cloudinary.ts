@@ -1,4 +1,8 @@
-import { v2 as cloudinary } from "cloudinary";
+import {
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_UPLOAD_PRESET,
+  isCloudinaryConfigured,
+} from "@/config/cloudinary";
 import { type SectionImageKey } from "@/data/section-images";
 import {
   buildDefaultManifest,
@@ -7,34 +11,61 @@ import {
   type SectionImageManifest,
 } from "@/lib/section-image-utils";
 
+export { isCloudinaryConfigured };
+
 const FOLDER = "usrc-tigers/sections";
 const MANIFEST_ID = "usrc-tigers/section-images-manifest";
 
-function configureCloudinary() {
-  cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-    secure: true,
-  });
+interface CloudinaryUploadResult {
+  secure_url: string;
+  version: number;
 }
 
-export function isCloudinaryConfigured(): boolean {
-  return Boolean(
-    process.env.CLOUDINARY_CLOUD_NAME &&
-      process.env.CLOUDINARY_API_KEY &&
-      process.env.CLOUDINARY_API_SECRET
+async function uploadToCloudinary(
+  body: Buffer,
+  options: {
+    resourceType: "image" | "raw";
+    publicId: string;
+    filename: string;
+  }
+): Promise<CloudinaryUploadResult> {
+  const form = new FormData();
+  form.append(
+    "file",
+    new Blob([new Uint8Array(body)]),
+    options.filename
   );
+  form.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+  form.append("public_id", options.publicId);
+
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${options.resourceType}/upload`,
+    { method: "POST", body: form }
+  );
+
+  if (!res.ok) {
+    const detail = await res.text();
+    throw new Error(`Cloudinary upload failed (${res.status}): ${detail}`);
+  }
+
+  const data = (await res.json()) as CloudinaryUploadResult;
+  return {
+    secure_url: data.secure_url,
+    version: data.version ?? Date.now(),
+  };
+}
+
+function manifestUrl(): string {
+  return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/${MANIFEST_ID}`;
 }
 
 async function fetchManifestFromCloud(): Promise<SectionImageManifest | null> {
   if (!isCloudinaryConfigured()) return null;
 
-  configureCloudinary();
-  const url = cloudinary.url(MANIFEST_ID, { resource_type: "raw", secure: true });
-
   try {
-    const res = await fetch(`${url}?t=${Date.now()}`, { cache: "no-store" });
+    const res = await fetch(`${manifestUrl()}?t=${Date.now()}`, {
+      cache: "no-store",
+    });
     if (!res.ok) return null;
     return (await res.json()) as SectionImageManifest;
   } catch {
@@ -43,15 +74,11 @@ async function fetchManifestFromCloud(): Promise<SectionImageManifest | null> {
 }
 
 async function saveManifest(manifest: SectionImageManifest): Promise<void> {
-  configureCloudinary();
   const json = JSON.stringify(manifest, null, 2);
-  const dataUri = `data:application/json;base64,${Buffer.from(json).toString("base64")}`;
-
-  await cloudinary.uploader.upload(dataUri, {
-    public_id: MANIFEST_ID,
-    resource_type: "raw",
-    overwrite: true,
-    invalidate: true,
+  await uploadToCloudinary(Buffer.from(json, "utf-8"), {
+    resourceType: "raw",
+    publicId: MANIFEST_ID,
+    filename: "manifest.json",
   });
 }
 
@@ -61,50 +88,22 @@ export async function fetchSectionImageManifest(): Promise<SectionImageManifest>
   return mergeManifests(buildDefaultManifest(), stored);
 }
 
-function uploadBuffer(
-  buffer: Buffer,
-  key: SectionImageKey
-): Promise<{ secure_url: string; version: number }> {
-  configureCloudinary();
-
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader
-      .upload_stream(
-        {
-          folder: FOLDER,
-          public_id: key,
-          overwrite: true,
-          invalidate: true,
-          resource_type: "image",
-          format: "jpg",
-        },
-        (error, result) => {
-          if (error || !result) {
-            reject(error ?? new Error("Cloudinary upload failed"));
-            return;
-          }
-          resolve({
-            secure_url: result.secure_url,
-            version: result.version ?? Date.now(),
-          });
-        }
-      )
-      .end(buffer);
-  });
-}
-
 export async function uploadSectionImage(
   key: SectionImageKey,
   file: Blob
 ): Promise<{ entry: SectionImageEntry; manifest: SectionImageManifest }> {
   if (!isCloudinaryConfigured()) {
     throw new Error(
-      "Cloudinary is not set up. Add CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in Vercel → Settings → Environment Variables."
+      "Cloudinary is not set up yet. Open src/config/cloudinary.ts, add your Cloud name and Upload preset from cloudinary.com (free), then push to GitHub once."
     );
   }
 
   const bytes = Buffer.from(await file.arrayBuffer());
-  const uploaded = await uploadBuffer(bytes, key);
+  const uploaded = await uploadToCloudinary(bytes, {
+    resourceType: "image",
+    publicId: `${FOLDER}/${key}`,
+    filename: `${key}.jpg`,
+  });
 
   const entry: SectionImageEntry = {
     url: uploaded.secure_url,
