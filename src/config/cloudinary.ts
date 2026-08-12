@@ -6,8 +6,7 @@
  * 3. Settings → Upload → Upload presets → Add preset:
  *    - Name: usrc-tigers (or any name — paste it below)
  *    - Signing mode: **Unsigned**
- *    - Folder: usrc-tigers
- *    - Overwrite assets with the same public ID: **enabled**
+ *    - Overwrite: **leave OFF** (unsigned presets cannot use overwrite)
  * 4. Paste cloud name + preset name below, commit, and push (site redeploys once)
  */
 export const CLOUDINARY_CLOUD_NAME = "aai6silw";

@@ -287,8 +287,8 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
             <li>Copy your <strong className="text-amber-50">Cloud name</strong> from the dashboard</li>
             <li>
               Settings → Upload → Upload presets → Add preset → set{" "}
-              <strong className="text-amber-50">Signing mode: Unsigned</strong>, enable{" "}
-              <strong className="text-amber-50">Overwrite</strong>
+              <strong className="text-amber-50">Signing mode: Unsigned</strong>{" "}
+              (leave Overwrite <strong className="text-amber-50">OFF</strong>)
             </li>
             <li>
               Edit{" "}
