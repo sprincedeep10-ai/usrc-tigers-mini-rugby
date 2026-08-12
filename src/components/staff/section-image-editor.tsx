@@ -187,7 +187,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
 
       showToast(
         "success",
-        `${SECTION_IMAGES.find((s) => s.key === key)?.label} updated — refresh the homepage to see it live`
+        `${SECTION_IMAGES.find((s) => s.key === key)?.label} updated — open or refresh the homepage to see it`
       );
     } catch {
       showToast("error", "Upload failed — please try again");
