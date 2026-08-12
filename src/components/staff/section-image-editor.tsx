@@ -119,7 +119,7 @@ function CropModal({
 }
 
 export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
-  const { versions, setVersion, refreshVersions } = useSectionImages();
+  const { images, storage, setImage, refreshImages } = useSectionImages();
   const fileInputRefs = useRef<Partial<Record<SectionImageKey, HTMLInputElement>>>({});
   const [pendingFiles, setPendingFiles] = useState<Partial<Record<SectionImageKey, Blob>>>({});
   const [previews, setPreviews] = useState<Partial<Record<SectionImageKey, string>>>({});
@@ -134,7 +134,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
 
   function imageSrc(key: SectionImageKey): string {
     if (previews[key]) return previews[key]!;
-    return getSectionImageDisplayUrl(key, versions[key]);
+    return getSectionImageDisplayUrl(key, images[key]);
   }
 
   function handleFileSelect(key: SectionImageKey, file: File) {
@@ -170,9 +170,13 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Upload failed");
 
-      setVersion(key, data.version);
-      const latest = await refreshVersions();
-      notifySectionImagesUpdated({ ...latest, [key]: data.version });
+      const entry = {
+        url: data.url as string,
+        updatedAt: data.updatedAt as number,
+      };
+      setImage(key, entry);
+      const latest = await refreshImages();
+      notifySectionImagesUpdated({ ...latest, [key]: entry });
 
       setPendingFiles((prev) => {
         const next = { ...prev };
@@ -187,10 +191,13 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
 
       showToast(
         "success",
-        `${SECTION_IMAGES.find((s) => s.key === key)?.label} updated — open or refresh the homepage to see it`
+        `${SECTION_IMAGES.find((s) => s.key === key)?.label} is live now — check the homepage`
       );
-    } catch {
-      showToast("error", "Upload failed — please try again");
+    } catch (error) {
+      showToast(
+        "error",
+        error instanceof Error ? error.message : "Upload failed — please try again"
+      );
     }
     setUploading(null);
   }
@@ -226,8 +233,15 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       <div className="rounded-2xl border border-tiger/20 bg-tiger/5 p-5">
         <h3 className="text-sm font-semibold text-foreground">Homepage Images</h3>
         <p className="mt-1 text-sm text-muted">
-          Replace the 4 main photos on the website.
+          Replace the 4 main photos on the website. Uploads go live instantly.
         </p>
+        {storage === "static" && (
+          <p className="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
+            Photo uploads need one-time setup: Vercel dashboard → this project →
+            Storage → Create Blob Store → Redeploy. Until then uploads will not
+            work.
+          </p>
+        )}
         <ol className="mt-3 list-decimal space-y-1 pl-4 text-xs text-muted">
           <li>
             Tap <strong className="text-foreground">Choose &amp; Crop</strong> and
@@ -242,8 +256,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
             green success message
           </li>
           <li>
-            Open the homepage in a new tab — the photo updates right away with a
-            smooth fade
+            Open the homepage — the new photo appears immediately
           </li>
         </ol>
       </div>

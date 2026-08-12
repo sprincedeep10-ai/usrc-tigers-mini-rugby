@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SectionImageProvider } from "@/components/section-image-provider";
-import { fetchSectionImageVersions } from "@/lib/section-image-versions";
+import {
+  fetchSectionImageManifest,
+  isBlobStorageConfigured,
+} from "@/lib/section-image-store";
 import Script from "next/script";
 import "./globals.css";
 
@@ -47,7 +50,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const sectionImageVersions = await fetchSectionImageVersions();
+  const sectionImages = await fetchSectionImageManifest();
+  const storage = isBlobStorageConfigured() ? "blob" : "static";
 
   return (
     <html lang="en" className="h-full scroll-smooth" suppressHydrationWarning>
@@ -59,7 +63,10 @@ export default async function RootLayout({
       <body className="min-h-full antialiased bg-background text-foreground">
         <ThemeProvider>
           <LanguageProvider>
-            <SectionImageProvider initialVersions={sectionImageVersions}>
+            <SectionImageProvider
+              initialImages={sectionImages}
+              initialStorage={storage}
+            >
               {children}
             </SectionImageProvider>
           </LanguageProvider>

@@ -42,29 +42,3 @@ export const SECTION_IMAGES: SectionImageMeta[] = [
 export const SECTION_IMAGE_PATHS = Object.fromEntries(
   SECTION_IMAGES.map((s) => [s.key, s.path])
 ) as Record<SectionImageKey, string>;
-
-export const SECTION_IMAGE_FILES: Record<SectionImageKey, string> = {
-  hero: "public/images/sections/hero-usrc-tigers.jpg",
-  about: "public/images/sections/about-usrc-players.jpg",
-  parents: "public/images/sections/parents-usrc-coaching.jpg",
-  mission: "public/images/sections/mission-usrc-tigers.jpg",
-};
-
-const GITHUB_RAW_BASE =
-  "https://raw.githubusercontent.com/sprincedeep10-ai/usrc-tigers-mini-rugby/main";
-
-/** GitHub raw URL — used only by the server-side image proxy */
-export function sectionImageRawUrl(
-  key: SectionImageKey,
-  version?: number
-): string {
-  const path = SECTION_IMAGE_FILES[key];
-  const query = version ? `?v=${version}` : "";
-  return `${GITHUB_RAW_BASE}/${path}${query}`;
-}
-
-/** Same-origin URL served via /api/section-images (reliable + cache-friendly) */
-export function sectionImageUrl(key: SectionImageKey, version?: number): string {
-  const query = version ? `?v=${version}` : "";
-  return `/api/section-images/${key}${query}`;
-}

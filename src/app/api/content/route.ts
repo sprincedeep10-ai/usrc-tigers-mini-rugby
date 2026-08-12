@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { getFileContents } from "@/lib/github";
-import {
-  fetchSectionImageVersions,
-  parseSectionImageVersions,
-} from "@/lib/section-image-versions";
+import { fetchSectionImageManifest } from "@/lib/section-image-store";
 
 export const dynamic = "force-dynamic";
 
@@ -18,12 +15,10 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 
 export async function GET() {
   try {
-    const [igContent, translationsContent, versionsContent] = await Promise.all([
+    const [igContent, translationsContent, sectionImages] = await Promise.all([
       withTimeout(getFileContents("src/data/ig-posts.ts"), 8000),
       withTimeout(getFileContents("src/lib/i18n/translations.ts"), 8000),
-      withTimeout(getFileContents("src/data/section-image-versions.ts"), 8000).catch(
-        () => null
-      ),
+      fetchSectionImageManifest(),
     ]);
 
     let posts: unknown[] = [];
@@ -45,12 +40,8 @@ export async function GET() {
       translations = new Function(`${cleaned}\nreturn translations;`)();
     } catch {}
 
-    const sectionImageVersions = versionsContent
-      ? parseSectionImageVersions(versionsContent.content)
-      : await fetchSectionImageVersions();
-
     return NextResponse.json(
-      { posts, translations, sectionImageVersions },
+      { posts, translations, sectionImages },
       {
         headers: {
           "Cache-Control": "public, s-maxage=10, stale-while-revalidate=30",

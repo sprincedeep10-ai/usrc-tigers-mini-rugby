@@ -1,13 +1,19 @@
 import { NextResponse } from "next/server";
-import { fetchSectionImageVersions } from "@/lib/section-image-versions";
+import {
+  fetchSectionImageManifest,
+  isBlobStorageConfigured,
+} from "@/lib/section-image-store";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const sectionImageVersions = await fetchSectionImageVersions();
+    const images = await fetchSectionImageManifest();
     return NextResponse.json(
-      { sectionImageVersions },
+      {
+        images,
+        storage: isBlobStorageConfigured() ? "blob" : "static",
+      },
       {
         headers: {
           "Cache-Control": "no-store, no-cache, must-revalidate",
@@ -16,7 +22,7 @@ export async function GET() {
     );
   } catch (error) {
     return NextResponse.json(
-      { error: `Failed to fetch versions: ${error}` },
+      { error: `Failed to load images: ${error}` },
       { status: 500 }
     );
   }

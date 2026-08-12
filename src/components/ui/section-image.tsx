@@ -57,6 +57,8 @@ export function SectionImage({
     };
   }, [targetUrl, displayUrl]);
 
+  const isRemote = displayUrl.startsWith("http");
+
   return (
     <Image
       src={displayUrl}
@@ -64,6 +66,7 @@ export function SectionImage({
       fill={fill}
       priority={priority}
       sizes={sizes}
+      unoptimized={isRemote}
       className={cn(
         "object-cover transition-opacity duration-300 ease-in-out",
         visible ? "opacity-100" : "opacity-0",

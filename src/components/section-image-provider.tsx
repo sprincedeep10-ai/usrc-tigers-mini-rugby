@@ -9,76 +9,75 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { type SectionImageKey } from "@/data/section-images";
 import {
-  sectionImageUrl,
-  type SectionImageKey,
-} from "@/data/section-images";
-import { SECTION_IMAGE_VERSIONS } from "@/data/section-image-versions";
-import type { SectionImageVersionMap } from "@/lib/section-image-versions";
+  buildDefaultManifest,
+  resolveSectionImageUrl,
+  type SectionImageEntry,
+  type SectionImageManifest,
+} from "@/lib/section-image-utils";
 
 const CHANNEL_NAME = "usrc-section-images";
 
 interface SectionImageContextValue {
-  versions: SectionImageVersionMap;
+  images: SectionImageManifest;
+  storage: "blob" | "static";
   getImageUrl: (key: SectionImageKey) => string;
-  refreshVersions: () => Promise<SectionImageVersionMap>;
-  setVersion: (key: SectionImageKey, version: number) => void;
+  refreshImages: () => Promise<SectionImageManifest>;
+  setImage: (key: SectionImageKey, entry: SectionImageEntry) => void;
 }
 
 const SectionImageContext = createContext<SectionImageContextValue | null>(null);
 
-function mergeVersions(
-  initial: SectionImageVersionMap,
-  fallback: SectionImageVersionMap
-): SectionImageVersionMap {
-  return { ...fallback, ...initial };
-}
-
-export function notifySectionImagesUpdated(versions: SectionImageVersionMap) {
+export function notifySectionImagesUpdated(manifest: SectionImageManifest) {
   try {
-    new BroadcastChannel(CHANNEL_NAME).postMessage({ type: "update", versions });
+    new BroadcastChannel(CHANNEL_NAME).postMessage({ type: "update", manifest });
   } catch {}
 }
 
 export function SectionImageProvider({
-  initialVersions,
+  initialImages,
+  initialStorage = "static",
   children,
 }: {
-  initialVersions?: SectionImageVersionMap;
+  initialImages?: SectionImageManifest;
+  initialStorage?: "blob" | "static";
   children: ReactNode;
 }) {
-  const [versions, setVersions] = useState<SectionImageVersionMap>(() =>
-    mergeVersions(initialVersions ?? {}, SECTION_IMAGE_VERSIONS)
+  const [images, setImages] = useState<SectionImageManifest>(
+    () => initialImages ?? buildDefaultManifest()
   );
+  const [storage, setStorage] = useState<"blob" | "static">(initialStorage);
 
-  const refreshVersions = useCallback(async () => {
+  const refreshImages = useCallback(async () => {
     const res = await fetch("/api/section-images/versions", { cache: "no-store" });
     if (!res.ok) {
-      throw new Error("Failed to refresh section image versions");
+      throw new Error("Failed to refresh section images");
     }
-    const data = (await res.json()) as { sectionImageVersions?: SectionImageVersionMap };
-    const next = mergeVersions(data.sectionImageVersions ?? {}, SECTION_IMAGE_VERSIONS);
-    setVersions(next);
+    const data = (await res.json()) as {
+      images?: SectionImageManifest;
+      storage?: "blob" | "static";
+    };
+    const next = { ...buildDefaultManifest(), ...data.images };
+    setImages(next);
+    if (data.storage) setStorage(data.storage);
     return next;
   }, []);
 
-  const setVersion = useCallback((key: SectionImageKey, version: number) => {
-    setVersions((prev) => ({ ...prev, [key]: version }));
+  const setImage = useCallback((key: SectionImageKey, entry: SectionImageEntry) => {
+    setImages((prev) => ({ ...prev, [key]: entry }));
   }, []);
 
   const getImageUrl = useCallback(
-    (key: SectionImageKey) => {
-      const version = versions[key] ?? SECTION_IMAGE_VERSIONS[key];
-      return sectionImageUrl(key, version);
-    },
-    [versions]
+    (key: SectionImageKey) => resolveSectionImageUrl(images, key),
+    [images]
   );
 
   useEffect(() => {
-    refreshVersions().catch(() => {});
+    refreshImages().catch(() => {});
 
     const onFocus = () => {
-      refreshVersions().catch(() => {});
+      refreshImages().catch(() => {});
     };
     window.addEventListener("focus", onFocus);
 
@@ -86,8 +85,8 @@ export function SectionImageProvider({
     try {
       channel = new BroadcastChannel(CHANNEL_NAME);
       channel.onmessage = (event) => {
-        if (event.data?.type === "update" && event.data.versions) {
-          setVersions((prev) => ({ ...prev, ...event.data.versions }));
+        if (event.data?.type === "update" && event.data.manifest) {
+          setImages((prev) => ({ ...prev, ...event.data.manifest }));
         }
       };
     } catch {}
@@ -96,11 +95,11 @@ export function SectionImageProvider({
       window.removeEventListener("focus", onFocus);
       channel?.close();
     };
-  }, [refreshVersions]);
+  }, [refreshImages]);
 
   const value = useMemo(
-    () => ({ versions, getImageUrl, refreshVersions, setVersion }),
-    [versions, getImageUrl, refreshVersions, setVersion]
+    () => ({ images, storage, getImageUrl, refreshImages, setImage }),
+    [images, storage, getImageUrl, refreshImages, setImage]
   );
 
   return (
@@ -125,7 +124,9 @@ export function useSectionImage(key: SectionImageKey): string {
 
 export function getSectionImageDisplayUrl(
   key: SectionImageKey,
-  version?: number
+  entry?: SectionImageEntry
 ): string {
-  return sectionImageUrl(key, version ?? SECTION_IMAGE_VERSIONS[key]);
+  const manifest = buildDefaultManifest();
+  if (entry) manifest[key] = entry;
+  return resolveSectionImageUrl(manifest, key);
 }
