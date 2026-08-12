@@ -1,15 +1,17 @@
 /**
- * One-time setup (free Supabase account — no Vercel env vars needed):
- *
- * 1. Sign up at https://supabase.com/dashboard
- * 2. Create a new project (free tier)
- * 3. Storage → New bucket → name: section-images → Public bucket: ON
- * 4. Project Settings → API → copy Project URL + service_role key (secret)
- * 5. Paste below, commit, and push (site redeploys once)
+ * Server-only Supabase credentials.
+ * Project URL lives in supabase-public.ts (also used by the browser).
  */
-export const SUPABASE_URL = "";
-export const SUPABASE_SERVICE_ROLE_KEY = "";
+import {
+  SUPABASE_URL,
+  isSupabasePublicConfigured,
+} from "@/config/supabase-public";
+
+export { SUPABASE_URL, isSupabasePublicConfigured };
+
+export const SUPABASE_SERVICE_ROLE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmanJqcG5waGx1anhoaXZ4aGluIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjUzMTA5MiwiZXhwIjoyMTAyMTA3MDkyfQ.e3yprpcLmqaWwC60A4PMi97HPegA0YWodc2c1GZAc90";
 
 export function isSupabaseConfigured(): boolean {
-  return Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+  return isSupabasePublicConfigured() && Boolean(SUPABASE_SERVICE_ROLE_KEY);
 }

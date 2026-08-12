@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   fetchSectionImageManifest,
   isSupabaseConfigured,
+  isSupabasePublicConfigured,
 } from "@/lib/section-image-storage";
 import { manifestToVersions } from "@/lib/section-image-utils";
 
@@ -18,6 +19,7 @@ export async function GET() {
         sectionImageVersions,
         storage: "supabase",
         configured: isSupabaseConfigured(),
+        publicConfigured: isSupabasePublicConfigured(),
       },
       {
         headers: {

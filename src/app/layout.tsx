@@ -6,6 +6,9 @@ import { fetchSectionImageManifest } from "@/lib/section-image-storage";
 import Script from "next/script";
 import "./globals.css";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "USRC Tigers Mini Rugby | Hong Kong's Premier Mini Rugby Programme",
   description:
