@@ -29,7 +29,7 @@ export function StaffLoginForm() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-tiger/10">
           <Lock className="h-7 w-7 text-tiger" />
         </div>
-        <h1 className="text-2xl font-bold text-foreground">Staff Access</h1>
+        <h1 className="text-2xl font-bold text-foreground">Admin Access</h1>
         <p className="mt-2 text-sm text-muted">
           Sign in to manage site content
         </p>

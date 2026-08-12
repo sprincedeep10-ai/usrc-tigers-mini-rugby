@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getFileContents } from "@/lib/github";
+import { SECTION_IMAGE_VERSIONS } from "@/data/section-image-versions";
 
 export const dynamic = "force-dynamic";
 
@@ -12,11 +13,26 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   ]);
 }
 
+function parseSectionImageVersions(content: string): Record<string, number> {
+  try {
+    const match = content.match(
+      /export const SECTION_IMAGE_VERSIONS[^=]*=\s*(\{[\s\S]*?\});/
+    );
+    if (match) {
+      return new Function(`return ${match[1]}`)() as Record<string, number>;
+    }
+  } catch {}
+  return { ...SECTION_IMAGE_VERSIONS };
+}
+
 export async function GET() {
   try {
-    const [igContent, translationsContent] = await Promise.all([
+    const [igContent, translationsContent, versionsContent] = await Promise.all([
       withTimeout(getFileContents("src/data/ig-posts.ts"), 8000),
       withTimeout(getFileContents("src/lib/i18n/translations.ts"), 8000),
+      withTimeout(getFileContents("src/data/section-image-versions.ts"), 8000).catch(
+        () => null
+      ),
     ]);
 
     let posts: unknown[] = [];
@@ -38,8 +54,12 @@ export async function GET() {
       translations = new Function(`${cleaned}\nreturn translations;`)();
     } catch {}
 
+    const sectionImageVersions = versionsContent
+      ? parseSectionImageVersions(versionsContent.content)
+      : { ...SECTION_IMAGE_VERSIONS };
+
     return NextResponse.json(
-      { posts, translations },
+      { posts, translations, sectionImageVersions },
       {
         headers: {
           "Cache-Control": "public, s-maxage=10, stale-while-revalidate=30",

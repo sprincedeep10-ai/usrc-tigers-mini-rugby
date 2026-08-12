@@ -11,11 +11,13 @@ import { GAMEDAY_URL, TESTIMONIAL_INITIALS } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { MessageCircle, Star, Users } from "lucide-react";
 import Image from "next/image";
+import { useSectionImage } from "@/hooks/use-section-image";
 
 const highlightIcons = [Users, MessageCircle, Star];
 
 export function ParentsSection() {
   const { t } = useLanguage();
+  const parentsImage = useSectionImage("parents");
 
   return (
     <section id="parents" className="relative py-24 lg:py-32 bg-section-alt tiger-stripe">
@@ -80,11 +82,13 @@ export function ParentsSection() {
           <div className="grid items-center gap-10 lg:grid-cols-2 rounded-3xl border border-tiger/20 bg-tiger-muted p-8 lg:p-12">
             <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
               <Image
-                src="/images/sections/parents-usrc-coaching.jpg"
+                key={parentsImage}
+                src={parentsImage}
                 alt={t.parents.imageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                unoptimized={parentsImage.startsWith("https://")}
               />
             </div>
             <div>
