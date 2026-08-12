@@ -12,6 +12,7 @@ import {
   notifySectionImagesUpdated,
   useSectionImages,
 } from "@/components/section-image-provider";
+import { mergeManifests } from "@/lib/section-image-utils";
 import { Loader2, Upload, Check, X, Crop } from "lucide-react";
 
 interface SectionImageEditorProps {
@@ -168,6 +169,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       const formData = new FormData();
       formData.append("file", blob, `${key}.jpg`);
       formData.append("section", key);
+      formData.append("manifest", JSON.stringify(images));
 
       const res = await authFetch("/api/staff/section-images/upload", {
         method: "POST",
@@ -177,17 +179,14 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Upload failed");
 
-      if (data.images) {
-        applyManifest(data.images);
-        notifySectionImagesUpdated(data.images);
-      } else if (data.imageUrl && data.updatedAt) {
-        const entry = {
-          url: data.imageUrl as string,
-          updatedAt: data.updatedAt as number,
-        };
-        applyManifest({ [key]: entry });
-        notifySectionImagesUpdated({ [key]: entry });
-      }
+      const entry = {
+        url: (data.imageUrl as string) ?? images[key]?.url ?? "",
+        updatedAt: (data.updatedAt as number) ?? Date.now(),
+      };
+
+      const nextManifest = mergeManifests(images, { [key]: entry });
+      applyManifest(nextManifest);
+      notifySectionImagesUpdated(nextManifest);
 
       setPendingFiles((prev) => {
         const next = { ...prev };
@@ -269,35 +268,32 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5">
           <h3 className="text-sm font-semibold text-amber-200">One-time setup needed</h3>
           <p className="mt-2 text-sm text-amber-100/90">
-            Photo uploads use Cloudinary (free, instant CDN). No Vercel Pro or environment
-            variables needed — just two values in a config file:
+            Photo uploads use Cloudinary (free, instant CDN). No Vercel settings needed —
+            add three values from your Cloudinary dashboard to{" "}
+            <code className="text-amber-50">src/config/cloudinary.ts</code>, then push once:
           </p>
-          <ol className="mt-3 list-decimal space-y-2 pl-5 text-xs text-amber-100/80">
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-amber-100/80">
             <li>
-              Sign up free at{" "}
-              <a
-                href="https://cloudinary.com/users/register/free"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline text-amber-50"
-              >
-                cloudinary.com
-              </a>
-            </li>
-            <li>Copy your <strong className="text-amber-50">Cloud name</strong> from the dashboard</li>
-            <li>
-              Settings → Upload → Upload presets → Add preset → set{" "}
-              <strong className="text-amber-50">Signing mode: Unsigned</strong>{" "}
-              (leave Overwrite <strong className="text-amber-50">OFF</strong>)
+              <code className="text-amber-50">CLOUDINARY_CLOUD_NAME</code>
             </li>
             <li>
-              Edit{" "}
-              <code className="text-amber-50">src/config/cloudinary.ts</code> on GitHub — paste
-              Cloud name + preset name, commit &amp; push (one redeploy)
+              <code className="text-amber-50">CLOUDINARY_API_KEY</code>
             </li>
-          </ol>
+            <li>
+              <code className="text-amber-50">CLOUDINARY_API_SECRET</code>
+            </li>
+          </ul>
           <p className="mt-3 text-xs text-amber-100/80">
-            After that, uploads work instantly with no further setup.
+            Find all three on{" "}
+            <a
+              href="https://cloudinary.com/console"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-amber-50"
+            >
+              cloudinary.com
+            </a>{" "}
+            → Dashboard home page.
           </p>
         </div>
       )}

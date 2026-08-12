@@ -2,16 +2,17 @@
  * One-time setup (free Cloudinary account — no Vercel env vars needed):
  *
  * 1. Sign up at https://cloudinary.com/users/register/free
- * 2. Dashboard → copy your **Cloud name**
- * 3. Settings → Upload → Upload presets → Add preset:
- *    - Name: usrc-tigers (or any name — paste it below)
- *    - Signing mode: **Unsigned**
- *    - Overwrite: **leave OFF** (unsigned presets cannot use overwrite)
- * 4. Paste cloud name + preset name below, commit, and push (site redeploys once)
+ * 2. Dashboard → copy **Cloud name**, **API Key**, and **API Secret**
+ * 3. Paste all three below, commit, and push (site redeploys once)
+ *
+ * No upload preset needed — signed uploads handle everything reliably.
  */
 export const CLOUDINARY_CLOUD_NAME = "aai6silw";
-export const CLOUDINARY_UPLOAD_PRESET = "usrc-tigers";
+export const CLOUDINARY_API_KEY = "";
+export const CLOUDINARY_API_SECRET = "";
 
 export function isCloudinaryConfigured(): boolean {
-  return Boolean(CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET);
+  return Boolean(
+    CLOUDINARY_CLOUD_NAME && CLOUDINARY_API_KEY && CLOUDINARY_API_SECRET
+  );
 }

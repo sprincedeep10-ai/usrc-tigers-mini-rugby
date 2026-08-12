@@ -4,7 +4,7 @@ import {
   isCloudinaryConfigured,
   uploadSectionImage,
 } from "@/lib/section-image-cloudinary";
-import { getSectionImageDisplayUrl } from "@/lib/section-image-utils";
+import { mergeManifests, type SectionImageManifest } from "@/lib/section-image-utils";
 import { SECTION_IMAGE_PATHS, type SectionImageKey } from "@/data/section-images";
 
 function isSectionKey(value: string): value is SectionImageKey {
@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
     const section = formData.get("section") as string | null;
+    const manifestRaw = formData.get("manifest") as string | null;
 
     if (!file || !section || !isSectionKey(section)) {
       return NextResponse.json(
@@ -41,14 +42,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { entry, manifest } = await uploadSectionImage(section, file);
-    const imageUrl = getSectionImageDisplayUrl(section, entry);
+    let currentManifest: SectionImageManifest | undefined;
+    if (manifestRaw) {
+      try {
+        currentManifest = JSON.parse(manifestRaw) as SectionImageManifest;
+      } catch {}
+    }
+
+    const { entry, manifest } = await uploadSectionImage(
+      section,
+      file,
+      currentManifest
+    );
 
     return NextResponse.json({
       success: true,
       section,
       updatedAt: entry.updatedAt,
-      imageUrl,
+      imageUrl: entry.url,
       images: manifest,
     });
   } catch (error) {

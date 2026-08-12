@@ -1,9 +1,11 @@
+import { v2 as cloudinary } from "cloudinary";
 import {
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
   CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_UPLOAD_PRESET,
   isCloudinaryConfigured,
 } from "@/config/cloudinary";
-import { SECTION_IMAGE_PATHS, type SectionImageKey } from "@/data/section-images";
+import { type SectionImageKey } from "@/data/section-images";
 import {
   buildDefaultManifest,
   mergeManifests,
@@ -14,133 +16,113 @@ import {
 export { isCloudinaryConfigured };
 
 const FOLDER = "usrc-tigers/sections";
+const MANIFEST_ID = "usrc-tigers/section-images-manifest";
 
-interface CloudinaryUploadResult {
-  secure_url: string;
-  version: number;
-  created_at?: string;
+function configureCloudinary() {
+  cloudinary.config({
+    cloud_name: CLOUDINARY_CLOUD_NAME,
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRET,
+    secure: true,
+  });
 }
 
-interface CloudinaryListResource {
-  secure_url: string;
-  version: number;
-  created_at: string;
+function manifestUrl(): string {
+  return cloudinary.url(MANIFEST_ID, { resource_type: "raw", secure: true });
 }
 
-interface CloudinaryListResponse {
-  resources?: CloudinaryListResource[];
-}
+async function fetchManifestFromCloud(): Promise<SectionImageManifest | null> {
+  if (!isCloudinaryConfigured()) return null;
 
-function sectionTag(key: SectionImageKey): string {
-  return `usrc-section-${key}`;
-}
-
-async function uploadToCloudinary(
-  body: Buffer,
-  options: {
-    resourceType: "image" | "raw";
-    publicId: string;
-    filename: string;
-    tags?: string;
-  }
-): Promise<CloudinaryUploadResult> {
-  const form = new FormData();
-  form.append("file", new Blob([new Uint8Array(body)]), options.filename);
-  form.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-  form.append("public_id", options.publicId);
-  if (options.tags) {
-    form.append("tags", options.tags);
-  }
-
-  const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${options.resourceType}/upload`,
-    { method: "POST", body: form }
-  );
-
-  if (!res.ok) {
-    const detail = await res.text();
-    throw new Error(`Cloudinary upload failed (${res.status}): ${detail}`);
-  }
-
-  const data = (await res.json()) as CloudinaryUploadResult;
-  return {
-    secure_url: data.secure_url,
-    version: data.version ?? Date.now(),
-    created_at: data.created_at,
-  };
-}
-
-async function fetchLatestForSection(
-  key: SectionImageKey
-): Promise<SectionImageEntry | null> {
-  const tag = sectionTag(key);
-  const listUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/list/${tag}.json`;
+  configureCloudinary();
 
   try {
-    const res = await fetch(`${listUrl}?t=${Date.now()}`, { cache: "no-store" });
+    const res = await fetch(`${manifestUrl()}?t=${Date.now()}`, {
+      cache: "no-store",
+    });
     if (!res.ok) return null;
-
-    const data = (await res.json()) as CloudinaryListResponse;
-    const resources = data.resources ?? [];
-    if (resources.length === 0) return null;
-
-    const latest = resources.reduce((best, item) =>
-      new Date(item.created_at).getTime() > new Date(best.created_at).getTime()
-        ? item
-        : best
-    );
-
-    return {
-      url: latest.secure_url,
-      updatedAt: latest.version ?? new Date(latest.created_at).getTime(),
-    };
+    return (await res.json()) as SectionImageManifest;
   } catch {
     return null;
   }
 }
 
+async function saveManifest(manifest: SectionImageManifest): Promise<void> {
+  configureCloudinary();
+  const json = JSON.stringify(manifest, null, 2);
+  const dataUri = `data:application/json;base64,${Buffer.from(json).toString("base64")}`;
+
+  await cloudinary.uploader.upload(dataUri, {
+    public_id: MANIFEST_ID,
+    resource_type: "raw",
+    overwrite: true,
+    invalidate: true,
+  });
+}
+
 export async function fetchSectionImageManifest(): Promise<SectionImageManifest> {
-  if (!isCloudinaryConfigured()) return buildDefaultManifest();
+  const stored = await fetchManifestFromCloud();
+  if (!stored) return buildDefaultManifest();
+  return mergeManifests(buildDefaultManifest(), stored);
+}
 
-  const keys = Object.keys(SECTION_IMAGE_PATHS) as SectionImageKey[];
-  const entries = await Promise.all(
-    keys.map(async (key) => [key, await fetchLatestForSection(key)] as const)
-  );
+function uploadBuffer(
+  buffer: Buffer,
+  key: SectionImageKey
+): Promise<{ secure_url: string; version: number }> {
+  configureCloudinary();
 
-  const fromCloud = Object.fromEntries(
-    entries.filter(([, entry]) => entry != null)
-  ) as SectionImageManifest;
-
-  return mergeManifests(buildDefaultManifest(), fromCloud);
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader
+      .upload_stream(
+        {
+          folder: FOLDER,
+          public_id: key,
+          overwrite: true,
+          invalidate: true,
+          resource_type: "image",
+          format: "jpg",
+        },
+        (error, result) => {
+          if (error || !result) {
+            reject(error ?? new Error("Cloudinary upload failed"));
+            return;
+          }
+          resolve({
+            secure_url: result.secure_url,
+            version: result.version ?? Date.now(),
+          });
+        }
+      )
+      .end(buffer);
+  });
 }
 
 export async function uploadSectionImage(
   key: SectionImageKey,
-  file: Blob
+  file: Blob,
+  currentManifest?: SectionImageManifest
 ): Promise<{ entry: SectionImageEntry; manifest: SectionImageManifest }> {
   if (!isCloudinaryConfigured()) {
     throw new Error(
-      "Cloudinary is not set up yet. Open src/config/cloudinary.ts, add your Cloud name and Upload preset from cloudinary.com (free), then push to GitHub once."
+      "Cloudinary is not set up yet. Open src/config/cloudinary.ts and add your Cloud name, API Key, and API Secret from cloudinary.com (free), then push to GitHub once."
     );
   }
 
   const bytes = Buffer.from(await file.arrayBuffer());
-  const stamp = Date.now();
-  const uploaded = await uploadToCloudinary(bytes, {
-    resourceType: "image",
-    publicId: `${FOLDER}/${key}-${stamp}`,
-    filename: `${key}.jpg`,
-    tags: sectionTag(key),
-  });
+  const uploaded = await uploadBuffer(bytes, key);
 
   const entry: SectionImageEntry = {
     url: uploaded.secure_url,
-    updatedAt: uploaded.version ?? stamp,
+    updatedAt: uploaded.version,
   };
 
-  const manifest = mergeManifests(await fetchSectionImageManifest(), {
-    [key]: entry,
-  });
+  const base = mergeManifests(
+    currentManifest ?? (await fetchSectionImageManifest()),
+    { [key]: entry }
+  );
 
-  return { entry, manifest };
+  await saveManifest(base);
+
+  return { entry, manifest: base };
 }
