@@ -2,6 +2,7 @@ import { head, put } from "@vercel/blob";
 import { type SectionImageKey } from "@/data/section-images";
 import {
   buildDefaultManifest,
+  mergeManifests,
   type SectionImageEntry,
   type SectionImageManifest,
 } from "@/lib/section-image-utils";
@@ -14,6 +15,20 @@ export function isBlobStorageConfigured(): boolean {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 }
 
+async function readManifestFromBlob(): Promise<SectionImageManifest | null> {
+  try {
+    const meta = await head(MANIFEST_PATH);
+    const res = await fetch(`${meta.url}?t=${Date.now()}`, {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as SectionImageManifest;
+  } catch {
+    return null;
+  }
+}
+
 export async function fetchSectionImageManifest(): Promise<SectionImageManifest> {
   const defaults = buildDefaultManifest();
 
@@ -21,15 +36,9 @@ export async function fetchSectionImageManifest(): Promise<SectionImageManifest>
     return defaults;
   }
 
-  try {
-    const meta = await head(MANIFEST_PATH);
-    const res = await fetch(meta.url, { cache: "no-store" });
-    if (!res.ok) return defaults;
-    const stored = (await res.json()) as SectionImageManifest;
-    return { ...defaults, ...stored };
-  } catch {
-    return defaults;
-  }
+  const stored = await readManifestFromBlob();
+  if (!stored) return defaults;
+  return mergeManifests(defaults, stored);
 }
 
 async function persistManifest(manifest: SectionImageManifest): Promise<void> {
@@ -38,13 +47,15 @@ async function persistManifest(manifest: SectionImageManifest): Promise<void> {
     contentType: "application/json",
     addRandomSuffix: false,
     allowOverwrite: true,
-    cacheControlMaxAge: 60,
+    cacheControlMaxAge: 0,
   });
 }
 
 async function verifyImageUrl(url: string): Promise<void> {
   for (let attempt = 1; attempt <= 4; attempt++) {
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(`${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`, {
+      cache: "no-store",
+    });
     if (res.ok) return;
     await new Promise((r) => setTimeout(r, 300 * attempt));
   }
@@ -54,7 +65,7 @@ async function verifyImageUrl(url: string): Promise<void> {
 export async function uploadSectionImage(
   key: SectionImageKey,
   file: Blob
-): Promise<SectionImageEntry> {
+): Promise<{ entry: SectionImageEntry; manifest: SectionImageManifest }> {
   if (!isBlobStorageConfigured()) {
     throw new Error(
       "Image storage is not set up. In the Vercel dashboard, open this project → Storage → Create Blob Store, then redeploy."
@@ -74,9 +85,20 @@ export async function uploadSectionImage(
   const entry: SectionImageEntry = { url: uploaded.url, updatedAt };
   await verifyImageUrl(uploaded.url);
 
-  const manifest = await fetchSectionImageManifest();
-  manifest[key] = entry;
-  await persistManifest(manifest);
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const current = await fetchSectionImageManifest();
+    const manifest = mergeManifests(current, { [key]: entry });
+    await persistManifest(manifest);
 
-  return entry;
+    const verified = await readManifestFromBlob();
+    const saved = verified?.[key];
+    if (saved && saved.updatedAt >= entry.updatedAt && saved.url === entry.url) {
+      return { entry, manifest: mergeManifests(manifest, verified ?? {}) };
+    }
+
+    await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+  }
+
+  const manifest = mergeManifests(await fetchSectionImageManifest(), { [key]: entry });
+  return { entry, manifest };
 }

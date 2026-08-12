@@ -41,8 +41,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const entry = await uploadSectionImage(section, file);
-    const imageUrl = resolveSectionImageUrl({ [section]: entry }, section);
+    const { entry, manifest } = await uploadSectionImage(section, file);
+    const imageUrl = resolveSectionImageUrl(manifest, section);
 
     return NextResponse.json({
       success: true,
@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
       url: entry.url,
       updatedAt: entry.updatedAt,
       imageUrl,
+      images: manifest,
     });
   } catch (error) {
     return NextResponse.json(

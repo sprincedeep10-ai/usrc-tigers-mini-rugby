@@ -30,3 +30,24 @@ export function resolveSectionImageUrl(
   const separator = entry.url.includes("?") ? "&" : "?";
   return `${entry.url}${separator}v=${entry.updatedAt}`;
 }
+
+/** Keep the newest entry per section when merging manifests */
+export function mergeManifests(
+  ...manifests: SectionImageManifest[]
+): SectionImageManifest {
+  const keys = Object.keys(SECTION_IMAGE_PATHS) as SectionImageKey[];
+  const result = buildDefaultManifest();
+
+  for (const key of keys) {
+    let best = result[key]!;
+    for (const manifest of manifests) {
+      const entry = manifest[key];
+      if (entry && entry.updatedAt >= best.updatedAt) {
+        best = entry;
+      }
+    }
+    result[key] = best;
+  }
+
+  return result;
+}

@@ -12,6 +12,7 @@ import {
 import { type SectionImageKey } from "@/data/section-images";
 import {
   buildDefaultManifest,
+  mergeManifests,
   resolveSectionImageUrl,
   type SectionImageEntry,
   type SectionImageManifest,
@@ -24,6 +25,7 @@ interface SectionImageContextValue {
   storage: "blob" | "static";
   getImageUrl: (key: SectionImageKey) => string;
   refreshImages: () => Promise<SectionImageManifest>;
+  applyManifest: (manifest: SectionImageManifest) => void;
   setImage: (key: SectionImageKey, entry: SectionImageEntry) => void;
 }
 
@@ -44,13 +46,19 @@ export function SectionImageProvider({
   initialStorage?: "blob" | "static";
   children: ReactNode;
 }) {
-  const [images, setImages] = useState<SectionImageManifest>(
-    () => initialImages ?? buildDefaultManifest()
+  const [images, setImages] = useState<SectionImageManifest>(() =>
+    mergeManifests(buildDefaultManifest(), initialImages ?? {})
   );
   const [storage, setStorage] = useState<"blob" | "static">(initialStorage);
 
+  const applyManifest = useCallback((manifest: SectionImageManifest) => {
+    setImages((prev) => mergeManifests(prev, manifest));
+  }, []);
+
   const refreshImages = useCallback(async () => {
-    const res = await fetch("/api/section-images/versions", { cache: "no-store" });
+    const res = await fetch(`/api/section-images/versions?t=${Date.now()}`, {
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("Failed to refresh section images");
     }
@@ -58,14 +66,14 @@ export function SectionImageProvider({
       images?: SectionImageManifest;
       storage?: "blob" | "static";
     };
-    const next = { ...buildDefaultManifest(), ...data.images };
-    setImages(next);
+    const next = mergeManifests(buildDefaultManifest(), data.images ?? {});
+    setImages((prev) => mergeManifests(prev, next));
     if (data.storage) setStorage(data.storage);
     return next;
   }, []);
 
   const setImage = useCallback((key: SectionImageKey, entry: SectionImageEntry) => {
-    setImages((prev) => ({ ...prev, [key]: entry }));
+    setImages((prev) => mergeManifests(prev, { [key]: entry }));
   }, []);
 
   const getImageUrl = useCallback(
@@ -86,7 +94,7 @@ export function SectionImageProvider({
       channel = new BroadcastChannel(CHANNEL_NAME);
       channel.onmessage = (event) => {
         if (event.data?.type === "update" && event.data.manifest) {
-          setImages((prev) => ({ ...prev, ...event.data.manifest }));
+          setImages((prev) => mergeManifests(prev, event.data.manifest));
         }
       };
     } catch {}
@@ -98,8 +106,8 @@ export function SectionImageProvider({
   }, [refreshImages]);
 
   const value = useMemo(
-    () => ({ images, storage, getImageUrl, refreshImages, setImage }),
-    [images, storage, getImageUrl, refreshImages, setImage]
+    () => ({ images, storage, getImageUrl, refreshImages, applyManifest, setImage }),
+    [images, storage, getImageUrl, refreshImages, applyManifest, setImage]
   );
 
   return (

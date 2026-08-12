@@ -2,7 +2,6 @@
 
 import { useCallback, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
-import Image from "next/image";
 import { getCroppedImg } from "@/lib/crop-image";
 import {
   SECTION_IMAGES,
@@ -13,6 +12,7 @@ import {
   notifySectionImagesUpdated,
   useSectionImages,
 } from "@/components/section-image-provider";
+import type { SectionImageManifest } from "@/lib/section-image-utils";
 import { Loader2, Upload, Check, X, Crop } from "lucide-react";
 
 interface SectionImageEditorProps {
@@ -119,7 +119,7 @@ function CropModal({
 }
 
 export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
-  const { images, storage, setImage, refreshImages } = useSectionImages();
+  const { images, storage, applyManifest } = useSectionImages();
   const fileInputRefs = useRef<Partial<Record<SectionImageKey, HTMLInputElement>>>({});
   const [pendingFiles, setPendingFiles] = useState<Partial<Record<SectionImageKey, Blob>>>({});
   const [previews, setPreviews] = useState<Partial<Record<SectionImageKey, string>>>({});
@@ -170,13 +170,17 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Upload failed");
 
-      const entry = {
-        url: data.url as string,
-        updatedAt: data.updatedAt as number,
-      };
-      setImage(key, entry);
-      const latest = await refreshImages();
-      notifySectionImagesUpdated({ ...latest, [key]: entry });
+      if (data.images) {
+        applyManifest(data.images as SectionImageManifest);
+        notifySectionImagesUpdated(data.images as SectionImageManifest);
+      } else {
+        const entry = {
+          url: data.url as string,
+          updatedAt: data.updatedAt as number,
+        };
+        applyManifest({ [key]: entry });
+        notifySectionImagesUpdated({ [key]: entry });
+      }
 
       setPendingFiles((prev) => {
         const next = { ...prev };
@@ -265,6 +269,8 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
         {SECTION_IMAGES.map((section) => {
           const hasPending = !!pendingFiles[section.key];
           const isUploading = uploading === section.key;
+          const src = imageSrc(section.key);
+          const cacheKey = images[section.key]?.updatedAt ?? 0;
 
           return (
             <div
@@ -277,13 +283,12 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
                 className="relative bg-black/20"
                 style={{ aspectRatio: section.aspect }}
               >
-                <Image
-                  src={imageSrc(section.key)}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  key={`${section.key}-${cacheKey}-${hasPending ? "pending" : "live"}`}
+                  src={src}
                   alt={section.label}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                  sizes="400px"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
                 {hasPending && (
                   <div className="absolute left-2 top-2 rounded-full bg-tiger px-2 py-0.5 text-[10px] font-bold text-black">
