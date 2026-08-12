@@ -9,48 +9,35 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via hook (preferred)
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK != '' }}
-        run: curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+      - uses: actions/checkout@v4
 
-      - name: Checkout
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN != '' }}
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN != '' }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
-
-      - name: Install dependencies
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN != '' }}
-        run: npm ci
-
-      - name: Pull Vercel env
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN != '' }}
-        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Trigger production deploy
         env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Build
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN != '' }}
-        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Deploy to production
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN != '' }}
-        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: No deploy credentials configured
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' && secrets.VERCEL_TOKEN == '' }}
         run: |
-          echo "::warning::Add VERCEL_DEPLOY_HOOK to GitHub repo secrets, or redeploy manually in the Vercel dashboard."
+          set -euo pipefail
+
+          if [ -n "${DEPLOY_HOOK}" ]; then
+            echo "Deploying via Vercel deploy hook..."
+            curl -fsS -X POST "${DEPLOY_HOOK}"
+            echo "Deploy hook triggered successfully."
+            exit 0
+          fi
+
+          if [ -n "${VERCEL_TOKEN}" ] && [ -n "${VERCEL_ORG_ID}" ] && [ -n "${VERCEL_PROJECT_ID}" ]; then
+            echo "Deploying via Vercel CLI..."
+            npm ci
+            npx vercel pull --yes --environment=production --token="${VERCEL_TOKEN}"
+            npx vercel build --prod --token="${VERCEL_TOKEN}"
+            npx vercel deploy --prebuilt --prod --token="${VERCEL_TOKEN}"
+            exit 0
+          fi
+
+          echo "::error::No deploy credentials found."
+          echo "Add VERCEL_DEPLOY_HOOK to GitHub repo secrets (easiest),"
+          echo "or add VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID."
+          echo "Until then, redeploy manually: Vercel dashboard -> Deployments -> Redeploy."
           exit 1
