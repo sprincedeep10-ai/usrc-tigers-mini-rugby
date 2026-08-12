@@ -137,10 +137,10 @@ export function Footer() {
             <a
               href="/staff/login"
               className="group flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted/30 transition-colors hover:text-tiger/60"
-              title="Staff Access"
+              title="Admin Access"
             >
               <Shield className="h-3 w-3" />
-              <span className="hidden sm:inline">Staff</span>
+              <span className="hidden sm:inline">Admin</span>
             </a>
           </div>
         </div>
