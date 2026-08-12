@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/staff-auth";
 import {
-  isBlobStorageConfigured,
+  isGitHubStorageConfigured,
   uploadSectionImage,
-} from "@/lib/section-image-store";
-import { resolveSectionImageUrl } from "@/lib/section-image-utils";
+} from "@/lib/section-image-github";
+import { getSectionImageDisplayUrl } from "@/lib/section-image-utils";
 import { SECTION_IMAGE_PATHS, type SectionImageKey } from "@/data/section-images";
 
 function isSectionKey(value: string): value is SectionImageKey {
@@ -19,11 +19,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!isBlobStorageConfigured()) {
+  if (!isGitHubStorageConfigured()) {
     return NextResponse.json(
       {
         error:
-          "Image storage is not set up yet. In Vercel: open this project → Storage → Create Blob Store → Redeploy. Then try again.",
+          "GITHUB_TOKEN is not configured on the server. Add it in Vercel project Settings → Environment Variables, then redeploy once.",
       },
       { status: 503 }
     );
@@ -42,12 +42,11 @@ export async function POST(request: NextRequest) {
     }
 
     const { entry, manifest } = await uploadSectionImage(section, file);
-    const imageUrl = resolveSectionImageUrl(manifest, section);
+    const imageUrl = getSectionImageDisplayUrl(section, entry);
 
     return NextResponse.json({
       success: true,
       section,
-      url: entry.url,
       updatedAt: entry.updatedAt,
       imageUrl,
       images: manifest,

@@ -4,10 +4,9 @@ import path from "path";
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   images: {
-    remotePatterns: [
+    localPatterns: [
       {
-        protocol: "https",
-        hostname: "*.public.blob.vercel-storage.com",
+        pathname: "/api/section-images/**",
       },
     ],
   },

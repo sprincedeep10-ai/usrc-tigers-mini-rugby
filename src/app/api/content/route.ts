@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getFileContents } from "@/lib/github";
-import { fetchSectionImageManifest } from "@/lib/section-image-store";
+import { fetchSectionImageManifest } from "@/lib/section-image-github";
+import { manifestToVersions } from "@/lib/section-image-utils";
 
 export const dynamic = "force-dynamic";
 
@@ -40,8 +41,10 @@ export async function GET() {
       translations = new Function(`${cleaned}\nreturn translations;`)();
     } catch {}
 
+    const sectionImageVersions = manifestToVersions(sectionImages);
+
     return NextResponse.json(
-      { posts, translations, sectionImages },
+      { posts, translations, sectionImages, sectionImageVersions },
       {
         headers: {
           "Cache-Control": "public, s-maxage=10, stale-while-revalidate=30",

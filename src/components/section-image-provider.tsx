@@ -12,8 +12,8 @@ import {
 import { type SectionImageKey } from "@/data/section-images";
 import {
   buildDefaultManifest,
+  getSectionImageDisplayUrl,
   mergeManifests,
-  resolveSectionImageUrl,
   type SectionImageEntry,
   type SectionImageManifest,
 } from "@/lib/section-image-utils";
@@ -22,7 +22,6 @@ const CHANNEL_NAME = "usrc-section-images";
 
 interface SectionImageContextValue {
   images: SectionImageManifest;
-  storage: "blob" | "static";
   getImageUrl: (key: SectionImageKey) => string;
   refreshImages: () => Promise<SectionImageManifest>;
   applyManifest: (manifest: SectionImageManifest) => void;
@@ -39,17 +38,14 @@ export function notifySectionImagesUpdated(manifest: SectionImageManifest) {
 
 export function SectionImageProvider({
   initialImages,
-  initialStorage = "static",
   children,
 }: {
   initialImages?: SectionImageManifest;
-  initialStorage?: "blob" | "static";
   children: ReactNode;
 }) {
   const [images, setImages] = useState<SectionImageManifest>(() =>
     mergeManifests(buildDefaultManifest(), initialImages ?? {})
   );
-  const [storage, setStorage] = useState<"blob" | "static">(initialStorage);
 
   const applyManifest = useCallback((manifest: SectionImageManifest) => {
     setImages((prev) => mergeManifests(prev, manifest));
@@ -62,13 +58,9 @@ export function SectionImageProvider({
     if (!res.ok) {
       throw new Error("Failed to refresh section images");
     }
-    const data = (await res.json()) as {
-      images?: SectionImageManifest;
-      storage?: "blob" | "static";
-    };
+    const data = (await res.json()) as { images?: SectionImageManifest };
     const next = mergeManifests(buildDefaultManifest(), data.images ?? {});
     setImages((prev) => mergeManifests(prev, next));
-    if (data.storage) setStorage(data.storage);
     return next;
   }, []);
 
@@ -77,7 +69,7 @@ export function SectionImageProvider({
   }, []);
 
   const getImageUrl = useCallback(
-    (key: SectionImageKey) => resolveSectionImageUrl(images, key),
+    (key: SectionImageKey) => getSectionImageDisplayUrl(key, images[key]),
     [images]
   );
 
@@ -106,8 +98,8 @@ export function SectionImageProvider({
   }, [refreshImages]);
 
   const value = useMemo(
-    () => ({ images, storage, getImageUrl, refreshImages, applyManifest, setImage }),
-    [images, storage, getImageUrl, refreshImages, applyManifest, setImage]
+    () => ({ images, getImageUrl, refreshImages, applyManifest, setImage }),
+    [images, getImageUrl, refreshImages, applyManifest, setImage]
   );
 
   return (
@@ -130,11 +122,4 @@ export function useSectionImage(key: SectionImageKey): string {
   return getImageUrl(key);
 }
 
-export function getSectionImageDisplayUrl(
-  key: SectionImageKey,
-  entry?: SectionImageEntry
-): string {
-  const manifest = buildDefaultManifest();
-  if (entry) manifest[key] = entry;
-  return resolveSectionImageUrl(manifest, key);
-}
+export { getSectionImageDisplayUrl };

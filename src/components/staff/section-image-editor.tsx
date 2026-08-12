@@ -12,7 +12,6 @@ import {
   notifySectionImagesUpdated,
   useSectionImages,
 } from "@/components/section-image-provider";
-import type { SectionImageManifest } from "@/lib/section-image-utils";
 import { Loader2, Upload, Check, X, Crop } from "lucide-react";
 
 interface SectionImageEditorProps {
@@ -119,7 +118,7 @@ function CropModal({
 }
 
 export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
-  const { images, storage, applyManifest } = useSectionImages();
+  const { images, applyManifest } = useSectionImages();
   const fileInputRefs = useRef<Partial<Record<SectionImageKey, HTMLInputElement>>>({});
   const [pendingFiles, setPendingFiles] = useState<Partial<Record<SectionImageKey, Blob>>>({});
   const [previews, setPreviews] = useState<Partial<Record<SectionImageKey, string>>>({});
@@ -171,13 +170,10 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       if (!res.ok) throw new Error(data.error || "Upload failed");
 
       if (data.images) {
-        applyManifest(data.images as SectionImageManifest);
-        notifySectionImagesUpdated(data.images as SectionImageManifest);
-      } else {
-        const entry = {
-          url: data.url as string,
-          updatedAt: data.updatedAt as number,
-        };
+        applyManifest(data.images);
+        notifySectionImagesUpdated(data.images);
+      } else if (data.updatedAt) {
+        const entry = { updatedAt: data.updatedAt as number };
         applyManifest({ [key]: entry });
         notifySectionImagesUpdated({ [key]: entry });
       }
@@ -237,15 +233,8 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       <div className="rounded-2xl border border-tiger/20 bg-tiger/5 p-5">
         <h3 className="text-sm font-semibold text-foreground">Homepage Images</h3>
         <p className="mt-1 text-sm text-muted">
-          Replace the 4 main photos on the website. Uploads go live instantly.
+          Replace the 4 main photos on the website. Changes go live instantly — no redeploy needed.
         </p>
-        {storage === "static" && (
-          <p className="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
-            Photo uploads need one-time setup: Vercel dashboard → this project →
-            Storage → Create Blob Store → Redeploy. Until then uploads will not
-            work.
-          </p>
-        )}
         <ol className="mt-3 list-decimal space-y-1 pl-4 text-xs text-muted">
           <li>
             Tap <strong className="text-foreground">Choose &amp; Crop</strong> and

@@ -1,18 +1,19 @@
 import { NextResponse } from "next/server";
-import {
-  fetchSectionImageManifest,
-  isBlobStorageConfigured,
-} from "@/lib/section-image-store";
+import { fetchSectionImageManifest } from "@/lib/section-image-github";
+import { manifestToVersions } from "@/lib/section-image-utils";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
     const images = await fetchSectionImageManifest();
+    const sectionImageVersions = manifestToVersions(images);
+
     return NextResponse.json(
       {
         images,
-        storage: isBlobStorageConfigured() ? "blob" : "static",
+        sectionImageVersions,
+        storage: "github",
       },
       {
         headers: {
