@@ -21,7 +21,12 @@ function loadCachedVersions(): VersionMap {
 }
 
 export function useSectionImage(key: SectionImageKey): string {
-  const [src, setSrc] = useState(SECTION_IMAGE_PATHS[key]);
+  const staticVersion = SECTION_IMAGE_VERSIONS[key];
+  const [src, setSrc] = useState(() =>
+    staticVersion
+      ? sectionImageRawUrl(key, staticVersion)
+      : SECTION_IMAGE_PATHS[key]
+  );
 
   useEffect(() => {
     const cached = loadCachedVersions();
