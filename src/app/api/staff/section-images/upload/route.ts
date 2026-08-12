@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/staff-auth";
 import {
-  isCloudinaryConfigured,
+  isSupabaseConfigured,
   uploadSectionImage,
-} from "@/lib/section-image-cloudinary";
+} from "@/lib/section-image-storage";
 import { type SectionImageManifest } from "@/lib/section-image-utils";
 import { SECTION_IMAGE_PATHS, type SectionImageKey } from "@/data/section-images";
 
@@ -19,11 +19,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!isCloudinaryConfigured()) {
+  if (!isSupabaseConfigured()) {
     return NextResponse.json(
       {
         error:
-          "Cloudinary is not set up yet. Open src/config/cloudinary.ts and add Cloud name, API Key, and API Secret from cloudinary.com, then push to GitHub once.",
+          "Photo storage is not set up yet. Open src/config/supabase.ts and add your Supabase URL and service role key, then push to GitHub once.",
       },
       { status: 503 }
     );

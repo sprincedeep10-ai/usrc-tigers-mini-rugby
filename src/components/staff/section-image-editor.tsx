@@ -126,13 +126,13 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
   const [uploading, setUploading] = useState<SectionImageKey | null>(null);
   const [cropModal, setCropModal] = useState<CropState | null>(null);
   const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
-  const [cloudinaryReady, setCloudinaryReady] = useState<boolean | null>(null);
+  const [storageReady, setStorageReady] = useState<boolean | null>(null);
 
   useEffect(() => {
     fetch("/api/section-images/versions")
       .then((res) => res.json())
-      .then((data) => setCloudinaryReady(Boolean(data.configured)))
-      .catch(() => setCloudinaryReady(false));
+      .then((data) => setStorageReady(Boolean(data.configured)))
+      .catch(() => setStorageReady(false));
   }, []);
 
   function showToast(type: "success" | "error", msg: string) {
@@ -243,7 +243,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
       <div className="rounded-2xl border border-tiger/20 bg-tiger/5 p-5">
         <h3 className="text-sm font-semibold text-foreground">Homepage Images</h3>
         <p className="mt-1 text-sm text-muted">
-          Replace the 4 main photos on the website. Uploads go to Cloudinary — changes appear on the homepage instantly.
+          Replace the 4 main photos on the website. Uploads are stored on Supabase — changes appear on the homepage instantly.
         </p>
         <ol className="mt-3 list-decimal space-y-1 pl-4 text-xs text-muted">
           <li>
@@ -264,37 +264,39 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
         </ol>
       </div>
 
-      {cloudinaryReady === false && (
+      {storageReady === false && (
         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5">
           <h3 className="text-sm font-semibold text-amber-200">One-time setup needed</h3>
           <p className="mt-2 text-sm text-amber-100/90">
-            Photo uploads use Cloudinary (free, instant CDN). No Vercel settings needed —
-            add three values from your Cloudinary dashboard to{" "}
-            <code className="text-amber-50">src/config/cloudinary.ts</code>, then push once:
+            Photo storage uses Supabase (free forever for small sites — same tech used by
+            thousands of production apps). No Vercel settings needed.
           </p>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-amber-100/80">
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-xs text-amber-100/80">
             <li>
-              <code className="text-amber-50">CLOUDINARY_CLOUD_NAME</code>
+              Sign up free at{" "}
+              <a
+                href="https://supabase.com/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-amber-50"
+              >
+                supabase.com
+              </a>{" "}
+              → create a project
             </li>
             <li>
-              <code className="text-amber-50">CLOUDINARY_API_KEY</code>
+              Storage → New bucket → name{" "}
+              <code className="text-amber-50">section-images</code> → Public bucket ON
             </li>
             <li>
-              <code className="text-amber-50">CLOUDINARY_API_SECRET</code>
+              Settings → API → copy <strong className="text-amber-50">Project URL</strong> and{" "}
+              <strong className="text-amber-50">service_role</strong> key
             </li>
-          </ul>
-          <p className="mt-3 text-xs text-amber-100/80">
-            Find all three on{" "}
-            <a
-              href="https://cloudinary.com/console"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline text-amber-50"
-            >
-              cloudinary.com
-            </a>{" "}
-            → Dashboard home page.
-          </p>
+            <li>
+              Paste into <code className="text-amber-50">src/config/supabase.ts</code> on GitHub,
+              commit &amp; push, then redeploy once on Vercel
+            </li>
+          </ol>
         </div>
       )}
 
