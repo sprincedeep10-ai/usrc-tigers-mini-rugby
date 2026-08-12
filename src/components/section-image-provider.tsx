@@ -9,7 +9,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { isSupabasePublicConfigured } from "@/config/supabase-public";
 import { type SectionImageKey } from "@/data/section-images";
+import { fetchPublicSectionImageManifest } from "@/lib/section-image-manifest";
 import {
   buildDefaultManifest,
   getSectionImageDisplayUrl,
@@ -19,6 +21,7 @@ import {
 } from "@/lib/section-image-utils";
 
 const CHANNEL_NAME = "usrc-section-images";
+const REFRESH_MS = 15_000;
 
 interface SectionImageContextValue {
   images: SectionImageManifest;
@@ -34,6 +37,11 @@ export function notifySectionImagesUpdated(manifest: SectionImageManifest) {
   try {
     new BroadcastChannel(CHANNEL_NAME).postMessage({ type: "update", manifest });
   } catch {}
+}
+
+async function loadManifestFromSupabase(): Promise<SectionImageManifest | null> {
+  if (!isSupabasePublicConfigured()) return null;
+  return fetchPublicSectionImageManifest();
 }
 
 export function SectionImageProvider({
@@ -52,14 +60,10 @@ export function SectionImageProvider({
   }, []);
 
   const refreshImages = useCallback(async () => {
-    const res = await fetch(`/api/section-images/versions?t=${Date.now()}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
+    const next = await loadManifestFromSupabase();
+    if (!next) {
       throw new Error("Failed to refresh section images");
     }
-    const data = (await res.json()) as { images?: SectionImageManifest };
-    const next = mergeManifests(buildDefaultManifest(), data.images ?? {});
     setImages((prev) => mergeManifests(prev, next));
     return next;
   }, []);
@@ -74,12 +78,22 @@ export function SectionImageProvider({
   );
 
   useEffect(() => {
-    refreshImages().catch(() => {});
+    loadManifestFromSupabase()
+      .then((next) => {
+        if (next) setImages((prev) => mergeManifests(prev, next));
+      })
+      .catch(() => {});
 
     const onFocus = () => {
-      refreshImages().catch(() => {});
+      loadManifestFromSupabase()
+        .then((next) => {
+          if (next) setImages((prev) => mergeManifests(prev, next));
+        })
+        .catch(() => {});
     };
     window.addEventListener("focus", onFocus);
+
+    const interval = window.setInterval(onFocus, REFRESH_MS);
 
     let channel: BroadcastChannel | null = null;
     try {
@@ -93,9 +107,10 @@ export function SectionImageProvider({
 
     return () => {
       window.removeEventListener("focus", onFocus);
+      window.clearInterval(interval);
       channel?.close();
     };
-  }, [refreshImages]);
+  }, []);
 
   const value = useMemo(
     () => ({ images, getImageUrl, refreshImages, applyManifest, setImage }),

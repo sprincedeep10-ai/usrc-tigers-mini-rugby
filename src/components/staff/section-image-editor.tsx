@@ -13,6 +13,7 @@ import {
   useSectionImages,
 } from "@/components/section-image-provider";
 import { mergeManifests } from "@/lib/section-image-utils";
+import { isSupabasePublicConfigured } from "@/config/supabase-public";
 import { Loader2, Upload, Check, X, Crop } from "lucide-react";
 
 interface SectionImageEditorProps {
@@ -129,10 +130,7 @@ export function SectionImageEditor({ authFetch }: SectionImageEditorProps) {
   const [storageReady, setStorageReady] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetch("/api/section-images/versions")
-      .then((res) => res.json())
-      .then((data) => setStorageReady(Boolean(data.configured)))
-      .catch(() => setStorageReady(false));
+    setStorageReady(isSupabasePublicConfigured());
   }, []);
 
   function showToast(type: "success" | "error", msg: string) {

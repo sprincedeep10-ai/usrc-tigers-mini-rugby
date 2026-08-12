@@ -1,10 +1,18 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import {
+  SECTION_IMAGES_BUCKET,
+  isSupabasePublicConfigured,
+} from "@/config/supabase-public";
+import {
   SUPABASE_SERVICE_ROLE_KEY,
   SUPABASE_URL,
   isSupabaseConfigured,
 } from "@/config/supabase";
 import { type SectionImageKey } from "@/data/section-images";
+import {
+  fetchPublicSectionImageManifest,
+  publicStorageUrl,
+} from "@/lib/section-image-manifest";
 import {
   buildDefaultManifest,
   mergeManifests,
@@ -12,9 +20,8 @@ import {
   type SectionImageManifest,
 } from "@/lib/section-image-utils";
 
-export { isSupabaseConfigured };
+export { isSupabaseConfigured, isSupabasePublicConfigured };
 
-const BUCKET = "section-images";
 const MANIFEST_PATH = "manifest.json";
 
 function getSupabase(): SupabaseClient {
@@ -27,29 +34,11 @@ function imagePath(key: SectionImageKey): string {
   return `sections/${key}.jpg`;
 }
 
-export function publicStorageUrl(path: string): string {
-  return `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`;
-}
-
-async function fetchManifestFromStorage(): Promise<SectionImageManifest | null> {
-  if (!isSupabaseConfigured()) return null;
-
-  try {
-    const res = await fetch(`${publicStorageUrl(MANIFEST_PATH)}?t=${Date.now()}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return null;
-    return (await res.json()) as SectionImageManifest;
-  } catch {
-    return null;
-  }
-}
-
 async function saveManifest(manifest: SectionImageManifest): Promise<void> {
   const supabase = getSupabase();
   const body = JSON.stringify(manifest, null, 2);
 
-  const { error } = await supabase.storage.from(BUCKET).upload(MANIFEST_PATH, body, {
+  const { error } = await supabase.storage.from(SECTION_IMAGES_BUCKET).upload(MANIFEST_PATH, body, {
     upsert: true,
     contentType: "application/json",
     cacheControl: "0",
@@ -61,9 +50,9 @@ async function saveManifest(manifest: SectionImageManifest): Promise<void> {
 }
 
 export async function fetchSectionImageManifest(): Promise<SectionImageManifest> {
-  const stored = await fetchManifestFromStorage();
+  const stored = await fetchPublicSectionImageManifest();
   if (!stored) return buildDefaultManifest();
-  return mergeManifests(buildDefaultManifest(), stored);
+  return stored;
 }
 
 export async function uploadSectionImage(
@@ -73,7 +62,7 @@ export async function uploadSectionImage(
 ): Promise<{ entry: SectionImageEntry; manifest: SectionImageManifest }> {
   if (!isSupabaseConfigured()) {
     throw new Error(
-      "Photo storage is not set up yet. Open src/config/supabase.ts and add your Supabase URL and service role key, then push to GitHub once."
+      "Photo storage is not set up yet. Open src/config/supabase.ts and add your Supabase service role key, then push to GitHub once."
     );
   }
 
@@ -81,7 +70,7 @@ export async function uploadSectionImage(
   const path = imagePath(key);
   const supabase = getSupabase();
 
-  const { error } = await supabase.storage.from(BUCKET).upload(path, bytes, {
+  const { error } = await supabase.storage.from(SECTION_IMAGES_BUCKET).upload(path, bytes, {
     upsert: true,
     contentType: "image/jpeg",
     cacheControl: "0",
