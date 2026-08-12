@@ -10,8 +10,8 @@
  *    - Overwrite assets with the same public ID: **enabled**
  * 4. Paste cloud name + preset name below, commit, and push (site redeploys once)
  */
-export const CLOUDINARY_CLOUD_NAME = "";
-export const CLOUDINARY_UPLOAD_PRESET = "";
+export const CLOUDINARY_CLOUD_NAME = "aai6silw";
+export const CLOUDINARY_UPLOAD_PRESET = "usrc-tigers";
 
 export function isCloudinaryConfigured(): boolean {
   return Boolean(CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET);
